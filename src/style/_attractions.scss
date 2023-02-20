@@ -1,0 +1,87 @@
+    div[role=radiogroup]
+    {
+        display: flex;
+    }
+
+    div[role=radiogroup] label div
+    {
+        border-color: var( --white-color ) !important;
+
+        background-color: var( --white-color ) !important;
+    }
+
+    div[role=radiogroup] label div:before
+    {
+        background-color: var( --blue-color ) !important;
+    }
+
+    div[role=radiogroup] label:hover div:after
+    {
+        background-color: unset !important;
+    }
+
+    div[role=radiogroup] input:focus:checked+.selector::after
+    {
+        background-color: unset !important;
+    }
+
+    .btn
+    {
+        color: var( --black-color ) !important;
+    }
+
+    .btn.filled
+    {
+        border-radius: unset !important;
+
+        background: var( --blue-color ) !important;
+
+        color: var( --white-color ) !important;
+    }
+
+    .btn.filled.danger
+    {
+        background: var( --red-color ) !important;
+    }
+
+    .pagination>.page.current
+    {
+        background: var( --blue-color ) !important;
+    }
+
+    .text-field input:focus, .text-field textarea:focus
+    {
+        border-color: var( --blue-color ) !important;
+    }
+
+    .tab>.content
+    {
+        color: var( --black-color ) !important;
+    }
+
+    .tab>input:checked+.content
+    {
+        border-color: var( --blue-color ) !important;
+
+        color: var( --black-color ) !important;
+    }
+
+    .switch input:checked~.track
+    {
+        border-color: var( --blue-color ) !important;
+    }
+
+    .switch input:checked~.track>.thumb
+    {
+        background-color: var( --blue-color ) !important;
+    }
+
+    .form-field .field .message.info
+    {
+        color: var( --red-color ) !important;
+    }
+
+    .file-dropzone
+    {
+        color: var( --blue-color ) !important;
+    }

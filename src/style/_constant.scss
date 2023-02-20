@@ -1,0 +1,201 @@
+// -- CONSTANTS
+
+$primary-font-family: Manrope, sans-serif;
+$secondary-font-family: sans-serif;
+$tertiary-font-family: sans-serif;
+$mono-font-family: monospace;
+
+$white-color: #FFFFFF;
+
+// #E0E0E0 //1
+// #ECEFF3 //2 -
+// #E6E9EE //3
+// #DADFE7 //4 -
+// #C2C2C2 //5 -
+// #A2A7AC //6
+// #757575 //7 -
+// #616161 //8 -
+// #424242 //9
+// #0A0A0A //10
+
+$black-color: #0A0A0A;
+$black-color-200: mix( $black-color, #000000, 60% );
+$black-color-300: mix( $black-color, #000000, 40% );
+$black-color-400: #151618;
+$black-color-600: mix( $black-color, #FFFFFF, 20% );
+$black-color-700: mix( $black-color, #FFFFFF, 40% );
+$black-color-800: mix( $black-color, #FFFFFF, 60% );
+
+$gray-color: #808080;
+$gray-color-200: #3E4043;
+$gray-color-300: mix( $gray-color, #000000, 40% );
+$gray-color-400: mix( $gray-color, #000000, 20% );
+$gray-color-600: #A2A7AC;
+$gray-color-700: mix( $gray-color, #FFFFFF, 40% );
+$gray-color-800: mix( $gray-color, #FFFFFF, 60% );
+
+$red-color: #AD1508;
+$red-color-200: mix( $red-color, #000000, 60% );
+$red-color-300: mix( $red-color, #000000, 40% );
+$red-color-400: mix( $red-color, #000000, 20% );
+$red-color-600: mix( $red-color, #FFFFFF, 20% );
+$red-color-700: mix( $red-color, #FFFFFF, 40% );
+$red-color-800: mix( $red-color, #FFFFFF, 60% );
+
+$green-color: #00FF00;
+$green-color-200: mix( $green-color, #000000, 60% );
+$green-color-300: mix( $green-color, #000000, 40% );
+$green-color-400: mix( $green-color, #000000, 20% );
+$green-color-600: mix( $green-color, #FFFFFF, 20% );
+$green-color-700: mix( $green-color, #FFFFFF, 40% );
+$green-color-800: mix( $green-color, #FFFFFF, 60% );
+
+$blue-color: #0063F8;
+$blue-color-200: mix( $blue-color, #000000, 60% );
+$blue-color-300: mix( $blue-color, #000000, 40% );
+$blue-color-400: mix( $blue-color, #000000, 20% );
+$blue-color-600: mix( $blue-color, #FFFFFF, 20% );
+$blue-color-700: mix( $blue-color, #FFFFFF, 40% );
+$blue-color-800: mix( $blue-color, #FFFFFF, 60% );
+
+$yellow-color: #DFB32E;
+$yellow-color-200: mix( $yellow-color, #000000, 60% );
+$yellow-color-300: mix( $yellow-color, #000000, 40% );
+$yellow-color-400: mix( $yellow-color, #000000, 20% );
+$yellow-color-600: mix( $yellow-color, #FFFFFF, 20% );
+$yellow-color-700: mix( $yellow-color, #FFFFFF, 40% );
+$yellow-color-800: mix( $yellow-color, #FFFFFF, 60% );
+
+$base-color: #FFFFFF;
+$base-color-200: mix( $base-color, #000000, 60% );
+$base-color-300: mix( $base-color, #000000, 40% );
+$base-color-400: mix( $base-color, #000000, 20% );
+$base-color-600: mix( $base-color, #FFFFFF, 20% );
+$base-color-700: mix( $base-color, #FFFFFF, 40% );
+$base-color-800: mix( $base-color, #FFFFFF, 60% );
+
+$neutral-color: #808080;
+$neutral-color-200: mix( $neutral-color, #000000, 60% );
+$neutral-color-300: mix( $neutral-color, #000000, 40% );
+$neutral-color-400: mix( $neutral-color, #000000, 20% );
+$neutral-color-600: mix( $neutral-color, #FFFFFF, 20% );
+$neutral-color-700: mix( $neutral-color, #FFFFFF, 40% );
+$neutral-color-800: mix( $neutral-color, #FFFFFF, 60% );
+
+$primary-color: #2AB4E7;
+$primary-color-200: mix( $primary-color, #000000, 60% );
+$primary-color-300: mix( $primary-color, #000000, 40% );
+$primary-color-400: mix( $primary-color, #000000, 20% );
+$primary-color-600: mix( $primary-color, #FFFFFF, 20% );
+$primary-color-700: mix( $primary-color, #FFFFFF, 40% );
+$primary-color-800: mix( $primary-color, #FFFFFF, 60% );
+
+$secondary-color: #2AB4E7;
+$secondary-color-200: mix( $secondary-color, #000000, 60% );
+$secondary-color-300: mix( $secondary-color, #000000, 40% );
+$secondary-color-400: mix( $secondary-color, #000000, 20% );
+$secondary-color-600: mix( $secondary-color, #FFFFFF, 20% );
+$secondary-color-700: mix( $secondary-color, #FFFFFF, 40% );
+$secondary-color-800: mix( $secondary-color, #FFFFFF, 60% );
+
+$tertiary-color: #2AB4E7;
+$tertiary-color-200: mix( $tertiary-color, #000000, 60% );
+$tertiary-color-300: mix( $tertiary-color, #000000, 40% );
+$tertiary-color-400: mix( $tertiary-color, #000000, 20% );
+$tertiary-color-600: mix( $tertiary-color, #FFFFFF, 20% );
+$tertiary-color-700: mix( $tertiary-color, #FFFFFF, 40% );
+$tertiary-color-800: mix( $tertiary-color, #FFFFFF, 60% );
+
+$accent-color: #2AB4E7;
+$accent-color-200: mix( $accent-color, #000000, 60% );
+$accent-color-300: mix( $accent-color, #000000, 40% );
+$accent-color-400: mix( $accent-color, #000000, 20% );
+$accent-color-600: mix( $accent-color, #FFFFFF, 20% );
+$accent-color-700: mix( $accent-color, #FFFFFF, 40% );
+$accent-color-800: mix( $accent-color, #FFFFFF, 60% );
+
+$info-color: #3ABFF8;
+$info-color-200: mix( $info-color, #000000, 60% );
+$info-color-300: mix( $info-color, #000000, 40% );
+$info-color-400: mix( $info-color, #000000, 20% );
+$info-color-600: mix( $info-color, #FFFFFF, 20% );
+$info-color-700: mix( $info-color, #FFFFFF, 40% );
+$info-color-800: mix( $info-color, #FFFFFF, 60% );
+
+$success-color: #36D399;
+$success-color-200 : mix( $success-color, #000000, 60% );
+$success-color-300 : mix( $success-color, #000000, 40% );
+$success-color-400 : mix( $success-color, #000000, 20% );
+$success-color-600 : mix( $success-color, #FFFFFF, 20% );
+$success-color-700 : mix( $success-color, #FFFFFF, 40% );
+$success-color-800 : mix( $success-color, #FFFFFF, 60% );
+
+$warning-color: #FBBD23;
+$warning-color-200: mix( $warning-color, #000000, 60% );
+$warning-color-300: mix( $warning-color, #000000, 40% );
+$warning-color-400: mix( $warning-color, #000000, 20% );
+$warning-color-600: mix( $warning-color, #FFFFFF, 20% );
+$warning-color-700: mix( $warning-color, #FFFFFF, 40% );
+$warning-color-800: mix( $warning-color, #FFFFFF, 60% );
+
+$error-color: #F87272;
+$error-color-200: mix( $error-color, #000000, 60% );
+$error-color-300: mix( $error-color, #000000, 40% );
+$error-color-400: mix( $error-color, #000000, 20% );
+$error-color-600: mix( $error-color, #FFFFFF, 20% );
+$error-color-700: mix( $error-color, #FFFFFF, 40% );
+$error-color-800: mix( $error-color, #FFFFFF, 60% );
+
+$link-color: #86B4F0;
+$link-hover-color: #A2C2EC;
+$table-border-color: #888888;
+
+$line-color: #BFC6CA;
+$line-dim-color: mix( $line-color, #000000, 60% );
+$line-dark-color: mix( $line-color, #000000, 40% );
+$line-shade-color: mix( $line-color, #000000, 20% );
+$line-tint-color: mix( $line-color, #FFFFFF, 20% );
+$line-light-color: mix( $line-color, #FFFFFF, 40% );
+$line-pale-color: mix( $line-color, #FFFFFF, 60% );
+
+$background-color: #ECEFF3;
+$background-dim-color: mix( $background-color, #000000, 60% );
+$background-dark-color: mix( $background-color, #000000, 40% );
+$background-shade-color: mix( $background-color, #000000, 20% );
+$background-tint-color: mix( $background-color, #FFFFFF, 20% );
+$background-light-color: #DADFE7;
+$background-pale-color: mix( $background-color, #FFFFFF, 60% );
+
+$company-background-color: #DADFE7;
+$company-name-color: #757575;
+
+$scrollbar-width: 0.4rem;
+$scrollbar-color: rgba( 255, 255, 255, 0.3 );
+$scrollbar-hover-color: rgba( 255, 255, 255, 0.2 );
+$scrollbar-background-color: rgba( 0, 0, 0, 0.1 );
+
+$smallest-font-size: 0.75rem;
+$small-font-size: 0.875rem;
+$medium-font-size: 1rem;
+$mediumest-font-size: 1.125rem;
+$large-font-size: 1.25rem;
+$largest-font-size: 3rem;
+$big-font-size: 1.5rem;
+$bigger-font-size: 2rem;
+$biggest-font-size: 2.25rem;
+$biggester-font-size: 4rem;
+
+$tiny-button-border-radius: 0.5rem;
+$small-button-border-radius: 0.5rem;
+$button-border-radius: 0.5rem;
+$large-button-border-radius: 0.5rem;
+$big-button-border-radius: 0.5rem;
+$huge-button-border-radius: 0.5rem;
+$pill-button-border-radius: 100vmax;
+
+$tiny-button-padding: 0.125rem 0.25rem;
+$small-button-padding: 0.25rem 0.5rem;
+$button-padding: 0.5rem 1rem;
+$large-button-padding: 1rem 2rem;
+$big-button-padding: 1.5rem 3rem;
+$huge-button-padding: 2rem 4rem;

@@ -1,0 +1,113 @@
+<script>
+    export let data;
+    import { TextField, FileDropzone, FormField } from 'attractions';
+    import { getTranslatedText } from 'senselogic-gist';
+    import { getTranslatedTextByCode } from 'senselogic-gist';
+    import Image from '$lib/components/admin/Image.svelte';
+    import { enhance } from '$app/forms';
+
+    let industryInfo = data.industryData;
+
+    let name = industryInfo.name;
+
+    let iconPath = industryInfo.iconPath;
+
+    let refreshIcon = {};
+
+    let icon = new Array;
+
+    if ( industryInfo.iconPath )
+    {
+        icon.push( {name : industryInfo.iconPath} )
+    }
+
+    let newIconArray = new Array;
+
+    function getBase64( image ) {
+
+        if ( image.length>0 )
+        {
+            newIconArray = new Array;
+
+            for ( let indexImage=0; indexImage<image.length; indexImage++ )
+            {
+                let file = image[ indexImage ].name.split( '.' );
+
+                let newImage = {
+                    name : file[ 0 ],
+                    extension : file[ 1 ],
+                    dataFile : ''
+                }
+
+                const reader = new FileReader();
+
+                reader.readAsDataURL( image[ indexImage ] );
+
+                reader.onload = e => {
+                    const imageData = e.target.result.split( ',' );
+                    newImage.dataFile = imageData[ 1 ];
+
+                    newIconArray.push( newImage );
+                    refreshIcon = {}
+                };
+            }
+        }
+    };
+</script>
+
+<svelte:head>
+    <title>{getTranslatedText( name )}</title>
+</svelte:head>
+<div class="admin-page">
+    <form use:enhance method="POST" action="?/edit">
+        <div class="admin-section">
+            <FormField
+                name="{getTranslatedTextByCode( 'IndustryNameLabel' )}"
+            >
+                <div class="text-input">
+                    {#each Object.entries( name ) as [ lang, text ]}
+                        {lang}
+                        <TextField
+                            name="name"
+                            placeholder="{text}"
+                            bind:value={text}
+                            required
+                        />
+                    {/each}
+                </div>
+            </FormField>
+        </div>
+        <div class="admin-section">
+            <FormField
+                name="{getTranslatedTextByCode( 'IndustryIconLabel' )}"
+            >
+                <FileDropzone
+                    accept="image/*"
+                    max={1}
+                    bind:files={icon}
+                    fileComponent={Image}
+                    on:change={() => getBase64( icon )}
+                    required
+                />
+                <input hidden name="iconPath" value={iconPath}/>
+                {#key refreshIcon}
+                    {#each newIconArray as item}
+                        <input hidden name="icon-file-name" value="{item.name}"/>
+                        <input hidden name="icon-file-extension" value="{item.extension}"/>
+                        <input hidden name="icon-file-data" value="{item.dataFile}"/>
+                    {/each}
+                {/key}
+            </FormField>
+        </div>
+        <div class="admin-button">
+            <button>{getTranslatedTextByCode( 'SavePageButton' )}</button>
+        </div>
+    </form>
+    <form use:enhance method="POST" action="?/delete">
+        <div class="admin-button">
+            <button class="danger">
+                {getTranslatedTextByCode( 'DeletePageButton' )}
+            </button>
+        </div>
+    </form>
+</div>

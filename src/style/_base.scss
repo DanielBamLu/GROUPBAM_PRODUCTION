@@ -1,0 +1,2006 @@
+// -- ELEMENTS
+
+html
+{
+    --primary-font-family: #{$primary-font-family};
+    --secondary-font-family: #{$secondary-font-family};
+    --tertiary-font-family: #{$tertiary-font-family};
+    --mono-font-family: #{$mono-font-family};
+
+    --white-color: #{$white-color};
+
+    --black-color: #{$black-color};
+    --black-color-200: #{$black-color-200};
+    --black-color-300: #{$black-color-300};
+    --black-color-400: #{$black-color-400};
+    --black-color-600: #{$black-color-600};
+    --black-color-700: #{$black-color-700};
+    --black-color-800: #{$black-color-800};
+
+    --gray-color: #{$gray-color};
+    --gray-color-200: #{$gray-color-200};
+    --gray-color-300: #{$gray-color-300};
+    --gray-color-400: #{$gray-color-400};
+    --gray-color-600: #{$gray-color-600};
+    --gray-color-700: #{$gray-color-700};
+    --gray-color-800: #{$gray-color-800};
+
+    --red-color: #{$red-color};
+    --red-color-200: #{$red-color-200};
+    --red-color-300: #{$red-color-300};
+    --red-color-400: #{$red-color-400};
+    --red-color-600: #{$red-color-600};
+    --red-color-700: #{$red-color-700};
+    --red-color-800: #{$red-color-800};
+
+    --green-color: #{$green-color};
+    --green-color-200: #{$green-color-200};
+    --green-color-300: #{$green-color-300};
+    --green-color-400: #{$green-color-400};
+    --green-color-600: #{$green-color-600};
+    --green-color-700: #{$green-color-700};
+    --green-color-800: #{$green-color-800};
+
+    --blue-color: #{$blue-color};
+    --blue-color-200: #{$blue-color-200};
+    --blue-color-300: #{$blue-color-300};
+    --blue-color-400: #{$blue-color-400};
+    --blue-color-600: #{$blue-color-600};
+    --blue-color-700: #{$blue-color-700};
+    --blue-color-800: #{$blue-color-800};
+
+    --yellow-color: #{$yellow-color};
+    --yellow-color-200: #{$yellow-color-200};
+    --yellow-color-300: #{$yellow-color-300};
+    --yellow-color-400: #{$yellow-color-400};
+    --yellow-color-600: #{$yellow-color-600};
+    --yellow-color-700: #{$yellow-color-700};
+    --yellow-color-800: #{$yellow-color-800};
+
+    --base-color: #{$base-color};
+    --base-color-200: #{$base-color-200};
+    --base-color-300: #{$base-color-300};
+    --base-color-400: #{$base-color-400};
+    --base-color-600: #{$base-color-600};
+    --base-color-700: #{$base-color-700};
+    --base-color-800: #{$base-color-800};
+
+    --neutral-color: #{$neutral-color};
+    --neutral-color-200: #{$neutral-color-200};
+    --neutral-color-300: #{$neutral-color-400};
+    --neutral-color-400: #{$neutral-color-300};
+    --neutral-color-600: #{$neutral-color-700};
+    --neutral-color-700: #{$neutral-color-600};
+    --neutral-color-800: #{$neutral-color-800};
+
+    --primary-color: #{$primary-color};
+    --primary-color-200: #{$primary-color-200};
+    --primary-color-300: #{$primary-color-300};
+    --primary-color-400: #{$primary-color-400};
+    --primary-color-600: #{$primary-color-600};
+    --primary-color-700: #{$primary-color-700};
+    --primary-color-800: #{$primary-color-800};
+
+    --secondary-color: #{$secondary-color};
+    --secondary-color-200: #{$secondary-color-200};
+    --secondary-color-300: #{$secondary-color-300};
+    --secondary-color-400: #{$secondary-color-400};
+    --secondary-color-600: #{$secondary-color-600};
+    --secondary-color-700: #{$secondary-color-700};
+    --secondary-color-800: #{$secondary-color-800};
+
+    --tertiary-color: #{$tertiary-color};
+    --tertiary-color-200: #{$tertiary-color-200};
+    --tertiary-color-300: #{$tertiary-color-300};
+    --tertiary-color-400: #{$tertiary-color-400};
+    --tertiary-color-600: #{$tertiary-color-600};
+    --tertiary-color-700: #{$tertiary-color-700};
+    --tertiary-color-800: #{$tertiary-color-800};
+
+    --accent-color: #{$accent-color};
+    --accent-color-200: #{$accent-color-200};
+    --accent-color-300: #{$accent-color-300};
+    --accent-color-400: #{$accent-color-400};
+    --accent-color-600: #{$accent-color-600};
+    --accent-color-700: #{$accent-color-700};
+    --accent-color-800: #{$accent-color-800};
+
+    --info-color: #{$info-color};
+    --info-color-200: #{$info-color-200};
+    --info-color-300: #{$info-color-300};
+    --info-color-400: #{$info-color-400};
+    --info-color-600: #{$info-color-600};
+    --info-color-700: #{$info-color-700};
+    --info-color-800: #{$info-color-800};
+
+    --success-color : #{$success-color};
+    --success-color-200 : #{$success-color-200};
+    --success-color-300 : #{$success-color-300};
+    --success-color-400 : #{$success-color-400};
+    --success-color-600 : #{$success-color-600};
+    --success-color-700 : #{$success-color-700};
+    --success-color-800 : #{$success-color-800};
+
+    --warning-color: #{$warning-color};
+    --warning-color-200: #{$warning-color-200};
+    --warning-color-300: #{$warning-color-300};
+    --warning-color-400: #{$warning-color-400};
+    --warning-color-600: #{$warning-color-600};
+    --warning-color-700: #{$warning-color-700};
+    --warning-color-800: #{$warning-color-800};
+
+    --error-color: #{$error-color};
+    --error-color-200: #{$error-color-200};
+    --error-color-300: #{$error-color-300};
+    --error-color-400: #{$error-color-400};
+    --error-color-600: #{$error-color-600};
+    --error-color-700: #{$error-color-700};
+    --error-color-800: #{$error-color-800};
+
+    --tiny-button-border-radius: #{$tiny-button-border-radius};
+    --small-button-border-radius: #{$small-button-border-radius};
+    --button-border-radius: #{$button-border-radius};
+    --large-button-border-radius: #{$large-button-border-radius};
+    --big-button-border-radius: #{$big-button-border-radius};
+    --huge-button-border-radius: #{$huge-button-border-radius};
+    --pill-button-border-radius: #{$pill-button-border-radius};
+
+    --tiny-button-padding: #{$tiny-button-padding};
+    --small-button-padding: #{$small-button-padding};
+    --button-padding: #{$button-padding};
+    --large-button-padding: #{$large-button-padding};
+    --big-button-padding: #{$big-button-padding};
+    --huge-button-padding: #{$huge-button-padding};
+
+    --line-color: #{$line-color};
+    --line-dim-color: #{$line-dim-color};
+    --line-dark-color: #{$line-dark-color};
+    --line-shade-color: #{$line-shade-color};
+    --line-tint-color: #{$line-tint-color};
+    --line-light-color: #{$line-light-color};
+    --line-pale-color: #{$line-pale-color};
+
+    --background-color: #{$background-color};
+    --background-dim-color: #{$background-dim-color};
+    --background-dark-color: #{$background-dark-color};
+    --background-shade-color: #{$background-shade-color};
+    --background-tint-color: #{$background-tint-color};
+    --background-light-color: #{$background-light-color};
+    --background-pale-color: #{$background-pale-color};
+
+    --company-background-color: #{$company-background-color};
+}
+
+html
+{
+    overflow-x: hidden;
+    height: 100%;
+    min-height: 100%;
+
+    font-size: 0.8rem;
+    @media( min-width: 30em )
+    {
+        font-size: 0.9rem;
+    }
+
+    @media( min-width: 65em )
+    {
+        font-size: 1rem;
+    }
+
+    @media( min-width: 90em )
+    {
+        font-size: 1.1rem;
+    }
+
+    @media( min-width: 100em )
+    {
+        font-size: 1.2rem;
+    }
+
+    @media( min-width: 110em )
+    {
+        font-size: 1.3rem;
+    }
+
+    @media( min-width: 120em )
+    {
+        font-size: 1.4rem;
+    }
+}
+
+body
+{
+    height: 100%;
+    min-height: 100%;
+
+    background-color: $background-color;
+}
+
+body,
+button,
+input,
+textarea
+{
+    font-family: $primary-font-family;
+}
+
+sup
+{
+    position: relative;
+    top: -0.7em;
+
+    font-size: 0.5em;
+    vertical-align: baseline;
+}
+
+table
+{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+table tr:first-child
+{
+    font-weight: 700;
+    text-align: center;
+}
+
+td
+{
+    border: 1px solid $table-border-color;
+    padding: 0.5rem;
+}
+
+html,
+body,
+body *,
+button,
+input,
+textarea
+{
+    scrollbar-width: thin;
+    scrollbar-color: $scrollbar-color $scrollbar-background-color;
+}
+
+::-webkit-scrollbar
+{
+    height: $scrollbar-width;
+    width: $scrollbar-width;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: $scrollbar-color;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background: $scrollbar-hover-color;
+}
+
+::-webkit-scrollbar-track
+{
+    background: $scrollbar-background-color;
+}
+
+// -- CLASSES
+
+.ellipsisDots {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.is-hidden
+{
+    display: none !important;
+}
+
+.button
+{
+    cursor: pointer;
+}
+
+.paragraph
+{
+    min-height: 1em;
+}
+
+.paragraph + .paragraph
+{
+    margin-top: 0.8em;
+}
+
+.linebreak
+{
+    margin-bottom: 0.8em;
+}
+
+.title-1
+{
+    font-size: 2rem;
+}
+
+.title-2
+{
+    font-size: 1.75rem;
+}
+
+.title-3
+{
+    font-size: 1.5rem;
+}
+
+.title-4
+{
+    font-size: 1.25rem;
+}
+
+.dash-1
+{
+    margin-left: 1em;
+}
+
+.dash-2
+{
+    margin-left: 2em;
+}
+
+.dash-3
+{
+    margin-left: 3em;
+}
+
+.dash-4
+{
+    margin-left: 4em;
+}
+
+.dash-1::before,
+.dash-2::before,
+.dash-3::before,
+.dash-4::before
+{
+    position: absolute;
+    transform: translateX( -0.9em );
+
+    content: "-";
+}
+
+.bullet-1
+{
+    margin-left: 1em;
+}
+
+.bullet-2
+{
+    margin-left: 2em;
+}
+
+.bullet-3
+{
+    margin-left: 3em;
+}
+
+.bullet-4
+{
+    margin-left: 4em;
+}
+
+.bullet-1::before,
+.bullet-2::before,
+.bullet-3::before,
+.bullet-4::before
+{
+    position: absolute;
+    transform: translateX( -0.9em );
+
+    content: "\2022";
+}
+
+.table
+{
+    height: 100%;
+    width: 100%;
+
+    display: table;
+}
+
+.table-cell
+{
+    height: 100%;
+    width: 100%;
+
+    display: table-cell;
+
+    vertical-align: middle;
+}
+
+.drawer-section-title
+{
+    font-size: $small-font-size;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $gray-color;
+}
+
+.drawer-label
+{
+    font-size: $medium-font-size;
+    font-weight: 400;
+    color: $black-color;
+}
+
+.drawer-category-label
+{
+    font-size: $small-font-size;
+    font-weight: 400;
+    color: $black-color;
+}
+
+.header-menu-button
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.header-button-label-white
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.header-button-label-dark
+{
+    font-size: $medium-font-size;
+    color: $black-color
+}
+
+.about-title
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.about-button-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.company-link
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.company-card-name
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.company-card-summary
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.company-card-description
+{
+    font-size: $large-font-size;
+    font-weight: 400;
+    color: $white-color;
+}
+
+.main-button
+{
+    width: fit-content;
+    padding: 1rem 2rem;
+
+    background-color: $blue-color;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    text-align: center;
+    color: $white-color;
+
+    cursor: pointer;
+}
+
+.inverted-button
+{
+    width: fit-content;
+    border: 0.125rem solid $blue-color;
+    padding: 1rem 2rem;
+
+    background: unset;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    text-align: center;
+    color: $blue-color;
+
+    cursor: pointer;
+}
+
+.main-red-button
+{
+    width: fit-content;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+
+    background-color: $red-color;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    text-align: center;
+    color: $white-color;
+
+    cursor: pointer;
+}
+
+.inverted-red-button
+{
+    width: fit-content;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+
+    background-color: $background-tint-color;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    text-align: center;
+    color: $red-color;
+
+    cursor: pointer;
+}
+
+.home-service-title
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.service-card-counter
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    white-space: nowrap;
+    color: $white-color;
+}
+
+.service-card-cart-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-card-company-name
+{
+    display: block;
+
+    font-size: $large-font-size;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $company-name-color;
+}
+
+.service-card-name
+{
+    font-size: $bigger-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.service-card-description
+{
+    font-size: $large-font-size;
+    font-weight: 400;
+    color: $black-color;
+}
+
+.service-card-price
+{
+    font-size: $bigger-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.service-card-button
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.service-order-summary-total-price-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $gray-color;
+}
+
+.service-order-summary-total-price-value
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-order-summary-button
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.testimonial-section-title
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.testimonial-title
+{
+    font-size: $biggest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.testimonial-description
+{
+    font-size: $medium-font-size;
+    font-weight: 400;
+    color: $black-color;
+}
+
+.testimonial-card-name
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.testimonial-card-company
+{
+    font-size: $medium-font-size;
+    font-weight: 400;
+    color: $black-color;
+}
+
+.testimonial-card-description
+{
+    font-size: $medium-font-size;
+    font-weight: 400;
+    color: $black-color;
+}
+
+.footer-menu-top-button
+{
+    font-size: $small-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.footer-menu-bottom-button
+{
+    font-size: $small-font-size;
+    font-weight: 600;
+    color: $gray-color;
+}
+
+.footer-message-label
+{
+    font-size: $bigger-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.footer-message-link
+{
+    font-size: $bigger-font-size;
+    font-weight: 600;
+    color: $blue-color;
+}
+
+.footer-label-copyright
+{
+    font-size: $small-font-size;
+    font-weight: 400;
+    color: $gray-color;
+}
+
+.footer-button
+{
+    font-size: $small-font-size;
+    font-weight: 400;
+    color: $gray-color;
+}
+
+.back-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-title
+{
+    font-size: $biggest-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-description
+{
+    font-size: $large-font-size;
+    color: $white-color;
+}
+
+.service-price
+{
+    font-size: $largest-font-size;
+    color: $white-color;
+}
+
+.service-review
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.service-review-item
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.service-cart-button
+{
+    background-color: $blue-color;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-save-button
+{
+    background-color: $gray-color-200;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-gallery-counter
+{
+    font-size: $mediumest-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-option-button
+{
+    background-color: $blue-color;
+
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-pack-price
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+}
+
+.service-pack-description
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.service-pack-include-label
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.service-pack-include-text
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.block-title
+{
+    font-size: $bigger-font-size;
+    font-weight: 600;
+    color: $black-color;
+    @media( min-width: 65em )
+    {
+        font-size: $biggester-font-size;
+    }
+}
+
+.block-description
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.option-card-title
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.option-card-description
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.option-card-label
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.card-title
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.card-description
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.information-block-title
+{
+    font-size: $medium-font-size;
+    color: $red-color;
+}
+
+.information-block-inner-title
+{
+    font-size: $biggest-font-size;
+    color: $black-color;
+}
+
+.information-block-inner-description
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.infomation-accordion-title
+{
+    font-size: $large-font-size;
+}
+
+.infomation-accordion-content
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.average-number
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.average-based
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.review-title
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.review-rating
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.review-date
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.review-user
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.review-text
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.review-show-more
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $blue-color;
+}
+
+.order-summary-title
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.order-summary-production-time-label
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.order-summary-production-time-days
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.order-summary-item-title
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.order-summary-clear
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $red-color;
+}
+
+.order-summary-urgency-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.order-summary-secure-payment-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.order-summary-checkout-text
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.order-summary-checkout-view-cart
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.order-summary-generate-offer-text
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.footer-language-label
+{
+    font-size: $medium-font-size;
+    text-transform: capitalize;
+    color: $gray-color;
+}
+
+.footer-currency-label
+{
+    font-size: $medium-font-size;
+    text-transform: capitalize;
+    color: $gray-color;
+}
+
+.quantity-label-bright
+{
+    font-size: $smallest-font-size;
+    color: $gray-color-600;
+}
+
+.quantity-label-dark
+{
+    font-size: $smallest-font-size;
+    color: $gray-color;
+}
+
+.quantity-value-bright
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.quantity-value-dark
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-title
+{
+    font-size: $biggester-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-empty
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-clear
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $red-color;
+}
+
+.cart-card-title
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-card-description
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.cart-production-time-label
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.cart-production-time-days
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-urgency-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-view-cart
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.cart-checkout-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.saved-card-title
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.saved-card-description
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.saved-cart-label
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.saved-card-category-label
+{
+    font-size: $smallest-font-size;
+    color: $gray-color;
+}
+
+.saved-card-category-unit
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.saved-card-unit-price-label
+{
+    font-size: $smallest-font-size;
+    color: $gray-color;
+}
+
+.saved-card-unit-price-value
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.saved-view-saved
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.saved-empty
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.filter-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.services-title
+{
+    font-size: $biggester-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.services-label
+{
+    font-size: $large-font-size;
+    color: $black-color;
+}
+
+.admin-title-section
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.admin-subtitle-section
+{
+    font-size: $big-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.admin-title
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.customer-page-title
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.customer-actions-user-name
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.auth-welcome
+{
+    font-size: $biggest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.auth-account
+{
+    font-size: $large-font-size;
+    color: $black-color;
+}
+
+.auth-label
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.auth-account-label
+{
+    font-size: $large-font-size;
+    color: $gray-color-200;
+}
+
+.auth-account-link
+{
+    font-size: $large-font-size;
+    color: $blue-color;
+}
+
+.auth-button button
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.auth-google-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.modal-welcome
+{
+    font-size: $biggest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.modal-account-label
+{
+    font-size: $large-font-size;
+    color: $gray-color-200;
+}
+
+.modal-account-link
+{
+    font-size: $large-font-size;
+    color: $blue-color;
+}
+
+.modal-label
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.modal-forgot-password
+{
+    font-size: $medium-font-size;
+    color: $black-color;
+}
+
+.modal-button button
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.modal-button-cancel
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.modal-google-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.modal-menu-top-button
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $white-color;
+    @media( min-width: 65em )
+    {
+        font-size: $bigger-font-size;
+    }
+}
+
+.modal-menu-bottom-button
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.modal-recent-services-label
+{
+    font-size: $medium-font-size;
+    color: $white-color;
+}
+
+.account-section-title
+{
+    font-size: $bigger-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.account-personal-field-label
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $gray-color;
+}
+
+.account-personal-field-text
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.account-section-button
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.account-section-button-password
+{
+    font-size: $medium-font-size;
+    font-weight: 600;
+    color: $blue-color;
+}
+
+.customer-action-label
+{
+    font-size: $small-font-size;
+    color: $white-color;
+    @media( min-width: 65em )
+    {
+        color: $black-color;
+    }
+}
+
+.checkout-page-title
+{
+    font-size: $largest-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.checkout-section-title
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $black-color;
+}
+
+.checkout-order-summary-heading
+{
+    font-size: $large-font-size;
+    font-weight: 600;
+    color: $white-color;
+}
+
+.checkout-order-summary-checkout-label
+{
+    font-size: $large-font-size;
+    color: $white-color;
+}
+
+.main
+{
+    position: relative;
+
+    min-height: 100vh;
+}
+
+.main-header
+{
+    z-index: 1000;
+    position: fixed;
+
+    width: 100vw;
+
+    display: flex;
+
+    background-color: var( --background-color );
+    @media( min-width: 65em )
+    {
+        flex: unset;
+    }
+}
+
+.main-container-drawer
+{
+    z-index: 1;
+    position: absolute;
+
+    margin-top: 4rem;
+    height: 100%;
+    width: 0;
+
+    background-color: var( --background-color );
+
+    transition: width 0.25s ease-in-out;
+    @media( min-width: 65em )
+    {
+        position: relative;
+    }
+}
+
+.main-container-drawer.is-open{
+    width: 19rem;
+
+    transition: width 0.25s ease-in-out;
+}
+
+.main-container
+{
+    position: relative;
+
+    display: flex;
+}
+
+.main-container-slot
+{
+    margin-top: 4rem;
+    min-height: var( --viewport-height );
+    width: 100%;
+
+    transition: width 0.25s ease-in-out;
+}
+
+.main-container-slot.is-open
+{
+    transition: width 0.25s ease-in-out;
+    @media( min-width: 65em )
+    {
+        width: calc(100% - 19rem);
+    }
+}
+
+.parent-service-card
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    @media( min-width: 65em )
+    {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media( min-width: 90em )
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media( min-width: 120em )
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.carousel .slides >div{
+    position: absolute;
+
+    display: flex;
+}
+
+.carousel .slides::after{
+    padding-bottom: 60%;
+
+    display: block;
+
+    content: "";
+}
+
+.carousel .slides >div >div{
+    flex: 1;
+}
+
+.sc-carousel__carousel-container
+{
+    height: 100%;
+}
+
+.sc-carousel__content-container
+{
+    height: 100%;
+}
+
+.admin-search
+{
+    display: flex;
+}
+
+.admin-search input
+{
+    height: 100%;
+    padding: 1rem;
+}
+
+.admin-list
+{
+    padding: 1.5rem;
+}
+
+.admin-list-pages
+{
+    margin-top: 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-list-page
+{
+    display: none;
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease-in-out;
+}
+
+.admin-list-page.selected
+{
+    display: block;
+
+    opacity: 1;
+
+    transition: opacity 0.25s ease-in-out;
+}
+
+.admin-list-item
+{
+    margin-bottom: 1rem;
+    border: 0.063rem solid var( --line-color );
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-list-item-controler
+{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.admin-page
+{
+    padding: 2rem;
+}
+
+.admin-section-container
+{
+    position: relative;
+
+    margin: 2rem 0 0.5rem;
+    border: 0.125em dashed currentColor;
+    border-radius: 2em;
+    padding: 2rem;
+
+    display: block;
+}
+
+form .admin-button button
+{
+    margin-top: 1rem;
+    outline: none;
+    padding: 0.8rem 1.1rem;
+
+    display: flex;
+    align-items: center;
+
+    background: linear-gradient(0deg, $blue-color 0%, $blue-color 100%);
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 3px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+
+    font-size: $medium-font-size;
+    color: $white-color;
+
+    cursor: pointer;
+}
+
+form .admin-button button.danger
+{
+    background: linear-gradient(0deg, $red-color 0%, $red-color 100%);
+}
+
+.text-input
+{
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @media( min-width: 90em )
+    {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.text-input .admin-button button
+{
+    margin-top: 0;
+}
+
+.admin-tab
+{
+    display: none;
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease-in-out;
+}
+
+.admin-tab.selected
+{
+    display: block;
+
+    opacity: 1;
+
+    transition: opacity 0.25s ease-in-out;
+}
+
+.drawer-hamburger
+{
+    z-index: 999;
+    position: absolute;
+    right: 0;
+
+    height: 4rem;
+    width: 4rem;
+
+    background-color: var( --blue-color );
+    @media( min-width: 65em )
+    {
+        position: relative;
+    }
+}
+
+.drawer-hamburger img
+{
+    width: 1.125rem;
+}
+
+.side-menu-hamburger
+{
+    z-index: 999;
+    position: absolute;
+    right: 0;
+
+    height: 4rem;
+    width: 4rem;
+
+    background-color: var( --blue-color );
+    @media( min-width: 65em )
+    {
+        position: relative;
+    }
+}
+
+.side-menu-hamburger img
+{
+    width: 1.125rem;
+}
+
+.auth
+{
+    background-color: var( --background-color);
+    @media( min-width: 65em )
+    {
+        margin: auto;
+        max-width: 40rem;
+    }
+}
+
+.auth-container
+{
+    padding: 2rem;
+
+    text-align: left;
+    @media( min-width: 65em )
+    {
+        padding: 4rem;
+    }
+}
+
+.auth-account
+{
+    margin-bottom: 1.5rem;
+    
+    display: flex;
+    gap: 1rem;
+}
+
+.auth-button
+{
+    margin-top: 1.5rem;
+
+    flex: 1;
+}
+
+.auth-button button
+{
+    height: 3rem;
+    width: 100%;
+    padding: 0 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--blue-color);
+}
+
+.auth-separator
+{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    text-align: center;
+}
+
+.auth-separator::before,
+.auth-separator::after
+{
+    height: 0.063rem;
+    width: 100%;
+
+    display: block;
+
+    content: "";
+    background-color: var( --line-color );
+}
+
+.auth-separator::before
+{
+    margin-right: 1.5rem;
+}
+
+.auth-separator::after
+{
+    margin-left: 1.5rem;
+}
+
+.auth-google
+{
+    height: 3rem;
+    padding: 0 2rem;
+
+    background-color: var( --white-color );
+}
+
+.auth-google img
+{
+    position: absolute;
+
+    height: 1.5rem;
+}
+
+.auth-google a
+{
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.auth-google-label
+{
+    width: 100%;
+
+    text-align: center;
+}
+
+.modal
+{
+    background-color: var( --background-color);
+    @media( min-width: 65em )
+    {
+        min-width: 40rem;
+    }
+}
+
+.modal-close
+{
+    height: 4rem;
+    padding-right: 1.75rem;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background-color: var(--black-color);
+}
+
+.modal-close-button
+{
+    background-color: unset;
+}
+
+.modal-container
+{
+    padding: 2rem;
+
+    text-align: left;
+    @media( min-width: 65em )
+    {
+        padding: 4rem;
+    }
+}
+
+.modal-account
+{
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.modal-button
+{
+    flex: 1;
+}
+
+.modal-button button
+{
+    height: 3rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var( --blue-color );
+}
+
+.modal-button-cancel
+{
+    height: 3rem;
+
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var( --background-light-color );
+
+    cursor: pointer;
+}
+
+.modal-separator
+{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    text-align: center;
+}
+
+.modal-separator::before,
+.modal-separator::after
+{
+    height: 0.063rem;
+    width: 100%;
+
+    display: block;
+
+    content: "";
+    background-color: var( --line-color );
+}
+
+.modal-separator::before
+{
+    margin-right: 1.5rem;
+}
+
+.modal-separator::after
+{
+    margin-left: 1.5rem;
+}
+
+.modal-google
+{
+    height: 3rem;
+    padding: 0 2rem;
+
+    background-color: var( --white-color );
+}
+
+.modal-google img
+{
+    position: absolute;
+
+    height: 1.5rem;
+}
+
+.modal-google a
+{
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.modal-google-label
+{
+    width: 100%;
+
+    text-align: center;
+}
+
+.modal-actions
+{
+    display: flex;
+    gap: 1rem;
+}
