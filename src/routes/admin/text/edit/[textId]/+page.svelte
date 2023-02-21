@@ -1,8 +1,29 @@
 <script>
-    export let data;
     import { TextField, FormField } from 'attractions';
     import { enhance } from '$app/forms';
     import { getTranslatedTextByCode } from 'senselogic-gist';
+    import { afterNavigate } from '$app/navigation';
+    import ListErrors from '$lib/components/ListErrors.svelte';
+    import ListSuccess from '$lib/components/ListSuccess.svelte';
+
+    export let data;
+
+    let errors;
+    let success;
+
+    let refresh = {}
+
+    afterNavigate( ( { from } ) => {
+        if ( from )
+        {
+            
+            if ( from.route.id === '/admin/text/add' )
+            {
+                success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
+                refresh = {}
+            }
+        }
+    })
 
     let textInfo = data.textData;
 
@@ -15,7 +36,36 @@
     <title>{slug}</title>
 </svelte:head>
 <div class="admin-page">
-    <form use:enhance method="POST" action="?/edit">
+    {#key refresh}
+        <ListErrors errors={errors} />
+        <ListSuccess success={success} />
+    {/key}
+    <form 
+        method="POST" 
+        action="?/edit"
+        use:enhance={() => {
+            return ( { result, update } ) => {
+                if ( result.data )
+                {
+                    if ( result.data.errors )
+                    {
+                        success = '';
+                        errors = result.data.errors;
+                    }
+
+                    if ( result.data.success )
+                    {
+                        errors = '';
+                        success = result.data.success;
+                    }
+                }
+                
+                refresh = {}
+
+                if ( result.type === 'error' ) update();
+            };
+        }}
+    >
         <div class="admin-section">
             <FormField
                 name="{getTranslatedTextByCode( 'TextSlugLabel' )}"

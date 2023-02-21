@@ -1,15 +1,17 @@
 <script>
-    import ListErrors from '$lib/components/ListErrors.svelte';
-    import { TextField, FormField } from 'attractions';
+    import { TextField } from 'attractions';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import { goto } from '$app/navigation';
+    import ListErrors from '$lib/components/ListErrors.svelte';
 
     let errors;
 
     const gotoLogin = () => {
         goto( '/login' )
     }
+    
+    let refresh = {}
 </script>
 
 <svelte:head>
@@ -18,7 +20,9 @@
 
 <div class="register auth">
     <div class="auth-container">
-        <ListErrors errors={errors} />
+        {#key refresh}
+            <ListErrors errors={errors} />
+        {/key}
         <div class="auth-welcome">
             {getTranslatedTextByCode( 'WelcomeMessageLabel' )}
         </div>
@@ -43,7 +47,12 @@
                             errors = result.data.errors;
                         }
                     }
-                    update();
+                    else
+                    {
+                        update();
+                    }
+
+                    refresh = {}
                 };
             }}
         >

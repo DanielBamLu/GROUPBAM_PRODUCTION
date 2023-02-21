@@ -225,15 +225,11 @@
 
     .saved-card-image-controler-cart
     {
-        width: 5rem;
+        flex-basis: 40%;
 
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        @media( min-width: 50em )
-        {
-            width: 20rem;
-        }
     }
 
     .saved-card-image-controler-cart img
@@ -255,15 +251,26 @@
         display: flex;
         gap: 1rem;
         align-items: center;
+        justify-content: center;
 
         background-color: var( --blue-color );
 
         cursor: pointer;
     }
 
+    .saved-controler-cart-label
+    {
+        display: none;
+        
+        @media( min-width: 50em )
+        {
+            display: block;
+        }
+    }
+
     .saved-info
     {
-        width: 100%;
+        flex-basis: 60%;
 
         display: flex;
         flex-direction: column;
@@ -275,6 +282,12 @@
     .saved-info-container
     {
         padding-bottom: 1rem;
+    }
+
+    .saved-card-title
+    {
+        width: calc( 100% - 2rem );
+        display: block;
     }
 
     .saved-card-category-price

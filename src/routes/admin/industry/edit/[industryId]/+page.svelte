@@ -1,10 +1,17 @@
 <script>
-    export let data;
     import { TextField, FileDropzone, FormField } from 'attractions';
     import { getTranslatedText } from 'senselogic-gist';
     import { getTranslatedTextByCode } from 'senselogic-gist';
-    import Image from '$lib/components/admin/Image.svelte';
     import { enhance } from '$app/forms';
+    import { afterNavigate } from '$app/navigation';
+    import Image from '$lib/components/admin/Image.svelte';
+    import ListErrors from '$lib/components/ListErrors.svelte';
+    import ListSuccess from '$lib/components/ListSuccess.svelte';
+    
+    export let data;
+
+    let errors;
+    let success;
 
     let industryInfo = data.industryData;
 
@@ -13,6 +20,20 @@
     let iconPath = industryInfo.iconPath;
 
     let refreshIcon = {};
+
+    let refresh = {}
+
+    afterNavigate( ( { from } ) => {
+        if ( from )
+        {
+            
+            if ( from.route.id === '/admin/industry/add' )
+            {
+                success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
+                refresh = {}
+            }
+        }
+    })
 
     let icon = new Array;
 
@@ -59,7 +80,36 @@
     <title>{getTranslatedText( name )}</title>
 </svelte:head>
 <div class="admin-page">
-    <form use:enhance method="POST" action="?/edit">
+    {#key refresh}
+        <ListErrors errors={errors} />
+        <ListSuccess success={success} />
+    {/key}
+    <form 
+        method="POST" 
+        action="?/edit"
+        use:enhance={() => {
+            return ( { result, update } ) => {
+                if ( result.data )
+                {
+                    if ( result.data.errors )
+                    {
+                        success = '';
+                        errors = result.data.errors;
+                    }
+
+                    if ( result.data.success )
+                    {
+                        errors = '';
+                        success = result.data.success;
+                    }
+                }
+                
+                refresh = {}
+
+                if ( result.type === 'error' ) update();
+            };
+        }}
+    >
         <div class="admin-section">
             <FormField
                 name="{getTranslatedTextByCode( 'IndustryNameLabel' )}"

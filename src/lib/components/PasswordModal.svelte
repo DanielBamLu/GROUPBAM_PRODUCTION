@@ -22,17 +22,21 @@
         </button>
     </div>
     <div class="modal-container">
-        <ListErrors errors={errors} />
-        <ListSuccess success={success} />
+        {#key refresh}
+            <ListErrors errors={errors} />
+            <ListSuccess success={success} />
+        {/key}
         <form
             method="POST"
             action="/customer/account?/editPassword"
             use:enhance={() => {
                 return ( { result, update } ) => {
+                    
                     if ( result.data )
                     {
                         if ( result.data.errors )
                         {
+                            success = '';
                             errors = result.data.errors;
                         }
 
@@ -40,9 +44,10 @@
                         {
                             errors = '';
                             success = result.data.success;
-                            refresh = {}
                         }
                     }
+                    
+                    refresh = {}
 
                     if ( result.type === 'error' ) update();
                 };

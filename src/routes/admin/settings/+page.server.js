@@ -356,6 +356,18 @@ export const actions = {
                 }
             }
         }
-
+        
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
+        }
     },
 };

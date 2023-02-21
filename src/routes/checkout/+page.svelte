@@ -22,6 +22,7 @@
 
     let paymentMethod = 'credit-card';
 
+    let refresh = {}
 </script>
 
 <svelte:head>
@@ -38,8 +39,10 @@
                 {getTranslatedTextByCode( 'CheckoutPageLabel' )}
             </div>
             <div class="checkout-form">
-                <ListErrors errors={errors} />
-                <ListSuccess success={success} />
+                {#key refresh}
+                    <ListErrors errors={errors} />
+                    <ListSuccess success={success} />
+                {/key}
                 <form
                     id="checkout"
                     method="POST"
@@ -59,6 +62,8 @@
                                     success = result.data.success;
                                 }
                             }
+                            
+                            refresh = {}
 
                             if ( result.type === 'error' ) update();
                         };

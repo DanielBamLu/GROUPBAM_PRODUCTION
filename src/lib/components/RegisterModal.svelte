@@ -1,10 +1,10 @@
 <script>
-    import ListErrors from '$lib/components/ListErrors.svelte';
     import { TextField } from 'attractions';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import { goto } from '$app/navigation';
     import CloseIcon from '$lib/components/icon/Close.svelte';
+    import ListErrors from '$lib/components/ListErrors.svelte';
 
     let errors;
 
@@ -14,6 +14,8 @@
         closeModalRegister();
         goto( '/register' )
     }
+
+    let refresh = {}
 </script>
 
 <svelte:head>
@@ -27,7 +29,9 @@
         </button>
     </div>
     <div class="modal-container">
-        <ListErrors errors={errors} />
+        {#key refresh}
+            <ListErrors errors={errors} />
+        {/key}
         <div class="modal-welcome">
             {getTranslatedTextByCode( 'WelcomeMessageLabel' )}
         </div>
@@ -55,10 +59,10 @@
                     else
                     {
                         closeModalRegister();
+                        update();
                     }
 
-                    update();
-
+                    refresh = {}
                 };
             }}
         >

@@ -1,6 +1,7 @@
 // -- IMPORTS
 
 import { categoryTable, companyTable } from '$lib/database';
+import { getTranslatedTextByCode } from 'senselogic-gist';
 import { attachArrayToObject } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
 import * as api from '$lib/api.js';
@@ -69,8 +70,19 @@ export const actions = {
                 }
             );
         }
-
-        throw redirect( 303, `/admin/category/edit/${categoryId}` );
+        
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
+        }
         },
 
     delete: async ( { params } ) => {

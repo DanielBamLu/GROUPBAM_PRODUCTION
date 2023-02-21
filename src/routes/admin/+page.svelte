@@ -1,6 +1,5 @@
 <script>
     import { getTranslatedTextByCode } from 'senselogic-gist';
-    import { Button } from 'attractions';
 </script>
 
 <svelte:head>
@@ -11,24 +10,12 @@
         {getTranslatedTextByCode( 'AdminButton' )}
     </div>
     <div class="admin-container">
-        <div>
-            <Button filled ><a href="/admin/service">{getTranslatedTextByCode( 'ServiceButton' )}</a></Button>
-        </div>
-        <div>
-            <Button filled ><a href="/admin/company">{getTranslatedTextByCode( 'CompanyButton' )}</a></Button>
-        </div>
-        <div>
-            <Button filled ><a href="/admin/industry">{getTranslatedTextByCode( 'IndustryButton' )}</a></Button>
-        </div>
-        <div>
-            <Button filled ><a href="/admin/category">{getTranslatedTextByCode( 'CategoryButton' )}</a></Button>
-        </div>
-        <div>
-            <Button filled ><a href="/admin/text">{getTranslatedTextByCode( 'TextButton' )}</a></Button>
-        </div>
-        <div>
-            <Button filled ><a href="/admin/settings">{getTranslatedTextByCode( 'SettingsButton' )}</a></Button>
-        </div>
+        <div class="admin-button"><a href="/admin/service">{getTranslatedTextByCode( 'ServiceButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/company">{getTranslatedTextByCode( 'CompanyButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/industry">{getTranslatedTextByCode( 'IndustryButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/category">{getTranslatedTextByCode( 'CategoryButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/text">{getTranslatedTextByCode( 'TextButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/settings">{getTranslatedTextByCode( 'SettingsButton' )}</a></div>
     </div>
 </div>
 

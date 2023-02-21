@@ -383,6 +383,7 @@
         width: 3.5rem;
 
         display: flex;
+        gap: 1rem;
         justify-content: center;
         align-items: center;
 

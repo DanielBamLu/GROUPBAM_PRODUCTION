@@ -195,8 +195,17 @@ export const actions = {
             );
         }
 
-        return {
-            success: getTranslatedTextByCode( 'PersonalInfoChangedSuccessfullyLabel' )
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'PersonalInfoChangedSuccessfullyLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
         }
 
     },
@@ -290,8 +299,17 @@ export const actions = {
             );
         }
 
-        return {
-            success: getTranslatedTextByCode( 'BillingAddressChangedSuccessfullyLabel' )
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'BillingAddressChangedSuccessfullyLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
         }
     },
     editPassword: async ( { request, locals, cookies } ) => {
@@ -313,66 +331,69 @@ export const actions = {
                     where : [ [ 'email' ], '=', locals.user.email ]
                 }
                 );
+            
+            if ( locals.user ){
 
-            if ( user.password === userOldPassword )
-            {
-                if ( userNewPassword === userNewPasswordRetype )
+                if ( user.password === userOldPassword )
                 {
-                    const putPassword = await api.put(
-                        userTable,
-                        {
-                            id: userId,
-                            password: userNewPassword,
-                        }
-                    );
-
-                    const body = await api.get(
-                        'users/login',
-                        userTable,
-                        {
-                            email: userEmail,
-                            password: userNewPassword
-                        }
-                    );
-
-                    if ( body === undefined )
+                    if ( userNewPassword === userNewPasswordRetype )
                     {
-                        throw error(
-                            401,
+                        const putPassword = await api.put(
+                            userTable,
                             {
-                                message: getTranslatedTextByCode( 'SomethingWentWrongLabel' )
+                                id: userId,
+                                password: userNewPassword,
                             }
                         );
+
+                        const body = await api.get(
+                            'users/login',
+                            userTable,
+                            {
+                                email: userEmail,
+                                password: userNewPassword
+                            }
+                        );
+
+                        if ( body === undefined )
+                        {
+                            throw error(
+                                401,
+                                {
+                                    message: getTranslatedTextByCode( 'SomethingWentWrongLabel' )
+                                }
+                            );
+                        }
+
+                        let userCookie = {
+                            id: body.id,
+                            pseudonym: body.pseudonym,
+                            email: body.email,
+                            role: body.role
+                        }
+
+                        const value = btoa( JSON.stringify( userCookie ) );
+
+                        cookies.set( 'jwt', value, { path: '/' } );
+
+                        locals.user = body;
+
+                        return {
+                            success: getTranslatedTextByCode( 'PasswordsChangedSuccessfullyLabel' )
+                        }
                     }
-
-                    let userCookie = {
-                        id: body.id,
-                        pseudonym: body.pseudonym,
-                        email: body.email,
-                        role: body.role
-                    }
-
-                    const value = btoa( JSON.stringify( userCookie ) );
-
-                    cookies.set( 'jwt', value, { path: '/' } );
-
-                    locals.user = body;
-
-                    return {
-                        success: getTranslatedTextByCode( 'PasswordsChangedSuccessfullyLabel' )
+                    else
+                    {
+                        return {
+                            errors: getTranslatedTextByCode( 'PasswordsNotMatchLabel' )
+                        }
                     }
                 }
                 else
                 {
                     return {
-                        errors: getTranslatedTextByCode( 'PasswordsNotMatchLabel' )
+                        errors: getTranslatedTextByCode( 'OldPasswordIsWrongLabel' )
                     }
-                }
-            }
-            else
-            {
-                return {
-                    errors: getTranslatedTextByCode( 'OldPasswordIsWrongLabel' )
                 }
             }
         }

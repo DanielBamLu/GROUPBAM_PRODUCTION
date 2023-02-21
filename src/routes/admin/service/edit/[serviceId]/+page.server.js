@@ -3,7 +3,7 @@
 import { languageTable, currencyTable, serviceTable, companyTable, categoryTable, serviceImageTable, servicePackTable, servicePackTypeTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceOptionTable, serviceOptionVariantTable} from '$lib/database';
 import { attachArrayToObject, convertToSlug, getLanguageMap, getCurrencyMap, sliceIntoChunks } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
-import { getRandomTuid, getMillisecondTimestamp } from 'senselogic-gist';
+import { getRandomTuid, getMillisecondTimestamp, getTranslatedTextByCode } from 'senselogic-gist';
 import * as api from '$lib/api.js';
 import { writeFileSync, unlink } from 'fs';
 
@@ -1537,7 +1537,18 @@ export const actions = {
             }
         }
 
-        throw redirect( 303, `/admin/service/edit/${serviceId}` );
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
+        }
     },
 
     delete: async ( { params } ) => {

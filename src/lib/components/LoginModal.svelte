@@ -3,19 +3,19 @@
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import { goto } from '$app/navigation';
-    import ListErrors from '$lib/components/ListErrors.svelte';
     import CloseIcon from '$lib/components/icon/Close.svelte';
+    import ListErrors from '$lib/components/ListErrors.svelte';
 
     let errors;
 
     export let closeModalLogin = () => {}
-
-    export let refresh = () => {}
-
+    
     const gotoRegister = () => {
         closeModalLogin();
         goto( '/register' )
     }
+    
+    let refresh = {}
 </script>
 
 <div class="login modal">
@@ -25,7 +25,9 @@
         </button>
     </div>
     <div class="modal-container">
-        <ListErrors errors={errors} />
+        {#key refresh}
+            <ListErrors errors={errors} />
+        {/key}
         <div class="modal-welcome">
             {getTranslatedTextByCode( 'WelcomeMessageLabel' )}
         </div>
@@ -50,10 +52,8 @@
                             errors = result.data.errors;
                         }
                     }
-                    else
-                    {
-                        closeModalLogin();
-                    }
+                    
+                    refresh = {}
 
                     update();
                 };

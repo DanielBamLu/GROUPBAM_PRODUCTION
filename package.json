@@ -36,7 +36,6 @@
     "dependencies": {
         "@beyonk/svelte-carousel": "^2.9.0",
         "@sveltejs/adapter-node": "^1.0.0-next.98",
-        "dotenv": "^16.0.3",
         "jsonwebtoken": "^9.0.0",
         "jspdf": "^2.5.1",
         "mime-types": "^2.1.35",

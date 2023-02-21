@@ -3,6 +3,7 @@
 import { textTable } from '$lib/database';
 import { attachArrayToObject } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
+import { getTranslatedTextByCode } from 'senselogic-gist';
 import * as api from '$lib/api.js';
 
 // -- FUNCTIONS
@@ -81,7 +82,18 @@ export const actions = {
             );
         }
 
-        throw redirect( 303, `/admin/text/edit/${textId}` );
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
+        }
         },
 
     delete: async ( { params } ) => {

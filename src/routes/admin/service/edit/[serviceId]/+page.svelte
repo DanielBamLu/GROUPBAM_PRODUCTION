@@ -1,10 +1,17 @@
 <script>
-    export let data;
     import { TextField, RadioGroup, FileDropzone, Switch, FormField, Button, Tabs } from 'attractions';
     import { getLanguageMap, getCurrencyMap } from '$lib/admin'
     import { getTranslatedText, getTranslatedTextByCode } from 'senselogic-gist';
-    import Image from '$lib/components/admin/Image.svelte';
     import { enhance } from '$app/forms';
+    import { afterNavigate } from '$app/navigation';
+    import Image from '$lib/components/admin/Image.svelte';
+    import ListErrors from '$lib/components/ListErrors.svelte';
+    import ListSuccess from '$lib/components/ListSuccess.svelte';
+    
+    export let data;
+
+    let errors;
+    let success;
 
     let selectedTab = 'Main info';
 
@@ -18,6 +25,20 @@
     let refreshProcess = {};
     let refreshOption = {};
     let refreshOptionVariant = {};
+
+    let refresh = {}
+
+    afterNavigate( ( { from } ) => {
+        if ( from )
+        {
+            
+            if ( from.route.id === '/admin/service/add' )
+            {
+                success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
+                refresh = {}
+            }
+        }
+    })
 
     let language = getLanguageMap( data.languageData );
     let currency = getCurrencyMap( data.currencyData );
@@ -624,7 +645,36 @@
         items={[ 'Main info', 'Pack', 'Advantage', 'Process', 'Option' ]}
         bind:value={selectedTab}
     />
-    <form use:enhance method="POST" action="?/edit">
+    {#key refresh}
+        <ListErrors errors={errors} />
+        <ListSuccess success={success} />
+    {/key}
+    <form 
+        method="POST" 
+        action="?/edit"
+        use:enhance={() => {
+            return ( { result, update } ) => {
+                if ( result.data )
+                {
+                    if ( result.data.errors )
+                    {
+                        success = '';
+                        errors = result.data.errors;
+                    }
+
+                    if ( result.data.success )
+                    {
+                        errors = '';
+                        success = result.data.success;
+                    }
+                }
+                
+                refresh = {}
+
+                if ( result.type === 'error' ) update();
+            };
+        }}
+    >
         <div class="admin-tab {selectedTab === 'Main info' ? 'selected' : ''}">
             <div class="admin-title-section">
                 {getTranslatedTextByCode( 'ServiceMainInfoLabel' )}

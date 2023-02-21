@@ -64,16 +64,6 @@ export const actions = {
             }
         );
 
-        if ( !newUser )
-        {
-            throw error(
-                401,
-                {
-                    message: getTranslatedTextByCode( 'SomethingWentWrongLabel' )
-                }
-            );
-        }
-
         let userCookie = {
             id: newUser.id,
             pseudonym: newUser.pseudonym,
@@ -88,6 +78,17 @@ export const actions = {
 
         locals.user = userCookie;
 
-        throw redirect( 307, '/admin/settings' );
+        if ( !newUser )
+        {
+            throw error(
+                401,
+                {
+                    message: getTranslatedTextByCode( 'SomethingWentWrongLabel' )
+                }
+            );
+        }
+        else{
+            throw redirect( 307, '/admin/settings' );
+        }
     }
 };

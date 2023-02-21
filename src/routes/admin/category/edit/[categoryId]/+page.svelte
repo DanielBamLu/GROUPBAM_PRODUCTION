@@ -1,14 +1,36 @@
 <script>
-    export let data;
     import { TextField, RadioGroup, FormField } from 'attractions';
     import { getTranslatedText, getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
+    import { afterNavigate } from '$app/navigation';
+    import ListErrors from '$lib/components/ListErrors.svelte';
+    import ListSuccess from '$lib/components/ListSuccess.svelte';
+    
+    export let data;
+
+    let errors;
+    let success;
+
+    let refresh = {}
+
+    afterNavigate( ( { from } ) => {
+        if ( from )
+        {
+            
+            if ( from.route.id === '/admin/category/add' )
+            {
+                success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
+                refresh = {}
+            }
+        }
+    })
 
     let categoryInfo = data.categoryData;
     let title = categoryInfo.title;
     let companyId = categoryInfo.companyId;
 
     let company = data.companyData;
+
     company = company.map( function ( item ) {
         return {
             value: item.id,
@@ -21,7 +43,36 @@
     <title>{getTranslatedText( title )}</title>
 </svelte:head>
 <div class="admin-page">
-    <form use:enhance method="POST" action="?/edit">
+    {#key refresh}
+        <ListErrors errors={errors} />
+        <ListSuccess success={success} />
+    {/key}
+    <form 
+        method="POST" 
+        action="?/edit"
+        use:enhance={() => {
+            return ( { result, update } ) => {
+                if ( result.data )
+                {
+                    if ( result.data.errors )
+                    {
+                        success = '';
+                        errors = result.data.errors;
+                    }
+
+                    if ( result.data.success )
+                    {
+                        errors = '';
+                        success = result.data.success;
+                    }
+                }
+                
+                refresh = {}
+
+                if ( result.type === 'error' ) update();
+            };
+        }}
+    >
         <div class="admin-section">
             <FormField
                 name="{getTranslatedTextByCode( 'CategoryDomainLabel' )}"

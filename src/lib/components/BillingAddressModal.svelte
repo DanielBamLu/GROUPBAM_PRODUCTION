@@ -5,14 +5,15 @@
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import CloseIcon from '$lib/components/icon/Close.svelte';
-
-    let errors;
-    let success;
-
+    
     export let data;
 
     export let closeBillingAddressModal = () => {}
+    
+    let errors;
+    let success;
 
+    let refresh = {}
 </script>
 
 <div class="login modal">
@@ -22,8 +23,10 @@
         </button>
     </div>
     <div class="modal-container">
-        <ListErrors errors={errors} />
-        <ListSuccess success={success} />
+        {#key refresh}
+            <ListErrors errors={errors} />
+            <ListSuccess success={success} />
+        {/key}
         <form
             method="POST"
             action="/customer/account?/editBillingAddress"
@@ -34,14 +37,18 @@
                     {
                         if ( result.data.errors )
                         {
+                            success = '';
                             errors = result.data.errors;
                         }
 
                         if ( result.data.success )
                         {
+                            errors = '';
                             success = result.data.success;
                         }
                     }
+                    
+                    refresh = {}
 
                     if ( result.type === 'error' ) update();
                 };

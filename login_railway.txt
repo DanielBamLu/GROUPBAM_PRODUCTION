@@ -27,4 +27,12 @@ Build the project and start it :
 - yarn run build
 - yarn run start
 
+Connecting remote db to phpmyadmin :
 
+- xampp/phpmyadmin/config.inc.php
+
+$i++;
+$cfg['Servers'][$i]['host'] = 'containers-us-west-138.railway.app:7729'; //provide hostname and port if other than default
+$cfg['Servers'][$i]['user'] = 'root';   //user name for your remote server
+$cfg['Servers'][$i]['password'] = 'lmjlIldVq4xbFcxgCVQC';  //password
+$cfg['Servers'][$i]['auth_type'] = 'config';       // keep

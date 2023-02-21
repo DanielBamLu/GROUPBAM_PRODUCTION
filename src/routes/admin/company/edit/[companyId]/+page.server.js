@@ -3,7 +3,7 @@
 import { companyTable } from '$lib/database';
 import { attachArrayToObject, convertToSlug } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
-import { getMillisecondTimestamp } from 'senselogic-gist';
+import { getMillisecondTimestamp, getTranslatedTextByCode } from 'senselogic-gist';
 import { writeFileSync, unlink } from 'fs';
 import * as api from '$lib/api.js';
 
@@ -217,7 +217,18 @@ export const actions = {
             }
         }
 
-        throw redirect( 303, `/admin/company/edit/${companyId}` );
+        if( data )
+        {
+            return {
+                success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )
+            }
+        }
+        else
+        {
+            return {
+                errors: getTranslatedTextByCode( 'UnsuccessfullyUpdatedLabel' )
+            }
+        }
         },
 
     delete: async ( { params } ) => {
