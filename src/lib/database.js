@@ -442,7 +442,7 @@ export const beneficiaryTable
 
 database.setDriver( new Mysql2Driver() );
 
-await database.createConnection(
+await database.createConnectionPool(
     {
         host: process.env.MYSQLHOST ?? 'localhost',
         port: process.env.MYSQLPORT ?? 3306,
