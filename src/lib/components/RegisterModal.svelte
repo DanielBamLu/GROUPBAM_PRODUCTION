@@ -126,7 +126,7 @@
         </div>
         <div class="modal-google">
             <a href="/auth/login">
-                <img alt="Google" src="./image/google.svg" />
+                <img alt="Google" src="/image/google.svg" />
                 <div class="modal-google-label">
                     {getTranslatedTextByCode( 'ContinueWithGoogleLabel' )}
                 </div>

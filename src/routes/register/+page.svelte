@@ -111,7 +111,7 @@
         </div>
         <div class="auth-google">
             <a href="/auth/login">
-                <img alt="Google" src="./image/google.svg" />
+                <img alt="Google" src="/image/google.svg" />
                 <div class="auth-google-label">
                     {getTranslatedTextByCode( 'ContinueWithGoogleLabel' )}
                 </div>

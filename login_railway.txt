@@ -1,0 +1,30 @@
+MYSQLDATABASE=railway
+MYSQLHOST=containers-us-west-138.railway.app
+MYSQLPASSWORD=lmjlIldVq4xbFcxgCVQC
+MYSQLPORT=7729
+MYSQLUSER=root
+MYSQL_URL=mysql://${{ MYSQLUSER }}:${{ MYSQLPASSWORD }}@${{ MYSQLHOST }}:${{ MYSQLPORT }}/${{ MYSQLDATABASE }}
+MYSQL_URL=mysql://root:lmjlIldVq4xbFcxgCVQC@containers-us-west-138.railway.app:7729/railway
+
+Build the project and start it :
+
+- yarn add @sveltejs/adapter-node
+- add "start": "node build/index.js" to scripts on package.json
+- add this to svelte.config.js: 
+    import adapter from '@sveltejs/adapter-node';
+    import preprocess from 'svelte-preprocess';
+
+    /** @type {import('@sveltejs/kit').Config} */
+    const config = {
+        preprocess: preprocess(),
+
+        kit: {
+            adapter: adapter()
+        }
+    };
+
+    export default config;
+- yarn run build
+- yarn run start
+
+
