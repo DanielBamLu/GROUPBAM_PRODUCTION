@@ -2,17 +2,16 @@
     import { TextField } from 'attractions';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
-    import { goto } from '$app/navigation';
+    import { auth } from '$lib/auth';
     import CloseIcon from '$lib/components/icon/Close.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
 
     let errors;
 
-    export let closeModalLogin = () => {}
-    
-    const gotoRegister = () => {
-        closeModalLogin();
-        goto( '/register' )
+    export let handleModalAuth = () => {}
+
+    function openRegister() {
+        $auth = 'register';
     }
     
     let refresh = {}
@@ -20,7 +19,7 @@
 
 <div class="login modal">
     <div class="modal-close">
-        <button class="modal-close-button" on:click={closeModalLogin}>
+        <button class="modal-close-button" on:click={handleModalAuth}>
             <CloseIcon/>
         </button>
     </div>
@@ -35,13 +34,11 @@
             <div class="modal-account-label">
                 {getTranslatedTextByCode( 'DontHaveAnAccountLabel' )}
             </div>
-            <button class="modal-account-link" on:click={gotoRegister}>
-                {getTranslatedTextByCode( 'SignUpButton' )}
-            </button>
+            <button class="modal-account-link" on:click={openRegister}>{getTranslatedTextByCode( 'SignUpButton' )}</button>
         </div>
         <form
             method="POST"
-            action="/login?/login"
+            action="/login"
             use:enhance={() => {
                 return ( { result, update } ) => {
 

@@ -57,9 +57,14 @@
     <div class="admin-list-title admin-title">
         {getTranslatedTextByCode( 'IndustryButton' )}
     </div>
-    <div class="admin-search">
-        <Search label="" bind:value on:submit={search} />
-        <Button filled class="back" on:click={search}>Search</Button>
+    <div class="admin-container">
+        <div class="admin-search">
+            <Search label="" bind:value on:submit={search} />
+            <Button filled class="back" on:click={search}>Search</Button>
+        </div>
+        <div class="admin-add-new">
+            <div class="admin-button"><a href="/admin/industry/add">{getTranslatedTextByCode( 'NewPageTitle' )}</a></div>
+        </div>
     </div>
     <div class="admin-list-pages">
         {#if isSearch }
@@ -67,7 +72,7 @@
                 {#each searchArray as item, outerCounter}
                     {#if outerCounter % 10 === 0}
                         <div class="admin-list-page {( outerCounter + 10 ) == currentPage*10 ? 'selected' : ''}">
-                            {#each searchArrayu as item, counter}
+                            {#each searchArray as item, counter}
                                 {#if counter >= outerCounter && counter < outerCounter + 10}
                                     <div class="admin-list-item">
                                         <div class="admin-list-item-title">

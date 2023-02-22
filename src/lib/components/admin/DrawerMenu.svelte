@@ -1,4 +1,5 @@
 <script>
+    import { getTranslatedTextByCode } from 'senselogic-gist';
     import DrawerMenuItem from '$lib/components/admin/DrawerMenuItem.svelte';
 
     let menu = [
@@ -8,11 +9,11 @@
             'items' : [
                 {
                 'link' : '/admin/service',
-                'name' : 'List'
+                'name' : getTranslatedTextByCode( 'ListPageTitle' )
                 },
                 {
                 'link' : '/admin/service/add',
-                'name' : 'Add new'
+                'name' : getTranslatedTextByCode( 'NewPageTitle' )
                 },
             ]
         },
@@ -22,11 +23,11 @@
             'items' : [
                 {
                 'link' : '/admin/company',
-                'name' : 'List'
+                'name' : getTranslatedTextByCode( 'ListPageTitle' )
                 },
                 {
                 'link' : '/admin/company/add',
-                'name' : 'Add new'
+                'name' : getTranslatedTextByCode( 'NewPageTitle' )
                 },
             ]
         },
@@ -36,11 +37,11 @@
             'items' : [
                 {
                 'link' : '/admin/industry',
-                'name' : 'List'
+                'name' : getTranslatedTextByCode( 'ListPageTitle' )
                 },
                 {
                 'link' : '/admin/industry/add',
-                'name' : 'Add new'
+                'name' : getTranslatedTextByCode( 'NewPageTitle' )
                 },
             ]
         },
@@ -50,11 +51,11 @@
             'items' : [
                 {
                 'link' : '/admin/category',
-                'name' : 'List'
+                'name' : getTranslatedTextByCode( 'ListPageTitle' )
                 },
                 {
                 'link' : '/admin/category/add',
-                'name' : 'Add new'
+                'name' : getTranslatedTextByCode( 'NewPageTitle' )
                 },
             ]
         },
@@ -64,11 +65,11 @@
             'items' : [
                 {
                 'link' : '/admin/text',
-                'name' : 'List'
+                'name' : getTranslatedTextByCode( 'ListPageTitle' )
                 },
                 {
                 'link' : '/admin/text/add',
-                'name' : 'Add new'
+                'name' : getTranslatedTextByCode( 'NewPageTitle' )
                 },
             ]
         },

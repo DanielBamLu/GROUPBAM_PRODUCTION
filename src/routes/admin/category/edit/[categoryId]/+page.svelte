@@ -3,6 +3,7 @@
     import { getTranslatedText, getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import { afterNavigate } from '$app/navigation';
+    import { completeLanguageMap } from '$lib/admin'
     import ListErrors from '$lib/components/ListErrors.svelte';
     import ListSuccess from '$lib/components/ListSuccess.svelte';
     
@@ -26,7 +27,7 @@
     })
 
     let categoryInfo = data.categoryData;
-    let title = categoryInfo.title;
+    let title = completeLanguageMap( categoryInfo.title, data.languageData );
     let companyId = categoryInfo.companyId;
 
     let company = data.companyData;
@@ -75,16 +76,14 @@
     >
         <div class="admin-section">
             <FormField
-                name="{getTranslatedTextByCode( 'CategoryDomainLabel' )}"
+                name="{getTranslatedTextByCode( 'CategoryTitleLabel' )}"
             >
                 <div class="text-input">
                     {#each Object.entries( title ) as [ lang, text ]}
                         {lang}
                         <TextField
                             name="title"
-                            placeholder="{text}"
                             bind:value={text}
-                            required
                         />
                     {/each}
                 </div>

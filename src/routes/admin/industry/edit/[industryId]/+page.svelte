@@ -4,6 +4,7 @@
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import { afterNavigate } from '$app/navigation';
+    import { completeLanguageMap } from '$lib/admin';
     import Image from '$lib/components/admin/Image.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
     import ListSuccess from '$lib/components/ListSuccess.svelte';
@@ -15,7 +16,7 @@
 
     let industryInfo = data.industryData;
 
-    let name = industryInfo.name;
+    let name = completeLanguageMap( industryInfo.name, data.languageData );
 
     let iconPath = industryInfo.iconPath;
 
@@ -119,9 +120,7 @@
                         {lang}
                         <TextField
                             name="name"
-                            placeholder="{text}"
                             bind:value={text}
-                            required
                         />
                     {/each}
                 </div>

@@ -16,11 +16,15 @@ export async function load( { locals } ) {
             throw redirect( 307, '/' );
         }
     }
+    else
+    {
+        throw redirect( 307, '/' );
+    }
 }
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    login: async ( { cookies, request, locals } ) => {
+    default: async ( { cookies, request, locals } ) => {
 
         const data = await request.formData();
 

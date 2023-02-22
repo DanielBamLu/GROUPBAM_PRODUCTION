@@ -23,7 +23,7 @@
     <form use:enhance method="POST">
         <div class="admin-section">
             <FormField
-                name="{getTranslatedTextByCode( 'CategoryDomainLabel' )}"
+                name="{getTranslatedTextByCode( 'CategoryTitleLabel ' )}"
             >
                 <div class="text-input">
                     {#each Object.entries( language ) as [ lang, text ]}
@@ -32,7 +32,6 @@
                             name="title"
                             placeholder="{text}"
                             bind:value={text}
-                            required
                         />
                     {/each}
                 </div>

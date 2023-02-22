@@ -3,6 +3,7 @@
     import { enhance } from '$app/forms';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { afterNavigate } from '$app/navigation';
+    import { completeLanguageMap } from '$lib/admin';
     import ColorPicker from 'svelte-awesome-color-picker';
     import Image from '$lib/components/admin/Image.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
@@ -30,9 +31,9 @@
     let companyInfo = data.companyData;
 
     let name = companyInfo.name;
-    let summary = companyInfo.summary;
-    let description = companyInfo.description;
-    let domain = companyInfo.domain;
+    let summary = completeLanguageMap( companyInfo.summary, data.languageData );
+    let description = completeLanguageMap( companyInfo.description, data.languageData );
+    let domain = completeLanguageMap( companyInfo.domain, data.languageData );
     let color = companyInfo.color;
 
     let hex = color;

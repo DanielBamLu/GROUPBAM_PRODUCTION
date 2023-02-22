@@ -1,7 +1,7 @@
 // -- IMPORTS
 
-import { industryTable } from '$lib/database';
-import { attachArrayToObject, convertToSlug } from '$lib/admin';
+import { industryTable, languageTable } from '$lib/database';
+import { attachArrayToObject, convertToSlug, getLanguageMap } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
 import { getMillisecondTimestamp, getTranslatedTextByCode } from 'senselogic-gist';
 import { writeFileSync, unlink } from 'fs';
@@ -31,19 +31,16 @@ export const actions = {
 
         const data = await request.formData();
 
-        const timeStamp = getMillisecondTimestamp();
+        let languageData = await languageTable.selectRows();
+        let language = getLanguageMap( languageData );
 
-        let industryData = await industryTable.selectRow(
-            {
-                where : [ [ 'id' ], '=', params.industryId ]
-            }
-            );
+        const timeStamp = getMillisecondTimestamp();
 
         let industryId = params.industryId;
 
         //Edit Name
         let industryNameElements =  data.getAll( 'name' );
-        let industryName = attachArrayToObject( industryNameElements, industryData.name );
+        let industryName = attachArrayToObject( industryNameElements, language );
 
         let industrySlug = convertToSlug( industryName, 'map' );
 

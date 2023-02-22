@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+import { languageTable } from '$lib/database';
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load( { locals } )
@@ -14,4 +15,10 @@ export async function load( { locals } )
     {
         throw redirect( 307, '/login' );
     }
+
+    let languageData = await languageTable.selectRows();
+
+    return {
+        languageData : languageData,
+        };
 }

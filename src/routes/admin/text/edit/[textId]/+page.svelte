@@ -3,6 +3,7 @@
     import { enhance } from '$app/forms';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { afterNavigate } from '$app/navigation';
+    import { completeLanguageMap } from '$lib/admin'
     import ListErrors from '$lib/components/ListErrors.svelte';
     import ListSuccess from '$lib/components/ListSuccess.svelte';
 
@@ -29,7 +30,7 @@
 
     let code = textInfo.code;
     let slug = textInfo.slug;
-    let text = textInfo.text;
+    let text = completeLanguageMap( textInfo.text, data.languageData )
 </script>
 
 <svelte:head>
@@ -97,9 +98,7 @@
                         {lang}
                         <TextField
                             name="text"
-                            placeholder="{text}"
                             bind:value={text}
-                            required
                         />
                     {/each}
                 </div>

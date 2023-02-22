@@ -2,29 +2,24 @@
     import { TextField } from 'attractions';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
-    import { goto } from '$app/navigation';
+    import { auth } from '$lib/auth';
     import CloseIcon from '$lib/components/icon/Close.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
 
     let errors;
 
-    export let closeModalRegister = () => {}
+    export let handleModalAuth = () => {}
 
-    const gotoLogin = () => {
-        closeModalRegister();
-        goto( '/register' )
+    function openLogin() {
+        $auth = 'login';
     }
 
     let refresh = {}
 </script>
 
-<svelte:head>
-    <title>{getTranslatedTextByCode( 'RegisterPageLabel' )}</title>
-</svelte:head>
-
 <div class="register modal">
     <div class="modal-close">
-        <button class="modal-close-button" on:click={closeModalRegister}>
+        <button class="modal-close-button" on:click={handleModalAuth}>
             <CloseIcon/>
         </button>
     </div>
@@ -39,9 +34,7 @@
             <div class="modal-account-label">
                 {getTranslatedTextByCode( 'HaveAnAccountLabel' )}
             </div>
-            <button class="modal-account-link" on:click={gotoLogin}>
-                {getTranslatedTextByCode( 'SignInButton' )}
-            </button>
+            <button class="modal-account-link" on:click={openLogin}>{getTranslatedTextByCode( 'SignInButton' )}</button>
         </div>
         <form
             method="POST"
@@ -58,7 +51,7 @@
                     }
                     else
                     {
-                        closeModalRegister();
+                        handleModalAuth();
                         update();
                     }
 

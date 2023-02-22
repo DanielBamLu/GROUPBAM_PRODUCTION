@@ -14,7 +14,6 @@ export async function load(
     { params }
     )
 {
-    let languageData = await languageTable.selectRows();
     let currencyData = await currencyTable.selectRows();
 
     let serviceData = await serviceTable.selectRow(
@@ -100,7 +99,6 @@ export async function load(
     }
 
     return {
-        languageData : languageData,
         currencyData : currencyData,
         serviceData : serviceData,
         companyData : companyData,
@@ -168,7 +166,7 @@ export const actions = {
 
         //Edit description
         let serviceDescriptionElements =  data.getAll( 'description' );
-        let serviceDescription = attachArrayToObject( serviceDescriptionElements, serviceData.description );
+        let serviceDescription = attachArrayToObject( serviceDescriptionElements, language );
 
         if ( serviceDescription )
         {
@@ -243,7 +241,7 @@ export const actions = {
 
         //Edit unit price
         let serviceUnitPriceElements =  data.getAll( 'unit-price' );
-        let serviceUnitPrice = attachArrayToObject( serviceUnitPriceElements, serviceData.unitPrice );
+        let serviceUnitPrice = attachArrayToObject( serviceUnitPriceElements, currency );
 
         if ( serviceUnitPrice )
         {
@@ -286,7 +284,7 @@ export const actions = {
 
         //Edit additional title
         let serviceAdditionalTitleElements =  data.getAll( 'additional-title' );
-        let serviceAdditionalTitle = attachArrayToObject( serviceAdditionalTitleElements, serviceData.additionalTitle );
+        let serviceAdditionalTitle = attachArrayToObject( serviceAdditionalTitleElements, language );
 
         if ( serviceAdditionalTitle )
         {
@@ -301,7 +299,7 @@ export const actions = {
 
         //Edit additional description
         let serviceAdditionalDescriptionElements =  data.getAll( 'additional-description' );
-        let serviceAdditionalDescription = attachArrayToObject( serviceAdditionalDescriptionElements, serviceData.additionalDescription );
+        let serviceAdditionalDescription = attachArrayToObject( serviceAdditionalDescriptionElements, language );
 
         if ( serviceAdditionalDescription )
         {
@@ -434,7 +432,7 @@ export const actions = {
             if ( packNameElements.length > 0 )
             {
                 //Edit pack name
-                packName = attachArrayToObject( packNameElements, servicePackData[ indexPack ].name );
+                packName = attachArrayToObject( packNameElements, language );
 
                 if ( packName )
                 {
@@ -453,7 +451,7 @@ export const actions = {
             if ( packDescriptionElements.length > 0 )
             {
                 //Edit pack description
-                packDescription = attachArrayToObject( packDescriptionElements, servicePackData[ indexPack ].description );
+                packDescription = attachArrayToObject( packDescriptionElements, language );
 
                 if ( packDescription )
                 {
@@ -472,7 +470,7 @@ export const actions = {
             if ( packPriceElements.length > 0 )
             {
                 //Edit pack price
-                packPrice = attachArrayToObject( packPriceElements, servicePackData[ indexPack ].price );
+                packPrice = attachArrayToObject( packPriceElements, currency );
 
                 if ( packPrice )
                 {
@@ -522,7 +520,7 @@ export const actions = {
                 newPackTotalPrice.push( product )
             }
 
-            let packTotalPrice = attachArrayToObject( newPackTotalPrice, servicePackData[ indexPack ].totalPrice );
+            let packTotalPrice = attachArrayToObject( newPackTotalPrice, currency );
 
             if ( packTotalPrice )
             {
@@ -608,7 +606,7 @@ export const actions = {
 
                 if ( includePackTextElements.length > 0 )
                 {
-                    includePackText = attachArrayToObject( includePackTextElements, servicePackIncludeData[ indexIncludePack ].text );
+                    includePackText = attachArrayToObject( includePackTextElements, language );
 
                     if ( includePackText )
                     {
@@ -879,7 +877,7 @@ export const actions = {
 
             if ( advantageNameElements.length > 0)
             {
-                advantageName = attachArrayToObject( advantageNameElements, serviceAdvantage[ indexAdvantage ].name );
+                advantageName = attachArrayToObject( advantageNameElements, language );
 
                 if ( advantageName )
                 {
@@ -899,7 +897,7 @@ export const actions = {
 
             if ( advantageDescriptionElements.length > 0 )
             {
-                advantageDescription = attachArrayToObject( advantageDescriptionElements, serviceAdvantage[ indexAdvantage ].description );
+                advantageDescription = attachArrayToObject( advantageDescriptionElements, language );
 
                 if ( advantageDescription )
                 {
@@ -1045,7 +1043,7 @@ export const actions = {
 
             if ( processNameElements.length > 0 )
             {
-                processName = attachArrayToObject( processNameElements, serviceProcess[ indexProcess ].name );
+                processName = attachArrayToObject( processNameElements, language );
 
                 if ( processName )
                 {
@@ -1065,7 +1063,7 @@ export const actions = {
 
             if ( processDescriptionElements.length > 0 )
             {
-                processDescription = attachArrayToObject( processDescriptionElements, serviceProcess[ indexProcess ].description );
+                processDescription = attachArrayToObject( processDescriptionElements, language );
 
                 if ( processDescription )
                 {
@@ -1187,7 +1185,7 @@ export const actions = {
 
             if ( optionTextElements.length > 0 )
             {
-                optionText = attachArrayToObject( optionTextElements, serviceOption[ indexOption ].text );
+                optionText = attachArrayToObject( optionTextElements, language );
 
                 if ( optionText )
                 {
@@ -1207,7 +1205,7 @@ export const actions = {
 
             if ( optionDescriptionElements.length > 0 )
             {
-                optionDescription = attachArrayToObject( optionDescriptionElements, serviceOption[ indexOption ].description );
+                optionDescription = attachArrayToObject( optionDescriptionElements, language );
 
                 if ( optionDescription )
                 {
@@ -1260,9 +1258,9 @@ export const actions = {
                 let optionVariantTextElements = data.getAll( 'option-variant-text-' + indexOption + '-' +  indexOptionVariant );
                 let optionVariantText = '';
 
-                if ( optionVariantText.length > 0 )
+                if ( optionVariantTextElements.length > 0 )
                 {
-                    optionVariantText = attachArrayToObject( optionVariantTextElements, serviceOptionVariantData[ indexOptionVariant ].text );
+                    optionVariantText = attachArrayToObject( optionVariantTextElements, language );
 
                     if ( optionVariantText )
                     {
@@ -1282,7 +1280,7 @@ export const actions = {
 
                 if ( optionVariantValueElements.length > 0 )
                 {
-                    optionVariantValue = attachArrayToObject( optionVariantValueElements, serviceOptionVariantData[ indexOptionVariant ].value );
+                    optionVariantValue = attachArrayToObject( optionVariantValueElements, language );
 
                     if ( optionVariantValue )
                     {
@@ -1302,7 +1300,7 @@ export const actions = {
 
                 if ( optionVariantPriceElements.length > 0 )
                 {
-                    optionVariantPrice = attachArrayToObject( optionVariantPriceElements, serviceOptionVariantData[ indexOptionVariant ].price );
+                    optionVariantPrice = attachArrayToObject( optionVariantPriceElements, currency );
 
                     if ( optionVariantPrice )
                     {

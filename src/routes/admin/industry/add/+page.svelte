@@ -62,7 +62,6 @@
                             name="name"
                             placeholder="{text}"
                             bind:value={text}
-                            required
                         />
                     {/each}
                 </div>

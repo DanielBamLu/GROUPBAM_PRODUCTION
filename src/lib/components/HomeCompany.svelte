@@ -133,6 +133,7 @@
         @media( min-width: 65em )
         {
             height: calc( var( --viewport-height ) - 4rem );
+            min-height: 30rem;
             max-height: 50rem;
 
             flex-direction: unset;

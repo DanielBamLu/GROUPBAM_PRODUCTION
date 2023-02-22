@@ -11,12 +11,9 @@ import * as api from '$lib/api.js';
 /** @type {import('./$types').PageServerLoad} */
 export async function load()
 {
-    let languageData = await languageTable.selectRows();
-
     let companyData = await companyTable.selectRows();
 
     return {
-        languageData : languageData,
         companyData : companyData,
         };
 }

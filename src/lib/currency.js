@@ -76,7 +76,7 @@ export function getPriceCurrency(
     }
     else
     {
-        console.warn( 'Missing language code ' + currencyCode_ + ' : ' + JSON.stringify( priceByCurrencyCodeMap ) );
+        console.warn( 'Missing currency code ' + currencyCode_ + ' : ' + JSON.stringify( priceByCurrencyCodeMap ) );
 
         return '';
     }

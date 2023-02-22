@@ -1,7 +1,7 @@
 // -- IMPORTS
 
-import { companyTable } from '$lib/database';
-import { attachArrayToObject, convertToSlug } from '$lib/admin';
+import { companyTable, languageTable } from '$lib/database';
+import { attachArrayToObject, convertToSlug, getLanguageMap } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
 import { getMillisecondTimestamp, getTranslatedTextByCode } from 'senselogic-gist';
 import { writeFileSync, unlink } from 'fs';
@@ -31,13 +31,10 @@ export const actions = {
 
         const data = await request.formData();
 
-        const timeStamp = getMillisecondTimestamp();
+        let languageData = await languageTable.selectRows();
+        let language = getLanguageMap( languageData );
 
-        let companyData = await companyTable.selectRow(
-            {
-                where : [ [ 'id' ], '=', params.companyId ]
-            }
-            );
+        const timeStamp = getMillisecondTimestamp();
 
         let companyId = params.companyId;
 
@@ -71,7 +68,7 @@ export const actions = {
 
         //Edit summary
         let companySummaryElements =  data.getAll( 'summary' );
-        let companySummary = attachArrayToObject( companySummaryElements, companyData.summary );
+        let companySummary = attachArrayToObject( companySummaryElements, language );
 
         if ( companySummary )
         {
@@ -86,7 +83,7 @@ export const actions = {
 
         //Edit description
         let companyDescriptionElements =  data.getAll( 'description' );
-        let companyDescription = attachArrayToObject( companyDescriptionElements, companyData.description );
+        let companyDescription = attachArrayToObject( companyDescriptionElements, language );
 
         if ( companyDescription )
         {
@@ -101,7 +98,7 @@ export const actions = {
 
         //Edit domain
         let companyDomainElements =  data.getAll( 'domain' );
-        let companyDomain = attachArrayToObject( companyDomainElements, companyData.domain );
+        let companyDomain = attachArrayToObject( companyDomainElements, language );
 
         if ( companyDomain )
         {

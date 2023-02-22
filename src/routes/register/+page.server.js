@@ -5,10 +5,16 @@ import * as api from '$lib/api.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load( { parent } ) {
-
     const { user } = await parent();
 
-    if ( user ) throw redirect( 307, '/admin' );
+    if ( user )
+    {
+        throw redirect( 307, '/admin' );
+    }
+    else
+    {
+        throw redirect( 307, '/' );
+    }
 }
 
 /** @type {import('./$types').Actions} */

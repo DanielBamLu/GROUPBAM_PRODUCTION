@@ -7,10 +7,10 @@
     import { clickOutside } from '$lib/clickOutside.js';
     import { Modal } from 'attractions';
     import { enhance } from '$app/forms';
+    import { auth } from '$lib/auth';
     import Cart from '$lib/components/Cart.svelte';
     import Saved from '$lib/components/Saved.svelte';
-    import LoginModal from '$lib/components/LoginModal.svelte';
-    import RegisterModal from '$lib/components/RegisterModal.svelte';
+    import AuthModal from '$lib/components/AuthModal.svelte';
     import CartIcon from '$lib/components/icon/Cart.svelte';
     import SavedIcon from '$lib/components/icon/Saved.svelte';
     import ChevronIcon from '$lib/components/icon/Chevron.svelte';
@@ -46,24 +46,14 @@
         }
     }
 
-    function closeModalLogin() {
-        if ( modalLoginOpen )
-        {
-            modalLoginOpen = false;
-        }
-    }
+    $auth = '';
 
-    function closeModalRegister() {
-        if ( modalRegisterOpen )
-        {
-            modalRegisterOpen = false;
-        }
+    function handleModalAuth( type ) {
+        $auth = type;
     }
 
     let modalCartOpen = false;
     let modalSavedOpen = false;
-    let modalLoginOpen = false;
-    let modalRegisterOpen = false;
 </script>
 
 <div class="header">
@@ -148,21 +138,13 @@
                     <button class="header-button-label-white">{getTranslatedTextByCode( 'LogOutButton' )}</button>
                 </form>
             {:else}
-                <button class="header-button white header-button-label-dark" on:click={() => modalLoginOpen = true}>{getTranslatedTextByCode( 'SignInButton' )}</button>
-                {#if modalLoginOpen}
-                    <Modal bind:open={modalLoginOpen}>
-                        <div class="modal-login" use:clickOutside on:click_outside={closeModalLogin}>
-                            <LoginModal closeModalLogin={closeModalLogin}/>
-                        </div>
-                    </Modal>
+                <button class="header-button white header-button-label-dark" on:click={() => handleModalAuth( 'login' )}>{getTranslatedTextByCode( 'SignInButton' )}</button>
+                {#if $auth == 'login'}
+                    <AuthModal handleModalAuth={handleModalAuth( 'login' )}/>
                 {/if}
-                <button class="header-sign-up header-button header-button-label-white" on:click={() => modalRegisterOpen = true}>{getTranslatedTextByCode( 'SignUpButton' )}</button>
-                {#if modalRegisterOpen}
-                    <Modal bind:open={modalRegisterOpen}>
-                        <div class="modal-register" use:clickOutside on:click_outside={closeModalRegister}>
-                            <RegisterModal closeModalRegister={closeModalRegister}/>
-                        </div>
-                    </Modal>
+                <button class="header-sign-up header-button header-button-label-white" on:click={() => handleModalAuth( 'register' )}>{getTranslatedTextByCode( 'SignUpButton' )}</button>
+                {#if $auth == 'register'}
+                    <AuthModal handleModalAuth={handleModalAuth( 'register' )}/>
                 {/if}
             {/if}
         </div>

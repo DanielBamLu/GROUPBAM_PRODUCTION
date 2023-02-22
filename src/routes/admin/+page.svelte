@@ -28,16 +28,4 @@
         flex-direction: column;
         gap: 1rem;
     }
-
-    .admin-container
-    {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .admin a
-    {
-        color: var( --white-color );
-    }
 </style>

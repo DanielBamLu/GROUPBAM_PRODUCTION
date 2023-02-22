@@ -1563,6 +1563,20 @@ textarea
     height: 100%;
 }
 
+.admin-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.admin-add-new
+{
+    display: flex;
+}
+
 .admin-search
 {
     display: flex;
@@ -1640,7 +1654,7 @@ textarea
 
 .admin-button *
 {
-    margin-top: 1rem;
+    height: 100%;
     outline: none;
     padding: 0.8rem 1.1rem;
 
@@ -1739,122 +1753,6 @@ textarea
 .side-menu-hamburger img
 {
     width: 1.125rem;
-}
-
-.auth
-{
-    background-color: var( --background-color);
-    @media( min-width: 65em )
-    {
-        margin: auto;
-        max-width: 40rem;
-    }
-}
-
-.auth-container
-{
-    padding: 2rem;
-
-    text-align: left;
-    @media( min-width: 65em )
-    {
-        padding: 4rem;
-    }
-}
-
-.auth-account
-{
-    margin-bottom: 1.5rem;
-    
-    display: flex;
-    gap: 1rem;
-}
-
-.auth-button
-{
-    margin-top: 1.5rem;
-
-    flex: 1;
-}
-
-.auth-button button
-{
-    height: 3rem;
-    width: 100%;
-    padding: 0 3rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--blue-color);
-}
-
-.auth-separator
-{
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-
-    text-align: center;
-}
-
-.auth-separator::before,
-.auth-separator::after
-{
-    height: 0.063rem;
-    width: 100%;
-
-    display: block;
-
-    content: "";
-    background-color: var( --line-color );
-}
-
-.auth-separator::before
-{
-    margin-right: 1.5rem;
-}
-
-.auth-separator::after
-{
-    margin-left: 1.5rem;
-}
-
-.auth-google
-{
-    height: 3rem;
-    padding: 0 2rem;
-
-    background-color: var( --white-color );
-}
-
-.auth-google img
-{
-    position: absolute;
-
-    height: 1.5rem;
-}
-
-.auth-google a
-{
-    position: relative;
-
-    height: 100%;
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-}
-
-.auth-google-label
-{
-    width: 100%;
-
-    text-align: center;
 }
 
 .modal

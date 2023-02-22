@@ -58,9 +58,14 @@
     <div class="admin-list-title admin-title">
         {getTranslatedTextByCode( 'TextButton' )}
     </div>
-    <div class="admin-search">
-        <Search label="" bind:value on:submit={search} />
-        <Button filled class="back" on:click={search}>Search</Button>
+    <div class="admin-container">
+        <div class="admin-search">
+            <Search label="" bind:value on:submit={search} />
+            <Button filled class="back" on:click={search}>Search</Button>
+        </div>
+        <div class="admin-add-new">
+            <div class="admin-button"><a href="/admin/text/add">{getTranslatedTextByCode( 'NewPageTitle' )}</a></div>
+        </div>
     </div>
     <div class="admin-list-pages">
         {#if isSearch }

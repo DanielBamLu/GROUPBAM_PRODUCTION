@@ -602,7 +602,6 @@
                                         <TextField
                                             name="new-pack-name-{pack.info.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -742,7 +741,6 @@
                                         <TextField
                                             name="new-advantage-name-{advantage.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -814,7 +812,6 @@
                                         <TextField
                                             name="new-process-name-{process.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -874,7 +871,6 @@
                                         <TextField
                                             name="new-option-text-{option.option.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -914,7 +910,6 @@
                                                             <TextField
                                                                 name="new-option-variant-text-{option.option.index}"
                                                                 value={text}
-                                                                required
                                                             />
                                                         {/each}
                                                     </div>

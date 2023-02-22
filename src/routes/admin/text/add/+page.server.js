@@ -9,14 +9,7 @@ import * as api from '$lib/api.js';
 // -- FUNCTIONS
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load()
-{
-    let languageData = await languageTable.selectRows();
-
-    return {
-        languageData : languageData
-        };
-}
+export async function load(){}
 
 /** @type {import('./$types').Actions} */
 export const actions = {

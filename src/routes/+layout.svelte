@@ -5,12 +5,12 @@
     import { setLanguageCode, setDefaultLanguageCode, setTextByLanguageCodeMapByCode } from 'senselogic-gist';
     import { setCurrencyCode, setDefaultCurrencyCode } from '$lib/currency';
     import { cart, StoreCart } from '$lib/cart';
+    import { onMount, afterUpdate } from 'svelte';
+    import { UpdateViewportProperties } from '$lib/vistaViewport.js';
     import PreloadingIndicator from '$lib/components/PreloadingIndicator.svelte';
     import SideMenuModal from '$lib/components/SideMenuModal.svelte';
     import Header from '$lib/components/Header.svelte';
     import Footer from '$lib/components/Footer.svelte';
-    import { onMount, afterUpdate } from 'svelte';
-    import { UpdateViewportProperties } from '$lib/vistaViewport.js';
     // import Drawer from '$lib/components/Drawer.svelte';
     // import { browser } from '$app/environment';
     // import { drawer } from '$lib/drawer';

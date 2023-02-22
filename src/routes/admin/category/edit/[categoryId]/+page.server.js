@@ -1,8 +1,8 @@
 // -- IMPORTS
 
-import { categoryTable, companyTable } from '$lib/database';
+import { categoryTable, companyTable, languageTable } from '$lib/database';
 import { getTranslatedTextByCode } from 'senselogic-gist';
-import { attachArrayToObject } from '$lib/admin';
+import { getLanguageMap, attachArrayToObject } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
 import * as api from '$lib/api.js';
 
@@ -33,18 +33,14 @@ export const actions = {
 
         const data = await request.formData();
 
-        // CATEGORY INFO
-        let categoryData = await categoryTable.selectRow(
-            {
-                where : [ [ 'id' ], '=', params.categoryId ]
-            }
-            );
+        let languageData = await languageTable.selectRows();
+        let language = getLanguageMap( languageData );
 
         let categoryId = params.categoryId;
 
         //Edit title
         let categoryTitleElements =  data.getAll( 'title' );
-        let categoryTitle = attachArrayToObject( categoryTitleElements, categoryData.title );
+        let categoryTitle = attachArrayToObject( categoryTitleElements, language );
 
         if ( categoryTitle )
         {

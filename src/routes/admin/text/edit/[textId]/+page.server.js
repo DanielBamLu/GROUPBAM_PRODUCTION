@@ -1,7 +1,7 @@
 // -- IMPORTS
 
-import { textTable } from '$lib/database';
-import { attachArrayToObject } from '$lib/admin';
+import { textTable, languageTable } from '$lib/database';
+import { getLanguageMap, attachArrayToObject } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
 import { getTranslatedTextByCode } from 'senselogic-gist';
 import * as api from '$lib/api.js';
@@ -30,14 +30,10 @@ export const actions = {
 
         const data = await request.formData();
 
-        // TEXT INFO
-        let textId = params.textId;
+        let languageData = await languageTable.selectRows();
+        let language = getLanguageMap( languageData );
 
-        let textData = await textTable.selectRow(
-            {
-                where : [ [ 'id' ], '=', params.textId ]
-            }
-            );
+        let textId = params.textId;
 
         //Edit slug
         let textSlug =  data.get( 'slug' );
@@ -69,7 +65,7 @@ export const actions = {
 
         //Edit text
         let textTextElements =  data.getAll( 'text' );
-        let textText = attachArrayToObject( textTextElements, textData.text );
+        let textText = attachArrayToObject( textTextElements, language );
 
         if ( textText )
         {

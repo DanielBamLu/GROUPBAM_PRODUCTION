@@ -1,6 +1,6 @@
 <script>
     import { TextField, RadioGroup, FileDropzone, Switch, FormField, Button, Tabs } from 'attractions';
-    import { getLanguageMap, getCurrencyMap } from '$lib/admin'
+    import { getLanguageMap, getCurrencyMap, completeLanguageMap, completeCurrencyMap } from '$lib/admin'
     import { getTranslatedText, getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import { afterNavigate } from '$app/navigation';
@@ -117,16 +117,16 @@
     if ( serviceInfo )
     {
         title = serviceInfo.title;
-        description = serviceInfo.description;
+        description = completeLanguageMap( serviceInfo.description, data.languageData );
         highlight = serviceInfo.highlight;
         hasPrice = serviceInfo.hasPrice;
         imagePath = serviceInfo.imagePath;
         unitTime = serviceInfo.unitTime;
-        unitPrice = serviceInfo.unitPrice;
+        unitPrice = completeCurrencyMap( serviceInfo.unitPrice, data.currencyData );
         companyId = serviceInfo.companyId;
         categoryId = serviceInfo.categoryId;
-        additionalTitle = serviceInfo.additionalTitle;
-        additionalDescription = serviceInfo.additionalDescription;
+        additionalTitle = completeLanguageMap( serviceInfo.additionalTitle, data.languageData );
+        additionalDescription = completeLanguageMap( serviceInfo.additionalDescription, data.languageData );
     }
 
     if ( imagePath )
@@ -833,7 +833,7 @@
                     name="{getTranslatedTextByCode( 'ServiceAdditionalDescriptionTitleLabel' )}"
                 >
                     <div class="text-input">
-                        {#each Object.entries( additionalTitle) as [ lang, text ]}
+                        {#each Object.entries( additionalTitle ) as [ lang, text ]}
                             {lang}
                             <TextField
                                 name="additional-title"
@@ -869,12 +869,11 @@
                                 name="{getTranslatedTextByCode( 'ServicePackNameLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( pack.info.name ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( pack.info.name, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="pack-name-{index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -883,7 +882,7 @@
                                 name="{getTranslatedTextByCode( 'ServicePackDescriptionLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( pack.info.description ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( pack.info.description, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="pack-description-{index}"
@@ -896,7 +895,7 @@
                                 name="{getTranslatedTextByCode( 'ServicePackPriceLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( pack.info.price ) as [ lang, text ]}
+                                    {#each Object.entries( completeCurrencyMap( pack.info.price, data.currencyData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="pack-price-{index}"
@@ -958,7 +957,7 @@
                                 {#key refreshPackInclude}
                                     {#each pack.includes as include, indexInclude}
                                         <div class="text-input">
-                                            {#each Object.entries( include.text ) as [ lang, text ]}
+                                            {#each Object.entries( completeLanguageMap( include.text, data.languageData ) ) as [ lang, text ]}
                                                 {lang}
                                                 <TextField
                                                     name="pack-include-{index}-{indexInclude}"
@@ -981,7 +980,6 @@
                                                         <TextField
                                                             name="pack-include-{pack.info.id}"
                                                             value={text}
-                                                            required
                                                         />
                                                     {/each}
                                                     <div class="admin-button">
@@ -1018,7 +1016,6 @@
                                         <TextField
                                             name="new-pack-name-{pack.info.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1107,7 +1104,6 @@
                                                         <TextField
                                                             name="new-pack-include-{pack.info.index}"
                                                             value={text}
-                                                            required
                                                         />
                                                     {/each}
                                                     <div class="admin-button">
@@ -1145,12 +1141,11 @@
                                 name="{getTranslatedTextByCode( 'ServiceAdvantageNameLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( advantage.name ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( advantage.name, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="advantage-name-{advantage.id}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1159,7 +1154,7 @@
                                 name="{getTranslatedTextByCode( 'ServiceAdvantageDescriptionLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( advantage.description ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( advantage.description, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="advantage-description-{advantage.id}"
@@ -1211,7 +1206,6 @@
                                         <TextField
                                             name="new-advantage-name-{advantage.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1272,12 +1266,11 @@
                                 name="{getTranslatedTextByCode( 'ServiceProcessNameLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( process.name ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( process.name, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="process-name-{process.id}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1286,7 +1279,7 @@
                                 name="{getTranslatedTextByCode( 'ServiceProcessDescriptionLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( process.description ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( process.description, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="process-description-{process.id}"
@@ -1325,7 +1318,6 @@
                                         <TextField
                                             name="new-process-name-{process.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1374,12 +1366,11 @@
                                 name="{getTranslatedTextByCode( 'ServiceOptionTextLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( option.option.text ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( option.option.text, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="option-text-{index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1388,7 +1379,7 @@
                                 name="{getTranslatedTextByCode( 'ServiceOptionDescriptionLabel' )}"
                             >
                                 <div class="text-input">
-                                    {#each Object.entries( option.option.description ) as [ lang, text ]}
+                                    {#each Object.entries( completeLanguageMap( option.option.description, data.languageData ) ) as [ lang, text ]}
                                         {lang}
                                         <TextField
                                             name="option-description-{index}"
@@ -1411,12 +1402,11 @@
                                         name="{getTranslatedTextByCode( 'ServiceOptionVariantItemTextLabel' )}"
                                     >
                                         <div class="text-input">
-                                            {#each Object.entries( variant.text ) as [ lang, text ]}
+                                            {#each Object.entries( completeLanguageMap( variant.text, data.languageData ) ) as [ lang, text ]}
                                                 {lang}
                                                 <TextField
                                                     name="option-variant-text-{index}-{indexVariant}"
                                                     value={text}
-                                                    required
                                                 />
                                             {/each}
                                         </div>
@@ -1425,7 +1415,7 @@
                                         name="{getTranslatedTextByCode( 'ServiceOptionVariantItemValueLabel' )}"
                                     >
                                         <div class="text-input">
-                                            {#each Object.entries( variant.value ) as [ lang, text ]}
+                                            {#each Object.entries( completeLanguageMap( variant.value, data.languageData ) ) as [ lang, text ]}
                                                 {lang}
                                                 <TextField
                                                     name="option-variant-value-{index}-{indexVariant}"
@@ -1438,7 +1428,7 @@
                                         name="{getTranslatedTextByCode( 'ServiceOptionVariantItemPriceLabel' )}"
                                     >
                                         <div class="text-input">
-                                            {#each Object.entries( variant.price ) as [ lang, text ]}
+                                            {#each Object.entries( completeCurrencyMap( variant.price, data.currencyData ) ) as [ lang, text ]}
                                                 {lang}
                                                 <TextField
                                                     name="option-variant-price-{index}-{indexVariant}"
@@ -1467,7 +1457,6 @@
                                                                 <TextField
                                                                     name="option-variant-text-{option.option.id}"
                                                                     value={text}
-                                                                    required
                                                                 />
                                                             {/each}
                                                         </div>
@@ -1536,7 +1525,6 @@
                                         <TextField
                                             name="new-option-text-{option.option.index}"
                                             value={text}
-                                            required
                                         />
                                     {/each}
                                 </div>
@@ -1577,7 +1565,6 @@
                                                                 <TextField
                                                                     name="new-option-variant-text-{option.option.index}"
                                                                     value={text}
-                                                                    required
                                                                 />
                                                             {/each}
                                                         </div>
