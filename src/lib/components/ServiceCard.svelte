@@ -117,6 +117,7 @@
                         cartItemTotalTime = ( unitTime * cartItemQuantity );
 
                         cartService.title = serviceData.info.title;
+                        cartService.description = serviceData.info.description;
                         cartService.imagePath = serviceData.info.imagePath;
                         cartService.unitPrice = createNewObject( serviceData.info.unitPrice );
                         cartService.unitTime = serviceData.info.unitTime;
