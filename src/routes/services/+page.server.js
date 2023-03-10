@@ -1,6 +1,6 @@
 // -- IMPORTS
 
-import { serviceTable, serviceImageTable, companyTable, userSaveServiceTable } from '$lib/database';
+import { serviceTable, serviceImageTable, companyTable, industryTable, userSaveServiceTable } from '$lib/database';
 
 // -- FUNCTIONS
 
@@ -8,6 +8,8 @@ import { serviceTable, serviceImageTable, companyTable, userSaveServiceTable } f
 export async function load( { locals } )
 {
     let serviceArray = await serviceTable.selectRows();
+
+    let industryArray = await industryTable.selectRows();
 
     let service = [];
 
@@ -52,6 +54,7 @@ export async function load( { locals } )
     }
 
     return {
+        industryArray : industryArray,
         serviceArray : serviceArray,
         service : service,
         };

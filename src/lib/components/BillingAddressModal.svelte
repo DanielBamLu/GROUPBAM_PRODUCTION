@@ -1,22 +1,21 @@
 <script>
-    import ListErrors from '$lib/components/ListErrors.svelte';
-    import ListSuccess from '$lib/components/ListSuccess.svelte';
     import { TextField } from 'attractions';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
+    import ListErrors from '$lib/components/ListErrors.svelte';
+    import ListSuccess from '$lib/components/ListSuccess.svelte';
     import CloseIcon from '$lib/components/icon/Close.svelte';
-    
-    export let data;
 
+    export let data;
     export let closeBillingAddressModal = () => {}
-    
+
     let errors;
     let success;
 
     let refresh = {}
 </script>
 
-<div class="login modal">
+<div class="modal">
     <div class="modal-close">
         <button class="modal-close-button" on:click={closeBillingAddressModal}>
             <CloseIcon/>
@@ -47,7 +46,7 @@
                             success = result.data.success;
                         }
                     }
-                    
+
                     refresh = {}
 
                     if ( result.type === 'error' ) update();

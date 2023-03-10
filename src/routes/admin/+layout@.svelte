@@ -75,3 +75,11 @@
         <Footer languageArray={data.languageArray} currencyArray={data.currencyArray} refresh={restartComponents}/>
     </div>
 {/key}
+
+<style>
+    .main-container-slot
+    {
+        display: flex;
+        justify-content: center;
+    }
+</style>

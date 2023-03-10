@@ -1,6 +1,6 @@
 // -- IMPORTS
 
-import { languageTable, currencyTable, serviceImageTable, serviceTable, companyTable, categoryTable, servicePackTypeTable, servicePackTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceOptionTable, serviceOptionVariantTable } from '$lib/database';
+import { languageTable, currencyTable, serviceImageTable, serviceTable, companyTable, categoryTable, servicePackTypeTable, servicePackTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceOptionTypeTable, serviceOptionTable, serviceOptionVariantTable } from '$lib/database';
 import { getLanguageMap, getCurrencyMap, attachArrayToObject, convertToSlug, sliceIntoChunks } from '$lib/admin'
 import { getRandomTuid, getMillisecondTimestamp } from 'senselogic-gist';
 import { redirect } from '@sveltejs/kit';
@@ -18,12 +18,14 @@ export async function load()
     let categoryData = await categoryTable.selectRows();
 
     let servicePackType = await servicePackTypeTable.selectRows();
+    let serviceOptionType = await serviceOptionTypeTable.selectRows();
 
     return {
         currencyData : currencyData,
         companyData : companyData,
         categoryData : categoryData,
         servicePackType : servicePackType,
+        serviceOptionType : serviceOptionType
         };
 }
 
@@ -53,7 +55,7 @@ export const actions = {
         );
 
         //Add Title
-        let serviceTitle =  data.get( 'title' );
+        let serviceTitle = data.get( 'title' );
 
         if ( serviceTitle )
         {
@@ -81,7 +83,7 @@ export const actions = {
         }
 
         //Add description
-        let serviceDescriptionElements =  data.getAll( 'description' );
+        let serviceDescriptionElements = data.getAll( 'description' );
         let serviceDescription = attachArrayToObject( serviceDescriptionElements, language );
 
         if ( serviceDescription )
@@ -142,7 +144,7 @@ export const actions = {
         }
 
         //Add unit time
-        let serviceUnitTime =  data.get( 'unit-time' );
+        let serviceUnitTime = data.get( 'unit-time' );
 
         if ( serviceUnitTime )
         {
@@ -156,7 +158,7 @@ export const actions = {
         }
 
         //Add unit price
-        let serviceUnitPriceElements =  data.getAll( 'unit-price' );
+        let serviceUnitPriceElements = data.getAll( 'unit-price' );
         let serviceUnitPrice = attachArrayToObject( serviceUnitPriceElements, currency );
 
         if ( serviceUnitPrice )
@@ -200,7 +202,7 @@ export const actions = {
 
         //Add additional title
         language = getLanguageMap( languageData );
-        let serviceAdditionalTitleElements =  data.getAll( 'additional-title' );
+        let serviceAdditionalTitleElements = data.getAll( 'additional-title' );
         let serviceAdditionalTitle = attachArrayToObject( serviceAdditionalTitleElements, language );
 
         if ( serviceAdditionalTitle )
@@ -216,7 +218,7 @@ export const actions = {
 
         //Add additional description
         language = getLanguageMap( languageData );
-        let serviceAdditionalDescriptionElements =  data.getAll( 'additional-description' );
+        let serviceAdditionalDescriptionElements = data.getAll( 'additional-description' );
         let serviceAdditionalDescription = attachArrayToObject( serviceAdditionalDescriptionElements, language );
 
         if ( serviceAdditionalDescription )
@@ -231,9 +233,9 @@ export const actions = {
         }
 
         //Add ImagePath
-        let serviceFileName =  data.get( 'image-file-name' );
-        let serviceFileExtension =  data.get( 'image-file-extension' );
-        let serviceFileData =  data.get( 'image-file-data' );
+        let serviceFileName = data.get( 'image-file-name' );
+        let serviceFileExtension = data.get( 'image-file-extension' );
+        let serviceFileData = data.get( 'image-file-data' );
 
         let serviceImagePath;
 
@@ -263,10 +265,10 @@ export const actions = {
             {
                 let id = getRandomTuid();
 
-                let fileName =  data.get( 'new-gallery-file-name-' + newGallery[ indexNewGallery ] );
-                let fileExtension =  data.get( 'new-gallery-file-extension-' + newGallery[ indexNewGallery ] );
-                let fileData =  data.get( 'new-gallery-file-data-' + newGallery[ indexNewGallery ] );
-                let fileNumber =  data.get( 'new-gallery-file-number-' + newGallery[ indexNewGallery ] );
+                let fileName = data.get( 'new-gallery-file-name-' + newGallery[ indexNewGallery ] );
+                let fileExtension = data.get( 'new-gallery-file-extension-' + newGallery[ indexNewGallery ] );
+                let fileData = data.get( 'new-gallery-file-data-' + newGallery[ indexNewGallery ] );
+                let fileNumber = data.get( 'new-gallery-file-number-' + newGallery[ indexNewGallery ] );
 
                 let galleryImagePath;
 
@@ -420,9 +422,9 @@ export const actions = {
             }
 
             //Add pack imagePath
-            let fileName =  data.get( 'new-pack-file-name-'+  packCounter[ indexPackCounter ] );
-            let fileExtension =  data.get( 'new-pack-file-extension-'+  packCounter[ indexPackCounter ] );
-            let fileData =  data.get( 'new-pack-file-data-'+  packCounter[ indexPackCounter ] );
+            let fileName = data.get( 'new-pack-file-name-'+  packCounter[ indexPackCounter ] );
+            let fileExtension = data.get( 'new-pack-file-extension-'+  packCounter[ indexPackCounter ] );
+            let fileData = data.get( 'new-pack-file-data-'+  packCounter[ indexPackCounter ] );
 
             let packImagePath = '';
             if ( fileName )
@@ -517,9 +519,9 @@ export const actions = {
             }
 
             //Add advantage imagePath
-            let advantageFileName =  data.get( 'new-advantage-file-name-'+  advantageCounter[ indexAdvantageCounter ] );
-            let advantageFileExtension =  data.get( 'new-advantage-file-extension-'+  advantageCounter[ indexAdvantageCounter ] );
-            let advantageFileData =  data.get( 'new-advantage-file-data-'+  advantageCounter[ indexAdvantageCounter ] );
+            let advantageFileName = data.get( 'new-advantage-file-name-'+  advantageCounter[ indexAdvantageCounter ] );
+            let advantageFileExtension = data.get( 'new-advantage-file-extension-'+  advantageCounter[ indexAdvantageCounter ] );
+            let advantageFileData = data.get( 'new-advantage-file-data-'+  advantageCounter[ indexAdvantageCounter ] );
 
             let advantageImagePath = '';
             if ( advantageFileName )
@@ -655,7 +657,7 @@ export const actions = {
             }
 
             //Add option type
-            let optionTypeNew= data.get( 'new-option-type-' + optionCounter[ indexOptionCounter ] );
+            let optionTypeNew = data.get( 'new-option-type-' + optionCounter[ indexOptionCounter ] );
 
             if ( optionTypeNew )
             {
@@ -663,7 +665,7 @@ export const actions = {
                     serviceOptionTable,
                     {
                         id: optionId,
-                        type: optionTypeNew,
+                        typeId: optionTypeNew,
                     }
                 );
             }

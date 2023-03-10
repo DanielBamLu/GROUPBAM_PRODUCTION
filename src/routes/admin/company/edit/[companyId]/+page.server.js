@@ -39,7 +39,7 @@ export const actions = {
         let companyId = params.companyId;
 
         //Edit name
-        let companyName =  data.get( 'name' );
+        let companyName = data.get( 'name' );
 
         if ( companyName )
         {
@@ -67,7 +67,7 @@ export const actions = {
         }
 
         //Edit summary
-        let companySummaryElements =  data.getAll( 'summary' );
+        let companySummaryElements = data.getAll( 'summary' );
         let companySummary = attachArrayToObject( companySummaryElements, language );
 
         if ( companySummary )
@@ -82,7 +82,7 @@ export const actions = {
         }
 
         //Edit description
-        let companyDescriptionElements =  data.getAll( 'description' );
+        let companyDescriptionElements = data.getAll( 'description' );
         let companyDescription = attachArrayToObject( companyDescriptionElements, language );
 
         if ( companyDescription )
@@ -97,7 +97,7 @@ export const actions = {
         }
 
         //Edit domain
-        let companyDomainElements =  data.getAll( 'domain' );
+        let companyDomainElements = data.getAll( 'domain' );
         let companyDomain = attachArrayToObject( companyDomainElements, language );
 
         if ( companyDomain )
@@ -112,7 +112,7 @@ export const actions = {
         }
 
         //Edit color
-        let companyColor =  data.get( 'color' );
+        let companyColor = data.get( 'color' );
 
         if ( companyColor )
         {
@@ -126,9 +126,9 @@ export const actions = {
         }
 
         //Edit iconPath
-        let companyIconFileName =  data.get( 'icon-file-name' );
-        let companyIconFileExtension =  data.get( 'icon-file-extension' );
-        let companyIconFileData =  data.get( 'icon-file-data' );
+        let companyIconFileName = data.get( 'icon-file-name' );
+        let companyIconFileExtension = data.get( 'icon-file-extension' );
+        let companyIconFileData = data.get( 'icon-file-data' );
         let companyIconOldIconPath = data.get( 'iconPath' );
 
         let companyIconPath;
@@ -137,7 +137,7 @@ export const actions = {
         {
             unlink( 'static' + companyIconOldIconPath, ( err ) => {
                 console.log( companyIconOldIconPath + ' was deleted' );
-            });
+            } );
 
             companyIconPath = '/image/industry/' + companyIconFileName + '-' + timeStamp + '.' + companyIconFileExtension;
 
@@ -156,9 +156,9 @@ export const actions = {
         }
 
         //Edit iconGrayPath
-        let companyIconGrayFileName =  data.get( 'icon-gray-file-name' );
-        let companyIconGrayFileExtension =  data.get( 'icon-gray-file-extension' );
-        let companyIconGrayFileData =  data.get( 'icon-gray-file-data' );
+        let companyIconGrayFileName = data.get( 'icon-gray-file-name' );
+        let companyIconGrayFileExtension = data.get( 'icon-gray-file-extension' );
+        let companyIconGrayFileData = data.get( 'icon-gray-file-data' );
         let companyIconGrayOldIconGrayPath = data.get( 'iconGrayPath' );
 
         let companyIconGrayPath;
@@ -167,7 +167,7 @@ export const actions = {
         {
             unlink( 'static' + companyIconGrayOldIconGrayPath, ( err ) => {
                 console.log( companyIconGrayOldIconGrayPath + ' was deleted' );
-            });
+            } );
 
             companyIconGrayPath = '/image/industry/' + companyIconGrayFileName + '-' + timeStamp + '.' + companyIconGrayFileExtension;
 
@@ -185,9 +185,9 @@ export const actions = {
             }
         }
         //Edit imagePath
-        let companyImageFileName =  data.get( 'image-file-name' );
-        let companyImageFileExtension =  data.get( 'image-file-extension' );
-        let companyImageFileData =  data.get( 'image-file-data' );
+        let companyImageFileName = data.get( 'image-file-name' );
+        let companyImageFileExtension = data.get( 'image-file-extension' );
+        let companyImageFileData = data.get( 'image-file-data' );
         let companyImageOldImagePath = data.get( 'imagePath' );
 
         let companyImagePath;
@@ -196,7 +196,7 @@ export const actions = {
         {
             unlink( 'static' + companyImageOldImagePath, ( err ) => {
                 console.log( companyImageOldImagePath + ' was deleted' );
-            });
+            } );
 
             companyImagePath = '/image/industry/' + companyImageFileName + '-' + timeStamp + '.' + companyImageFileExtension;
 
@@ -214,7 +214,7 @@ export const actions = {
             }
         }
 
-        if( data )
+        if ( data )
         {
             return {
                 success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )

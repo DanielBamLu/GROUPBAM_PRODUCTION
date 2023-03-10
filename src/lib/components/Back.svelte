@@ -8,7 +8,7 @@
 
     afterNavigate( ( {from} ) => {
         previousPage = from?.url.pathname || previousPage
-    })
+    } )
 
     const goBack = () => {
         goto( previousPage )

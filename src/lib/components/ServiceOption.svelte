@@ -3,6 +3,7 @@
     import { getTranslatedTextByCode } from 'senselogic-gist';
 
     export let serviceOptionData;
+    export let refresh = () => {}
 </script>
 
 <div class="service-option-block" id="service-option-block">
@@ -11,7 +12,7 @@
     </div>
     <div class="service-option-block-items">
         {#each serviceOptionData as option}
-            <ServiceOptionCard optionData={option}/>
+            <ServiceOptionCard optionData={option} refresh={refresh}/>
         {/each}
     </div>
 </div>
@@ -25,16 +26,16 @@
     .service-option-block-items
     {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr );
         gap: 1.5rem 1.5rem;
         @media( min-width: 65em )
         {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr );
         }
 
         @media( min-width: 90em )
         {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr );
         }
     }
 </style>

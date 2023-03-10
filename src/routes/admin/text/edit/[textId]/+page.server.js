@@ -36,7 +36,7 @@ export const actions = {
         let textId = params.textId;
 
         //Edit slug
-        let textSlug =  data.get( 'slug' );
+        let textSlug = data.get( 'slug' );
 
         if ( textSlug )
         {
@@ -50,7 +50,7 @@ export const actions = {
         }
 
         //Edit code
-        let textCode =  data.get( 'code' );
+        let textCode = data.get( 'code' );
 
         if ( textSlug )
         {
@@ -64,7 +64,7 @@ export const actions = {
         }
 
         //Edit text
-        let textTextElements =  data.getAll( 'text' );
+        let textTextElements = data.getAll( 'text' );
         let textText = attachArrayToObject( textTextElements, language );
 
         if ( textText )
@@ -78,7 +78,7 @@ export const actions = {
             );
         }
 
-        if( data )
+        if ( data )
         {
             return {
                 success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )

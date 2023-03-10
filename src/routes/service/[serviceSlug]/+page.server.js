@@ -1,7 +1,7 @@
 // -- IMPORTS
 import { getTranslatedTextByCode, getRandomTuid } from 'senselogic-gist';
 import { error } from '@sveltejs/kit';
-import { serviceTable, serviceImageTable, servicePackTable, servicePackTypeTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceInformationTable, serviceReviewTable, serviceOptionTable, serviceOptionVariantTable, userTable, companyTable, userSaveServiceTable } from '$lib/database';
+import { serviceTable, serviceImageTable, servicePackTable, servicePackTypeTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceInformationTable, serviceReviewTable, serviceOptionTypeTable, serviceOptionTable, serviceOptionVariantTable, userTable, companyTable, userSaveServiceTable } from '$lib/database';
 import * as api from '$lib/api.js';
 
 // -- FUNCTIONS
@@ -192,8 +192,15 @@ export async function load( { params, locals } )
             }
         );
 
+        let serviceOptionType = await serviceOptionTypeTable.selectRow(
+            {
+                where : [ [ 'id' ], '=', option.typeId ]
+            }
+        );
+
         let newOption = {
             option : option,
+            optionType : serviceOptionType.type,
             optionVariant : serviceOptionVariant,
             };
 

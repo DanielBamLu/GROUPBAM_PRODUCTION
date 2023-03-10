@@ -7,6 +7,7 @@
     import { cart, StoreCart } from '$lib/cart';
     import { onMount, afterUpdate } from 'svelte';
     import { UpdateViewportProperties } from '$lib/vistaViewport.js';
+    import { watchResize } from 'svelte-watch-resize';
     import PreloadingIndicator from '$lib/components/PreloadingIndicator.svelte';
     import SideMenuModal from '$lib/components/SideMenuModal.svelte';
     import Header from '$lib/components/Header.svelte';
@@ -19,8 +20,6 @@
 
     let cartInfo;
     let cartUserInfo;
-
-    UpdateViewportProperties();
 
     onMount(async () => {
 
@@ -56,7 +55,7 @@
                 };
             }
         }
-    });
+    } );
 
     setLanguageCode( language );
     setDefaultLanguageCode( 'en' );
@@ -108,7 +107,7 @@
 
     afterUpdate( () => {
         isAdmin = $page.url.pathname.indexOf( 'admin' );
-    });
+    } );
 
     function closeModalSideMenu() {
         if ( modalSideMenuOpen )
@@ -118,13 +117,18 @@
     }
 
     let modalSideMenuOpen = false;
+
+    function handleMainResize() {
+        UpdateViewportProperties();
+    }
 </script>
+
 
 {#key refresh}
     {#if $navigating}
         <PreloadingIndicator />
     {/if}
-    <div class="main">
+    <div class="main" use:watchResize={handleMainResize}>
         {#if isAdmin == 1}
             <main>
                 <slot />

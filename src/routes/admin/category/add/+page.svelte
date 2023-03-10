@@ -13,7 +13,7 @@
             value: item.id,
             label: item.name
         };
-    });
+    } );
 </script>
 
 <svelte:head>

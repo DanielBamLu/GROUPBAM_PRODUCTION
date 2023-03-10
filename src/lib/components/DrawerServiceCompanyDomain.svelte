@@ -1,8 +1,9 @@
 <script>
-    import DrawerServiceCategory from '$lib/components/DrawerServiceCategory.svelte';
     import { getTranslatedTextByCode } from 'senselogic-gist';
+    import DrawerServiceCategory from '$lib/components/DrawerServiceCategory.svelte';
 
     export let data;
+
     let companyArray = data.companyArray;
     let categoryArray = data.categoryArray;
 </script>

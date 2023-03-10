@@ -15,7 +15,7 @@
 
 </script>
 
-<div class="login modal">
+<div class="modal">
     <div class="modal-close">
         <button class="modal-close-button" on:click={closePasswordModal}>
             <CloseIcon/>
@@ -31,7 +31,7 @@
             action="/customer/account?/editPassword"
             use:enhance={() => {
                 return ( { result, update } ) => {
-                    
+
                     if ( result.data )
                     {
                         if ( result.data.errors )
@@ -46,7 +46,7 @@
                             success = result.data.success;
                         }
                     }
-                    
+
                     refresh = {}
 
                     if ( result.type === 'error' ) update();

@@ -5,19 +5,17 @@
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { enhance } from '$app/forms';
     import CloseIcon from '$lib/components/icon/Close.svelte';
-    
-    export let data;
 
+    export let data;
     export let closePersonalInfoModal = () => {}
-    
+
     let errors;
     let success;
-
 
     let refresh = {}
 </script>
 
-<div class="login modal">
+<div class="modal">
     <div class="modal-close">
         <button class="modal-close-button" on:click={closePersonalInfoModal}>
             <CloseIcon/>
@@ -33,7 +31,7 @@
             action="/customer/account?/editPersonalInfo"
             use:enhance={() => {
                 return ( { result, update } ) => {
-                    
+
                     if ( result.data )
                     {
                         if ( result.data.errors )
@@ -48,7 +46,7 @@
                             success = result.data.success;
                         }
                     }
-                    
+
                     refresh = {}
 
                     if ( result.type === 'error' ) update();

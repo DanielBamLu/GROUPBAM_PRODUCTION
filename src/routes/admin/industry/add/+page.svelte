@@ -16,7 +16,7 @@
 
     function getBase64( image ) {
 
-        if ( image.length>0 )
+        if ( image.length > 0  )
         {
             newIconArray = new Array;
 

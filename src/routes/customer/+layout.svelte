@@ -26,7 +26,7 @@
                 <SavedIcon data="cart"/>
                 <div class="customer-action-label">{getTranslatedTextByCode( 'SavedPageTitle' )}</div>
             </a>
-            <a href="/customer/orders" class:is-active={$page.url.pathname === '/customer/orders'}>
+            <a href="/customer/orders" class="{$page.url.pathname.search('orders') > 0 ? 'is-active' : ''}">
                 <OrderIcon data="cart"/>
                 <div class="customer-action-label">{getTranslatedTextByCode( 'OrdersPageTitle' )}</div>
             </a>
@@ -45,7 +45,7 @@
             <div class="customer-page-title" class:is-active={$page.url.pathname === '/customer/saved'}>
                 {getTranslatedTextByCode( 'SavedPageTitle' )}
             </div>
-            <div class="customer-page-title" class:is-active={$page.url.pathname === '/customer/orders'}>
+            <div class="customer-page-title {$page.url.pathname.search('orders') > 0 ? 'is-active' : ''}">
                 {getTranslatedTextByCode( 'OrdersPageTitle' )}
             </div>
             <div class="customer-page-title" class:is-active={$page.url.pathname === '/customer/account'}>
@@ -103,7 +103,8 @@
         display: none;
         @media( min-width: 65em )
         {
-            padding: 1rem;
+            margin-top: 1rem;
+            padding-left: 1rem;
 
             display: block;
         }
@@ -121,7 +122,7 @@
         @media( min-width: 65em )
         {
             max-height: 4rem;
-            border-bottom: 0.063rem solid var(--line-color);
+            border-bottom: 0.063rem solid var(--line-color );
             padding-left: 1rem;
 
             display: flex;
@@ -137,7 +138,7 @@
     {
         @media( min-width: 65em )
         {
-            border-top: 0.063rem solid var(--line-color);
+            border-top: 0.063rem solid var(--line-color );
         }
     }
 
@@ -186,7 +187,7 @@
     {
         @media( min-width: 65em )
         {
-            border-top: 0.063rem solid var(--line-color);
+            border-top: 0.063rem solid var(--line-color );
 
             display: grid;
             grid-template-columns: 20rem 1fr;
@@ -197,7 +198,7 @@
     {
         @media( min-width: 65em )
         {
-            border-right: 0.063rem solid var(--line-color);
+            border-right: 0.063rem solid var(--line-color );
         }
     }
 

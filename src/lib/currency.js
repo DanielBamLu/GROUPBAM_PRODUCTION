@@ -81,3 +81,30 @@ export function getPriceCurrency(
         return '';
     }
 }
+
+export function getPriceCurrencyQuantity(
+    priceByCurrencyCodeMap,
+    quantity,
+    currencyCode_
+    )
+{
+    if ( currencyCode_ !== undefined
+         && priceByCurrencyCodeMap.hasOwnProperty( currencyCode_ ) )
+    {
+        return priceByCurrencyCodeMap[ currencyCode_ ] * ( quantity );
+    }
+    else if ( priceByCurrencyCodeMap.hasOwnProperty( currencyCode ) )
+    {
+        return priceByCurrencyCodeMap[ currencyCode ] * ( quantity );
+    }
+    else if ( priceByCurrencyCodeMap.hasOwnProperty( defaultCurrencyCode ) )
+    {
+        return priceByCurrencyCodeMap[ defaultCurrencyCode ] * ( quantity );
+    }
+    else
+    {
+        console.warn( 'Missing currency code ' + currencyCode_ + ' : ' + JSON.stringify( priceByCurrencyCodeMap ) );
+
+        return '';
+    }
+}

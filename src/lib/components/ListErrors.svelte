@@ -6,12 +6,12 @@
     let show;
 
     onMount( async () => {
-        
+
         show = 1;
 
         setTimeout(() => {
             show = 0;
-        }, 5000)
+        }, 5000 )
         } );
 </script>
 

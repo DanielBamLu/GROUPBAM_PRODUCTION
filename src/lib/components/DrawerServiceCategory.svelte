@@ -27,7 +27,7 @@
                 <ul transition:slide={{ duration: 300 }}>
                     {#if company.id === category.companyId}
                         <li>
-                            <a class="drawer-category-label" href="/services/{category.slug}">
+                            <a class="drawer-category-label" href="/services/category/{category.slug}">
                                 {getTranslatedText( category.title )}
                             </a>
                         </li>

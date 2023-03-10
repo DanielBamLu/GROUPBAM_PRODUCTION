@@ -96,7 +96,7 @@
 
             var isServiceInCart = $cart.services.some( function( element ) {
                 return ( element.serviceId === serviceData.info.id );
-            });
+            } );
 
             if ( isServiceInCart )
             {
@@ -118,6 +118,7 @@
                         cartService.quantity = cartItemQuantity;
                         cartService.totalPrice = cartItemTotalPrice;
                         cartService.totalTime = cartItemTotalTime;
+                        cartService.hasPrice = serviceData.info.hasPrice;
                     }
                 }
             }
@@ -225,10 +226,9 @@
 
     .saved-card-image-controler-cart
     {
-        flex-basis: 40%;
-
         display: flex;
         flex-direction: column;
+        flex-basis: 40%;
         gap: 1rem;
     }
 
@@ -250,8 +250,8 @@
 
         display: flex;
         gap: 1rem;
-        align-items: center;
         justify-content: center;
+        align-items: center;
 
         background-color: var( --blue-color );
 
@@ -261,7 +261,6 @@
     .saved-controler-cart-label
     {
         display: none;
-        
         @media( min-width: 50em )
         {
             display: block;
@@ -270,10 +269,9 @@
 
     .saved-info
     {
-        flex-basis: 60%;
-
         display: flex;
         flex-direction: column;
+        flex-basis: 60%;
         justify-content: space-between;
 
         text-align: left;
@@ -287,6 +285,7 @@
     .saved-card-title
     {
         width: calc( 100% - 2rem );
+
         display: block;
     }
 

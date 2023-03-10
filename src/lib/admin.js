@@ -5,13 +5,13 @@ export function completeLanguageMap(
 {
     languageMap.sort( ( a, b ) => {
         return a.number - b.number;
-    });
+    } );
 
     let newLanguageMap = new Object;
 
-    for ( const indexLanguage in languageMap ) {
-
-        if( uncompleteMap[languageMap[ indexLanguage ].code] )
+    for ( const indexLanguage in languageMap )
+    {
+        if ( uncompleteMap[languageMap[ indexLanguage ].code] )
         {
             newLanguageMap[ languageMap[ indexLanguage ].code ] = uncompleteMap[ languageMap[ indexLanguage ].code]
         }
@@ -30,11 +30,12 @@ export function getLanguageMap(
 {
     languageMap.sort( ( a, b ) => {
         return a.number - b.number;
-    });
+    } );
 
     let newLanguageMap = new Object;
 
-    for ( const indexLanguage in languageMap ) {
+    for ( const indexLanguage in languageMap )
+    {
         newLanguageMap[ languageMap[ indexLanguage ].code ] = '';
     }
 
@@ -48,13 +49,13 @@ export function completeCurrencyMap(
 {
     currencyMap.sort( ( a, b ) => {
         return a.name - b.name;
-    });
+    } );
 
     let newCurrencyMap = new Object;
-    
-    for ( const indexCurrency in currencyMap ) {
 
-        if( uncompleteMap[ currencyMap[ indexCurrency ].code] )
+    for ( const indexCurrency in currencyMap )
+    {
+        if ( uncompleteMap[ currencyMap[ indexCurrency ].code] )
         {
             newCurrencyMap[ currencyMap[ indexCurrency ].code ] = uncompleteMap[ currencyMap[ indexCurrency ].code ]
         }
@@ -73,12 +74,12 @@ export function getCurrencyMap(
 {
     currencyMap.sort( ( a, b ) => {
         return a.name - b.name;
-    });
+    } );
 
     let newCurrencyMap = new Object;
-    
-    for ( const indexCurrency in currencyMap ) {
 
+    for ( const indexCurrency in currencyMap )
+    {
         newCurrencyMap[ currencyMap[ indexCurrency ].code ] = '';
     }
 
@@ -96,7 +97,6 @@ export function attachElementValuesToObject(
 
         for ( let value in object )
         {
-            
             if ( objectIndex == elementsIndex )
             {
                 object[ value ] = elements[ elementsIndex ].value;
@@ -120,7 +120,6 @@ export function attachArrayToObject(
 
         for ( let value in object )
         {
-
             if ( objectIndex == elementsIndex )
             {
                 object[ value ] = elements[ elementsIndex ];
@@ -153,7 +152,7 @@ export function convertToSlug(
     }
 }
 
-export function sliceIntoChunks( 
+export function sliceIntoChunks(
     array,
     chunkSize
 )

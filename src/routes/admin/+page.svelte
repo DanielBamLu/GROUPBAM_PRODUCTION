@@ -16,6 +16,8 @@
         <div class="admin-button"><a href="/admin/category">{getTranslatedTextByCode( 'CategoryButton' )}</a></div>
         <div class="admin-button"><a href="/admin/text">{getTranslatedTextByCode( 'TextButton' )}</a></div>
         <div class="admin-button"><a href="/admin/settings">{getTranslatedTextByCode( 'SettingsButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/orders">{getTranslatedTextByCode( 'OrdersButton' )}</a></div>
+        <div class="admin-button"><a href="/admin/contactus">{getTranslatedTextByCode( 'ContactUsButton' )}</a></div>
     </div>
 </div>
 

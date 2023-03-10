@@ -6,7 +6,7 @@
     import { completeLanguageMap } from '$lib/admin'
     import ListErrors from '$lib/components/ListErrors.svelte';
     import ListSuccess from '$lib/components/ListSuccess.svelte';
-    
+
     export let data;
 
     let errors;
@@ -17,14 +17,13 @@
     afterNavigate( ( { from } ) => {
         if ( from )
         {
-            
             if ( from.route.id === '/admin/category/add' )
             {
                 success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
                 refresh = {}
             }
         }
-    })
+    } )
 
     let categoryInfo = data.categoryData;
     let title = completeLanguageMap( categoryInfo.title, data.languageData );
@@ -37,7 +36,7 @@
             value: item.id,
             label: item.name
         };
-    });
+    } );
 </script>
 
 <svelte:head>
@@ -48,8 +47,8 @@
         <ListErrors errors={errors} />
         <ListSuccess success={success} />
     {/key}
-    <form 
-        method="POST" 
+    <form
+        method="POST"
         action="?/edit"
         use:enhance={() => {
             return ( { result, update } ) => {
@@ -67,7 +66,7 @@
                         success = result.data.success;
                     }
                 }
-                
+
                 refresh = {}
 
                 if ( result.type === 'error' ) update();

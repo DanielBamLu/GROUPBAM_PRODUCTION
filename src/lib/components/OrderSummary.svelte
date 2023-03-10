@@ -4,18 +4,27 @@
     import { getPriceCurrency, getCurrencySymbol } from '$lib/currency';
     import { cart, StoreCart } from '$lib/cart';
     import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
     import CloseIcon from '$lib/components/icon/Close.svelte';
     import OrderSummaryItem from '$lib/components/OrderSummaryItem.svelte'
     import LockIcon from '$lib/components/icon/Lock.svelte';
     import PrintIcon from '$lib/components/icon/Print.svelte';
 
+    export let userData;
+    export let closeModalOrderSummary = () => {}
+
     let currency = getCurrencySymbol();
 
-    let urgency = false;
-    $cart.info.urgency = urgency;
+    function isUrgency(){
+        if( $cart.info.urgency )
+        {
+            $cart.info.urgency = false;
+        }
+        else
+        {
+            $cart.info.urgency = true;
+        }
 
-    const isUrgency = () => {
-        $cart.info.urgency = urgency;
         StoreCart( $cart, $page.data.user );
         }
 
@@ -23,7 +32,21 @@
         console.log($cart);
         }
 
-    export let closeModalOrderSummary = () => {}
+    let refresh = {}
+    function restartComponents() {
+        refresh = {}
+    }
+
+    const gotoCheckout = () => {
+        if( userData )
+        {
+            goto( '/checkout' );
+        }
+        else
+        {
+            alert( getTranslatedTextByCode( 'SignInNeededWarningLabel' ) );
+        }
+    }
 </script>
 
 {#if $cart.info.isOpen}
@@ -50,14 +73,16 @@
                         {/if}
                     </div>
                 </div>
-                {#each $cart.services as itemCart}
-                    <OrderSummaryItem item={itemCart}/>
-                {/each}
+                {#key refresh}
+                    {#each $cart.services as itemCart}
+                        <OrderSummaryItem item={itemCart} refresh={restartComponents}/>
+                    {/each}
+                {/key}
                 <div class="order-summary-card-urgency">
                     <div class="order-summary-card-urgency-label order-summary-urgency-label">
                         {getTranslatedTextByCode( 'UrgencyLabel' )}
                     </div>
-                    <Switch name="urgency" bind:value={urgency} on:change={isUrgency}/>
+                    <Switch name="urgency" value={$cart.info.urgency} on:change={isUrgency}/>
                 </div>
                 <div class="order-summary-card-secure-payment">
                     <div class="order-summary-secure-payment-icon">
@@ -67,14 +92,14 @@
                         {getTranslatedTextByCode( 'SecurePaymentLabel' )}
                     </div>
                 </div>
-                <a class="order-summary-checkout" href="/checkout">
+                <button class="order-summary-checkout" on:click={gotoCheckout}>
                     <div class="order-summary-checkout-label order-summary-checkout-text">
                         {getTranslatedTextByCode( 'CheckoutLabel' )}
                     </div>
                     <div class="order-summary-checkout-price order-summary-checkout-text">
                         {currency}{getPriceCurrency( $cart.info.totalPriceCart )}
                     </div>
-                </a>
+                </button>
                 <button class="order-summary-generate-offer" on:click={() => generateOffer()}>
                     <div class="order-summary-generate-offer-icon">
                         <PrintIcon/>

@@ -89,20 +89,20 @@ export async function load( { cookies, url } ) {
 async function googleAuth( code ) {
     const wellKnown = await fetch('https://accounts.google.com/.well-known/openid-configuration', {
         headers: { Accept: 'application/json' }
-    });
+    } );
     const wellKnownJson = await wellKnown.json();
 
     const idToken = await fetch( wellKnownJson.token_endpoint, {
         method: 'POST',
         headers: { Accept: 'application/json' },
-        body: JSON.stringify({
+        body: JSON.stringify( {
             code,
             client_id: process.env.GOOGLE_CLIENT_ID,
             client_secret: process.env.GOOGLE_CLIENT_SECRET,
             redirect_uri: process.env.AUTH_REDIRECT,
             grant_type: 'authorization_code'
-        })
-    });
+        } )
+    } );
 
     const idTokenJson = await idToken.json();
 

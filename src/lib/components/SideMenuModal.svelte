@@ -4,11 +4,10 @@
     import ServiceCard from '$lib/components/ServiceCard.svelte';
 
     export let closeModalSideMenu = () => {}
-
     export let data;
 </script>
 
-<div class="side-menu modal">
+<div class="side-menu">
     <div class="modal-close">
         <button class="modal-close-button" on:click={closeModalSideMenu}>
             <CloseIcon/>

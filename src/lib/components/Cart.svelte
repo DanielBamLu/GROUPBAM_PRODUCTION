@@ -4,12 +4,20 @@
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
-    import CartCard from '$lib/components/CartCard.svelte';
+    import ServiceDetailsCard from '$lib/components/ServiceDetailsCard.svelte';
 
-    let urgency = $cart.info.urgency;
+    export let closeModalCart = () => {}
 
-    const isUrgency = () => {
-        $cart.info.urgency = urgency;
+    function isUrgency(){
+        if( $cart.info.urgency )
+        {
+            $cart.info.urgency = false;
+        }
+        else
+        {
+            $cart.info.urgency = true;
+        }
+
         StoreCart( $cart, $page.data.user );
         }
 
@@ -17,8 +25,6 @@
     function restartComponents() {
         refresh = {}
     }
-
-    export let closeModalCart = () => {}
 
     const gotoCart = () => {
         closeModalCart();
@@ -56,14 +62,14 @@
                 </div>
                 <div class="cart-items">
                     {#each $cart.services as itemCart}
-                        <CartCard data={itemCart} refresh={restartComponents}/>
+                        <ServiceDetailsCard data={itemCart} refresh={restartComponents}/>
                     {/each}
                 </div>
                 <div class="cart-urgency">
                     <div class="cart-urgency-label">
                         {getTranslatedTextByCode( 'UrgencyLabel' )}
                     </div>
-                    <Switch name="urgency" bind:value={urgency} on:change={isUrgency}/>
+                    <Switch name="urgency" value={$cart.info.urgency} on:change={isUrgency}/>
                 </div>
                 <div class="cart-actions">
                     <button class="cart-view-cart" on:click={gotoCart}>
@@ -85,7 +91,7 @@
     {
         padding: 2rem;
 
-        background-color: var( --white-color);
+        background-color: var( --white-color );
 
         text-align: center;
         @media( min-width: 65em )

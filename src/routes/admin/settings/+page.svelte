@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-    <title>{getTranslatedTextByCode( 'SettingsPageLabel' )}</title>
+    <title>{getTranslatedTextByCode( 'SettingsPageTitle' )}</title>
 </svelte:head>
 
 <div class="admin-page">
@@ -58,7 +58,7 @@
                         success = result.data.success;
                     }
                 }
-                
+
                 refresh = {}
 
                 if ( result.type === 'error' ) update();

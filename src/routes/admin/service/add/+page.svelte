@@ -32,7 +32,7 @@
             value: item.id,
             label: getTranslatedText( item.name )
         };
-    });
+    } );
 
     let company = data.companyData;
     company = company.map(function ( item ) {
@@ -40,7 +40,7 @@
             value: item.id,
             label: item.name
         };
-    });
+    } );
 
     let category = data.categoryData;
     category = category.map(function ( item ) {
@@ -48,7 +48,7 @@
             value: item.id,
             label: getTranslatedText( item.title )
         };
-    });
+    } );
 
     let newPacks = new Array();
     let indexPack = 0;
@@ -230,6 +230,14 @@
         }
     }
 
+    let optionType = data.serviceOptionType;
+    optionType = optionType.map( function ( item ) {
+        return {
+            value: item.id,
+            label: item.type
+        };
+    } );
+
     let newOptionVariants = new Array();
     const addOptionVariant = ( info, isNew ) => () => {
 
@@ -284,7 +292,7 @@
 
     function getBase64( image, postId, index ,type ) {
 
-        if ( image.length>0 )
+        if ( image.length > 0  )
         {
             if ( type == 'feature-image' )
             {
@@ -534,18 +542,18 @@
                     {#key refreshGallery}
                         {#each galleryArray as item, index}
                             <div class="gallery">
-                                <input name="gallery-file-counter" value="{index}"/>
-                                <input name="gallery-file-path-{index}" value="{item.name}"/>
+                                <input hidden name="gallery-file-counter" value="{index}"/>
+                                <input hidden name="gallery-file-path-{index}" value="{item.name}"/>
                             </div>
                         {/each}
                     {/key}
                     {#key refreshGallery}
                         {#each newGalleryArray as item, index}
-                            <input name="new-gallery-file-counter" value="{index}"/>
-                            <input name="new-gallery-file-name-{index}" value="{item.name}"/>
-                            <input name="new-gallery-file-extension-{index}" value="{item.extension}"/>
-                            <input name="new-gallery-file-data-{index}" value="{item.dataFile}"/>
-                            <input name="new-gallery-file-number-{index}" value="{item.number}"/>
+                            <input hidden name="new-gallery-file-counter" value="{index}"/>
+                            <input hidden name="new-gallery-file-name-{index}" value="{item.name}"/>
+                            <input hidden name="new-gallery-file-extension-{index}" value="{item.extension}"/>
+                            <input hidden name="new-gallery-file-data-{index}" value="{item.dataFile}"/>
+                            <input hidden name="new-gallery-file-number-{index}" value="{item.number}"/>
                         {/each}
                     {/key}
                 </FormField>
@@ -670,9 +678,9 @@
                                 {#key refreshImagePack}
                                     {#each newImagePackArray as item}
                                         {#if pack.info.index == item.index }
-                                            <input name="new-pack-file-name-{pack.info.index}" value="{item.name}"/>
-                                            <input name="new-pack-file-extension-{pack.info.index}" value="{item.extension}"/>
-                                            <input name="new-pack-file-data-{pack.info.index}" value="{item.dataFile}"/>
+                                            <input hidden name="new-pack-file-name-{pack.info.index}" value="{item.name}"/>
+                                            <input hidden name="new-pack-file-extension-{pack.info.index}" value="{item.extension}"/>
+                                            <input hidden name="new-pack-file-data-{pack.info.index}" value="{item.dataFile}"/>
                                         {/if}
                                     {/each}
                                 {/key}
@@ -771,9 +779,9 @@
                                 {#key refreshImageAdvantage}
                                     {#each newImageAdvantageArray as item}
                                         {#if advantage.index == item.index }
-                                            <input name="new-advantage-file-name-{advantage.index}" value="{item.name}"/>
-                                            <input name="new-advantage-file-extension-{advantage.index}" value="{item.extension}"/>
-                                            <input name="new-advantage-file-data-{advantage.index}" value="{item.dataFile}"/>
+                                            <input hidden name="new-advantage-file-name-{advantage.index}" value="{item.name}"/>
+                                            <input hidden name="new-advantage-file-extension-{advantage.index}" value="{item.extension}"/>
+                                            <input hidden name="new-advantage-file-data-{advantage.index}" value="{item.dataFile}"/>
                                         {/if}
                                     {/each}
                                 {/key}
@@ -891,9 +899,9 @@
                             <FormField
                                 name="{getTranslatedTextByCode( 'ServiceOptionTypeLabel' )}"
                             >
-                                <TextField
+                                <RadioGroup
                                     name="new-option-type-{option.option.index}"
-                                    value={option.option.type}
+                                    items={optionType}
                                 />
                             </FormField>
                             {#key refreshOptionVariant}

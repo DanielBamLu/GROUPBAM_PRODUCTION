@@ -1,11 +1,11 @@
 // -- IMPORTS
 
-import { languageTable, currencyTable, serviceTable, companyTable, categoryTable, serviceImageTable, servicePackTable, servicePackTypeTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceOptionTable, serviceOptionVariantTable} from '$lib/database';
+import { languageTable, currencyTable, serviceTable, companyTable, categoryTable, serviceImageTable, servicePackTable, servicePackTypeTable, servicePackIncludeTable, serviceAdvantageTable, serviceProcessTable, serviceOptionTypeTable, serviceOptionTable, serviceOptionVariantTable} from '$lib/database';
 import { attachArrayToObject, convertToSlug, getLanguageMap, getCurrencyMap, sliceIntoChunks } from '$lib/admin';
 import { redirect } from '@sveltejs/kit';
 import { getRandomTuid, getMillisecondTimestamp, getTranslatedTextByCode } from 'senselogic-gist';
-import * as api from '$lib/api.js';
 import { writeFileSync, unlink } from 'fs';
+import * as api from '$lib/api.js';
 
 // -- FUNCTIONS
 
@@ -74,6 +74,8 @@ export async function load(
         }
         );
 
+    let serviceOptionType = await serviceOptionTypeTable.selectRows();
+
     let serviceOption = await serviceOptionTable.selectRows(
         {
             where : [ [ 'serviceId' ], '=', params.serviceId ]
@@ -108,6 +110,7 @@ export async function load(
         servicePackType : servicePackType,
         serviceAdvantage : serviceAdvantage,
         serviceProcess : serviceProcess,
+        serviceOptionType : serviceOptionType,
         serviceOption : serviceOption,
         serviceOptionArray : serviceOptionArray
         };
@@ -137,7 +140,7 @@ export const actions = {
         let serviceId = params.serviceId;
 
         //Edit Title
-        let serviceTitle =  data.get( 'title' );
+        let serviceTitle = data.get( 'title' );
 
         if ( serviceTitle )
         {
@@ -165,7 +168,7 @@ export const actions = {
         }
 
         //Edit description
-        let serviceDescriptionElements =  data.getAll( 'description' );
+        let serviceDescriptionElements = data.getAll( 'description' );
         let serviceDescription = attachArrayToObject( serviceDescriptionElements, language );
 
         if ( serviceDescription )
@@ -226,7 +229,7 @@ export const actions = {
         }
 
         //Edit unit time
-        let serviceUnitTime =  data.get( 'unit-time' );
+        let serviceUnitTime = data.get( 'unit-time' );
 
         if ( serviceUnitTime )
         {
@@ -240,7 +243,7 @@ export const actions = {
         }
 
         //Edit unit price
-        let serviceUnitPriceElements =  data.getAll( 'unit-price' );
+        let serviceUnitPriceElements = data.getAll( 'unit-price' );
         let serviceUnitPrice = attachArrayToObject( serviceUnitPriceElements, currency );
 
         if ( serviceUnitPrice )
@@ -283,7 +286,7 @@ export const actions = {
         }
 
         //Edit additional title
-        let serviceAdditionalTitleElements =  data.getAll( 'additional-title' );
+        let serviceAdditionalTitleElements = data.getAll( 'additional-title' );
         let serviceAdditionalTitle = attachArrayToObject( serviceAdditionalTitleElements, language );
 
         if ( serviceAdditionalTitle )
@@ -298,7 +301,7 @@ export const actions = {
         }
 
         //Edit additional description
-        let serviceAdditionalDescriptionElements =  data.getAll( 'additional-description' );
+        let serviceAdditionalDescriptionElements = data.getAll( 'additional-description' );
         let serviceAdditionalDescription = attachArrayToObject( serviceAdditionalDescriptionElements, language );
 
         if ( serviceAdditionalDescription )
@@ -313,9 +316,9 @@ export const actions = {
         }
 
         //Edit ImagePath
-        let serviceFileName =  data.get( 'image-file-name' );
-        let serviceFileExtension =  data.get( 'image-file-extension' );
-        let serviceFileData =  data.get( 'image-file-data' );
+        let serviceFileName = data.get( 'image-file-name' );
+        let serviceFileExtension = data.get( 'image-file-extension' );
+        let serviceFileData = data.get( 'image-file-data' );
 
         let serviceOldImagePath = data.get( 'imagePath' );
         let serviceImagePath;
@@ -324,7 +327,7 @@ export const actions = {
         {
             unlink( 'static' + serviceOldImagePath, ( err ) => {
                 console.log( serviceOldImagePath + ' was deleted' );
-            });
+            } );
 
             serviceImagePath = '/image/service/' + serviceFileName + '-' + timeStamp + '.' + serviceFileExtension;
 
@@ -355,7 +358,7 @@ export const actions = {
 
         for ( let indexGalleryCounter = 0; indexGalleryCounter < galleryCounter.length ;indexGalleryCounter++ )
         {
-            let filePath =  data.get( 'gallery-file-path-' + galleryCounter[ indexGalleryCounter ] );
+            let filePath = data.get( 'gallery-file-path-' + galleryCounter[ indexGalleryCounter ] );
 
             galleryArray.push( filePath );
         }
@@ -366,9 +369,10 @@ export const actions = {
 
             if ( found === undefined )
             {
-                unlink('static' + serviceImages[ indexServiceImages ].imagePath, ( err ) => {
-                    console.log( serviceImages[ indexServiceImages ].imagePath + ' was deleted' );
-                });
+                const imageToDelete = serviceImages[ indexServiceImages ].imagePath;
+                unlink('static' + imageToDelete, ( err ) => {
+                    console.log( imageToDelete + ' was deleted' );
+                } );
 
                 const deleteServiceImage = await api.del(
                     serviceImageTable,
@@ -379,17 +383,17 @@ export const actions = {
             }
         }
         //Add new items on gallery
-        let newGalleryCounter = data.getAll('new-gallery-file-counter');
+        let newGalleryCounter = data.getAll( 'new-gallery-file-counter' );
         if ( newGalleryCounter )
         {
             for ( let indexNewGalleryCounter= 0; indexNewGalleryCounter< newGalleryCounter.length ;indexNewGalleryCounter++ )
             {
                 let serviceImageId = getRandomTuid();
 
-                let fileName =  data.get( 'new-gallery-file-name-' + newGalleryCounter[ indexNewGalleryCounter ] );
-                let fileExtension =  data.get( 'new-gallery-file-extension-' + newGalleryCounter[ indexNewGalleryCounter ] );
-                let fileData =  data.get( 'new-gallery-file-data-' + newGalleryCounter[ indexNewGalleryCounter ] );
-                let fileNumber =  data.get( 'new-gallery-file-number-' + newGalleryCounter[ indexNewGalleryCounter ] );
+                let fileName = data.get( 'new-gallery-file-name-' + newGalleryCounter[ indexNewGalleryCounter ] );
+                let fileExtension = data.get( 'new-gallery-file-extension-' + newGalleryCounter[ indexNewGalleryCounter ] );
+                let fileData = data.get( 'new-gallery-file-data-' + newGalleryCounter[ indexNewGalleryCounter ] );
+                let fileNumber = data.get( 'new-gallery-file-number-' + newGalleryCounter[ indexNewGalleryCounter ] );
 
                 let galleryImagePath;
 
@@ -548,9 +552,9 @@ export const actions = {
             }
 
             //Edit pack image path
-            let packFileName =  data.get( 'pack-file-name-'+  indexPack );
-            let packFileExtension =  data.get( 'pack-file-extension-'+  indexPack );
-            let packFileData =  data.get( 'pack-file-data-'+  indexPack );
+            let packFileName = data.get( 'pack-file-name-'+  indexPack );
+            let packFileExtension = data.get( 'pack-file-extension-'+  indexPack );
+            let packFileData = data.get( 'pack-file-data-'+  indexPack );
 
             let packOldImagePath = data.get( 'packImagePath-'+  indexPack );
             let packImagePath;
@@ -559,7 +563,7 @@ export const actions = {
             {
                 unlink( 'static' + packOldImagePath, ( err ) => {
                     console.log( packOldImagePath + ' was deleted' );
-                });
+                } );
 
                 packImagePath = '/image/service/' + packFileName + '-' + timeStamp + '.' + packFileExtension;
 
@@ -567,7 +571,6 @@ export const actions = {
 
                 if ( packImagePath )
                 {
-                    console.log(packImagePath)
                     const putPackImagePath = await api.put(
                         servicePackTable,
                         {
@@ -801,9 +804,9 @@ export const actions = {
             }
 
             //Add new pack imagePath
-            let fileName =  data.get( 'new-pack-file-name-'+  packCounter[ indexPackCounter ] );
-            let fileExtension =  data.get( 'new-pack-file-extension-'+  packCounter[ indexPackCounter ] );
-            let fileData =  data.get( 'new-pack-file-data-'+  packCounter[ indexPackCounter ] );
+            let fileName = data.get( 'new-pack-file-name-'+  packCounter[ indexPackCounter ] );
+            let fileExtension = data.get( 'new-pack-file-extension-'+  packCounter[ indexPackCounter ] );
+            let fileData = data.get( 'new-pack-file-data-'+  packCounter[ indexPackCounter ] );
 
             let packImagePath = '';
             if ( fileName )
@@ -912,9 +915,9 @@ export const actions = {
             }
 
             //Edit advantage imagePath
-            let advantageFileName =  data.get( 'advantage-file-name-'+  indexAdvantage );
-            let advantageFileExtension =  data.get( 'advantage-file-extension-'+  indexAdvantage );
-            let advantageFileData =  data.get( 'advantage-file-data-'+  indexAdvantage );
+            let advantageFileName = data.get( 'advantage-file-name-'+  indexAdvantage );
+            let advantageFileExtension = data.get( 'advantage-file-extension-'+  indexAdvantage );
+            let advantageFileData = data.get( 'advantage-file-data-'+  indexAdvantage );
 
             let advantageOldImagePath = data.get( 'advantageImagePath-'+  indexAdvantage );
             let advantageImagePath;
@@ -923,7 +926,7 @@ export const actions = {
             {
                 unlink( 'static' + advantageOldImagePath, ( err ) => {
                     console.log( advantageOldImagePath + ' was deleted' );
-                });
+                } );
 
                 advantageImagePath = '/image/service/' + advantageFileName + '-' + timeStamp + '.' + advantageFileExtension;
 
@@ -1003,9 +1006,9 @@ export const actions = {
             }
 
             //Add new advantage imagePath
-            let advantageFileName =  data.get( 'new-advantage-file-name-'+  advantageCounter[ indexAdvantageCounter ] );
-            let advantageFileExtension =  data.get( 'new-advantage-file-extension-'+  advantageCounter[ indexAdvantageCounter ] );
-            let advantageFileData =  data.get( 'new-advantage-file-data-'+  advantageCounter[ indexAdvantageCounter ] );
+            let advantageFileName = data.get( 'new-advantage-file-name-'+  advantageCounter[ indexAdvantageCounter ] );
+            let advantageFileExtension = data.get( 'new-advantage-file-extension-'+  advantageCounter[ indexAdvantageCounter ] );
+            let advantageFileData = data.get( 'new-advantage-file-data-'+  advantageCounter[ indexAdvantageCounter ] );
 
             let advantageImagePath = '';
             if ( advantageFileName )
@@ -1228,7 +1231,7 @@ export const actions = {
                     serviceOptionTable,
                     {
                         id: optionId,
-                        type: optionType
+                        typeId: optionType,
                     }
                 );
             }
@@ -1458,7 +1461,7 @@ export const actions = {
                     serviceOptionTable,
                     {
                         id: optionIdNew,
-                        type: optionTypeNew
+                        typeId: optionTypeNew
                     }
                 );
             }
@@ -1535,7 +1538,7 @@ export const actions = {
             }
         }
 
-        if( data )
+        if ( data )
         {
             return {
                 success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )

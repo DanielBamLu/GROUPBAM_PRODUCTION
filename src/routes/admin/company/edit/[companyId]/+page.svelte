@@ -8,7 +8,7 @@
     import Image from '$lib/components/admin/Image.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
     import ListSuccess from '$lib/components/ListSuccess.svelte';
-    
+
     export let data;
 
     let errors;
@@ -19,14 +19,13 @@
     afterNavigate( ( { from } ) => {
         if ( from )
         {
-            
             if ( from.route.id === '/admin/company/add' )
             {
                 success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
                 refresh = {}
             }
         }
-    })
+    } )
 
     let companyInfo = data.companyData;
 
@@ -45,7 +44,6 @@
     let refreshIcon = {};
     let refreshIconGray = {};
     let refreshImage = {};
-
 
     let icon = new Array;
     let iconGray = new Array;
@@ -72,7 +70,7 @@
 
     function getBase64( image, type ) {
 
-        if ( image.length>0 )
+        if ( image.length > 0  )
         {
             if ( type == 'icon' )
             {
@@ -135,8 +133,8 @@
         <ListErrors errors={errors} />
         <ListSuccess success={success} />
     {/key}
-    <form 
-        method="POST" 
+    <form
+        method="POST"
         action="?/edit"
         use:enhance={() => {
             return ( { result, update } ) => {
@@ -154,7 +152,7 @@
                         success = result.data.success;
                     }
                 }
-                
+
                 refresh = {}
 
                 if ( result.type === 'error' ) update();

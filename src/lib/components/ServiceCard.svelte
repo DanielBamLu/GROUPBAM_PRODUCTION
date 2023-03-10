@@ -6,12 +6,17 @@
     import { cart, StoreCart } from '$lib/cart';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
+    import { containerClasses } from '$lib/containerClasses.js';
     import SavedIcon from '$lib/components/icon/Saved.svelte';
     import CartIcon from '$lib/components/icon/Cart.svelte';
     import ArrowLeftIcon from '$lib/components/icon/ArrowLeft.svelte';
     import ArrowRightIcon from '$lib/components/icon/ArrowRight.svelte';
 
     export let serviceData;
+
+    const breakpoints = {
+        500: ["sm"]
+    };
 
     let currency = getCurrencySymbol();
     let quantity = 1;
@@ -45,10 +50,10 @@
         }
         else
         {
-            unitPrice = {'dollar': 0, 'euro': 0};
+            unitPrice = { 'dollar': 0, 'euro': 0 };
         }
 
-        let previousTotalPrice = {'dollar': 0, 'euro': 0};
+        let previousTotalPrice = { 'dollar': 0, 'euro': 0 };
         let previousTotalTime = 0;
 
         cartItemTotalPrice = '';
@@ -97,7 +102,7 @@
 
             var isServiceInCart = $cart.services.some( function( element ) {
                 return ( element.serviceId === serviceData.info.id );
-            });
+            } );
 
             if (isServiceInCart)
             {
@@ -119,6 +124,7 @@
                         cartService.quantity = cartItemQuantity;
                         cartService.totalPrice = cartItemTotalPrice;
                         cartService.totalTime = cartItemTotalTime;
+                        cartService.hasPrice = serviceData.info.hasPrice;
                     }
                 }
             }
@@ -200,7 +206,7 @@
             <img src="{serviceData.info.imagePath}" alt="">
         </div>
     {/if}
-    <div class="service-card-controler {isGallery}">
+    <div class="service-card-controler {isGallery}" use:containerClasses={breakpoints}>
         {#if serviceData.images.length > 0}
             <div class="service-card-controler-carousel-control">
                 <button class="left" on:click={goToPrevPage}>
@@ -269,7 +275,7 @@
             {getTranslatedText( serviceData.info.description )}
         </div>
         {#if serviceData.info.hasPrice }
-            <div class="service-card-price-link">
+            <div class="service-card-price">
                 <div class="service-card-price service-card-price">
                     {currency}{getPriceCurrency( serviceData.info.unitPrice )}
                 </div>
@@ -305,7 +311,7 @@
 
     .service-card-controler
     {
-        height: 3.5rem;
+        height: 3rem;
         border-left: 0.063rem solid var( --black-color-400 );
 
         display: flex;
@@ -332,7 +338,7 @@
     .service-card-controler-carousel-control button
     {
         height: 100%;
-        width: 3.5rem;
+        width: 3rem;
 
         background: unset;
         background-color: var( --black-color-400 );
@@ -352,8 +358,8 @@
         top: 0.5rem;
         right: 0.5rem;
 
-        height: 3.5rem;
-        width: 3.5rem;
+        height: 3rem;
+        width: 3rem;
 
         display: flex;
         justify-content: center;
@@ -392,27 +398,27 @@
         cursor: pointer;
         @media( min-width: 65em )
         {
-            width: max-content;
             padding: 0 0.5rem;
         }
 
         @media( min-width: 120em )
         {
+            width: max-content;
             padding: 0 1rem;
         }
     }
 
+    :global(.sm) .service-card-controler-cart .service-card-cart-label {
+        display: block !important;
+    }
     .service-card-controler-cart .service-card-cart-label
     {
         display: none;
-        @media( min-width: 65em )
-        {
-            display: block;
-        }
     }
 
     .service-card-info
     {
+        height: -webkit-fill-available;
         padding: 1rem 1rem;
 
         display: block;
@@ -427,7 +433,7 @@
         margin-bottom: 1.5rem;
     }
 
-    .service-card-price-link
+    .service-card-price
     {
         margin-right: auto;
 

@@ -38,7 +38,7 @@
 </script>
 
 <svelte:head>
-    <title>{getTranslatedTextByCode( 'SettingsPageLabel' )}</title>
+    <title>{getTranslatedTextByCode( 'SettingsPageTitle' )}</title>
 </svelte:head>
 
 <div class="account">
@@ -217,17 +217,17 @@
         align-items: flex-start;
         @media( min-width: 65em )
         {
-            padding: 4rem;
+            padding: 3rem;
         }
     }
     .account-section
     {
-        padding: 4.2rem 3.5rem;
+        padding: 2rem;
 
         display: flex;
         flex: 1;
         flex-direction: column;
-        gap: 4.2rem;
+        gap: 2rem;
 
         background-color: var( --white-color );
         @media( min-width: 65em )

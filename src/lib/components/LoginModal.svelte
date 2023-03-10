@@ -13,7 +13,7 @@
     function openRegister() {
         $auth = 'register';
     }
-    
+
     let refresh = {}
 </script>
 
@@ -49,7 +49,7 @@
                             errors = result.data.errors;
                         }
                     }
-                    
+
                     refresh = {}
 
                     update();

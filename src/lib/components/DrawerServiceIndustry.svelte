@@ -10,7 +10,7 @@
     <ul class="drawer-service-industry-container">
         {#each industryArray as industry}
             <li>
-                <a href="/industry/{industry.slug}" title={getTranslatedText( industry.name )}>
+                <a href="/services/industry/{industry.slug}" title={getTranslatedText( industry.name )}>
                     <img src="{industry.iconPath}" alt="">
                     <div class="drawer-label">{getTranslatedText( industry.name )}</div>
                 </a>

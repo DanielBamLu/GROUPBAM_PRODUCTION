@@ -9,8 +9,6 @@ var
     MaximumViewportAspectRatio = 1E9,
     ViewportHeight = 1,
     ViewportWidth = 1,
-    ViewportHeightPercent = 1,
-    ViewportWidthPercent = 1,
     ViewportHeightAspectRatio = 1,
     ViewportWidthAspectRatio = 1;
 
@@ -19,7 +17,7 @@ var
 export function UpdateViewportProperties(
     )
 {
-    if( browser )
+    if ( browser )
     {
         ViewportHeight = window.innerHeight;
         ViewportWidth = window.innerWidth;

@@ -17,14 +17,13 @@
     afterNavigate( ( { from } ) => {
         if ( from )
         {
-            
             if ( from.route.id === '/admin/text/add' )
             {
                 success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
                 refresh = {}
             }
         }
-    })
+    } )
 
     let textInfo = data.textData;
 
@@ -41,8 +40,8 @@
         <ListErrors errors={errors} />
         <ListSuccess success={success} />
     {/key}
-    <form 
-        method="POST" 
+    <form
+        method="POST"
         action="?/edit"
         use:enhance={() => {
             return ( { result, update } ) => {
@@ -60,7 +59,7 @@
                         success = result.data.success;
                     }
                 }
-                
+
                 refresh = {}
 
                 if ( result.type === 'error' ) update();

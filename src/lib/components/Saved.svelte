@@ -6,13 +6,12 @@
     import SavedCard from '$lib/components/SavedCard.svelte';
 
     export let data;
+    export let closeModalSaved = () => {}
 
     if ( browser )
     {
         invalidateAll();
     }
-
-    export let closeModalSaved = () => {}
 
     const gotoSaved = () => {
         closeModalSaved();
@@ -20,9 +19,6 @@
     }
 </script>
 
-<svelte:head>
-    <title>{getTranslatedTextByCode( 'SavedLabel' )}</title>
-</svelte:head>
 <div class="saved">
     <div class="saved-heading">
         {#if data.length === 0}
@@ -40,7 +36,7 @@
         </div>
         <div class="saved-actions">
             <button class="saved-view-saved" on:click={gotoSaved}>
-                {getTranslatedTextByCode( 'ViewAllLabel' )}
+                {getTranslatedTextByCode( 'ViewAllButton' )}
             </button>
         </div>
     {/if}
@@ -51,7 +47,7 @@
     {
         padding: 2rem;
 
-        background-color: var( --white-color);
+        background-color: var( --white-color );
 
         text-align: center;
         @media( min-width: 65em )

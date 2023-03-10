@@ -26,7 +26,7 @@ export const actions = {
         //Add industry
         let industryId = getRandomTuid();
 
-        let industryNameElements =  data.getAll( 'name' );
+        let industryNameElements = data.getAll( 'name' );
         let industryName = attachArrayToObject( industryNameElements, language );
 
         let industrySlug = convertToSlug( industryName, 'map' );
@@ -44,9 +44,9 @@ export const actions = {
         }
 
         //Add IconPath
-        let iconFileName =  data.get( 'icon-file-name' );
-        let iconFileExtension =  data.get( 'icon-file-extension' );
-        let iconFileData =  data.get( 'icon-file-data' );
+        let iconFileName = data.get( 'icon-file-name' );
+        let iconFileExtension = data.get( 'icon-file-extension' );
+        let iconFileData = data.get( 'icon-file-data' );
 
         let iconImagePath;
 

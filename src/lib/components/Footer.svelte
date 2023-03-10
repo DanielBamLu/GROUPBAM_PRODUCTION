@@ -7,13 +7,12 @@
 
     export let languageArray;
     export let currencyArray;
+    export let refresh = () => {}
 
     let date = new Date().getFullYear();
 
     let language = languageCode;
     let currentLanguage = language;
-
-    export let refresh = () => {}
 
     const setLanguage = ( language ) => {
         setLanguageCode( language );
@@ -44,7 +43,7 @@
                 <li><a class="footer-menu-top-button" href="/" class:is-active={$page.url.pathname === '/'}>{getTranslatedTextByCode( 'HomeButton' )}</a></li>
                 <li><a class="footer-menu-top-button" href="/services" class:is-active={$page.url.pathname.indexOf( '/services' ) != -1}>{getTranslatedTextByCode( 'ShopServicesButton' )}</a></li>
                 <li><a class="footer-menu-top-button" href="/whatwedo" class:is-active={$page.url.pathname === '/whatwedo'} style="cursor: not-allowed;">{getTranslatedTextByCode( 'WhatWeDoButton' )}</a></li>
-                <li><a class="footer-menu-top-button" href="/contactus" class:is-active={$page.url.pathname === '/contactus'} style="cursor: not-allowed;">{getTranslatedTextByCode( 'ContactUsButton' )}</a></li>
+                <li><a class="footer-menu-top-button" href="/contactus" class:is-active={$page.url.pathname === '/contactus'}>{getTranslatedTextByCode( 'ContactUsButton' )}</a></li>
             </ul>
         </div>
         <div class="footer-message">
@@ -238,9 +237,8 @@
 
     .footer-language-code div
     {
-        padding: 0.5rem;
-
         margin-bottom: 0.625rem;
+        padding: 0.5rem;
 
         background-size: cover;
 

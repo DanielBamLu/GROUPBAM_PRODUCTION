@@ -6,11 +6,10 @@
     import ChevronIcon from '$lib/components/icon/Chevron.svelte';
 
     export let languageArray;
+    export let refresh = () => {}
 
     let language = languageCode;
     let currentLanguage = language;
-
-    export let refresh = () => {}
 
     const setLanguage = ( language ) => {
         setLanguageCode( language );

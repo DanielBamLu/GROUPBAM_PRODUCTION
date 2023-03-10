@@ -26,7 +26,7 @@ export const actions = {
         //Add company
         let companyId = getRandomTuid();
 
-        let companyName =  data.get( 'name' );
+        let companyName = data.get( 'name' );
 
         if ( companyName )
         {
@@ -113,9 +113,9 @@ export const actions = {
         }
 
         //Add iconPath
-        let iconFileName =  data.get( 'icon-file-name' );
-        let iconFileExtension =  data.get( 'icon-file-extension' );
-        let iconFileData =  data.get( 'icon-file-data' );
+        let iconFileName = data.get( 'icon-file-name' );
+        let iconFileExtension = data.get( 'icon-file-extension' );
+        let iconFileData = data.get( 'icon-file-data' );
 
         let iconImagePath;
 
@@ -138,9 +138,9 @@ export const actions = {
         }
 
         //Add iconGrayPath
-        let iconGrayFileName =  data.get( 'icon-gray-file-name' );
-        let iconGrayFileExtension =  data.get( 'icon-gray-file-extension' );
-        let iconGrayFileData =  data.get( 'icon-gray-file-data' );
+        let iconGrayFileName = data.get( 'icon-gray-file-name' );
+        let iconGrayFileExtension = data.get( 'icon-gray-file-extension' );
+        let iconGrayFileData = data.get( 'icon-gray-file-data' );
 
         let iconGrayImagePath;
 
@@ -163,9 +163,9 @@ export const actions = {
         }
 
         //Add imagePath
-        let imageFileName =  data.get( 'image-file-name' );
-        let imageFileExtension =  data.get( 'image-file-extension' );
-        let imageFileData =  data.get( 'image-file-data' );
+        let imageFileName = data.get( 'image-file-name' );
+        let imageFileExtension = data.get( 'image-file-extension' );
+        let imageFileData = data.get( 'image-file-data' );
 
         let imagePath;
 

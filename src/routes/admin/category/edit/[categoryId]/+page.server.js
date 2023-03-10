@@ -39,7 +39,7 @@ export const actions = {
         let categoryId = params.categoryId;
 
         //Edit title
-        let categoryTitleElements =  data.getAll( 'title' );
+        let categoryTitleElements = data.getAll( 'title' );
         let categoryTitle = attachArrayToObject( categoryTitleElements, language );
 
         if ( categoryTitle )
@@ -66,8 +66,8 @@ export const actions = {
                 }
             );
         }
-        
-        if( data )
+
+        if ( data )
         {
             return {
                 success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )

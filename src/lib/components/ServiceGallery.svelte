@@ -127,11 +127,11 @@
             >
             {#each serviceImages as image, index}
                 {#if index == 0}
-                    <button class="active" on:click={gallery({index})}>
+                    <button class="active" on:click={gallery( {index} )}>
                         <img src="{image.imagePath}" alt="">
                     </button>
                 {:else}
-                    <button class="" on:click={gallery({index})}>
+                    <button class="" on:click={gallery( {index} )}>
                         <img src="{image.imagePath}" alt="">
                     </button>
                 {/if}

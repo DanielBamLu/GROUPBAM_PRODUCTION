@@ -5,13 +5,12 @@
     import ChevronIcon from '$lib/components/icon/Chevron.svelte';
 
     export let languageArray;
+    export let refresh = () => {}
 
     let date = new Date().getFullYear();
 
     let language = languageCode;
     let currentLanguage = language;
-
-    export let refresh = () => {}
 
     const setLanguage = ( language ) => {
         setLanguageCode( language );
@@ -31,7 +30,7 @@
         <button class="footer-language-button" on:click={toggle} aria-expanded={isOpen}>
             {#each languageArray as language}
                 {#if language.code == currentLanguage}
-                    <div class="footer-language-button-flag" style="background-image:url({language.iconPath});"></div>
+                    <div class="footer-language-button-flag" style="background-image:url( {language.iconPath} );"></div>
                 {/if}
             {/each}
             <div class="footer-language-button-arrow">
@@ -42,7 +41,7 @@
             {#each languageArray as language}
                 {#if isOpen}
                     {#if language.code != currentLanguage}
-                        <div on:click="{setLanguage( language.code )}" transition:slide={{ duration: 300 }} style="background-image:url({language.iconPath});"></div>
+                        <div on:click="{setLanguage( language.code )}" transition:slide={{ duration: 300 }} style="background-image:url( {language.iconPath} );"></div>
                     {/if}
                 {/if}
             {/each}

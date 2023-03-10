@@ -1,5 +1,5 @@
 // -- IMPORTS
-import { serviceTable, industryTable, companyTable, categoryTable, serviceImageTable, textTable, languageTable, currencyTable, userTable, userSaveServiceTable } from '$lib/database';
+import { serviceTable, industryTable, companyTable, categoryTable, serviceImageTable, textTable, languageTable, currencyTable, userTable, userSaveServiceTable, orderTable } from '$lib/database';
 
 // -- FUNCTIONS
 /** @type {import('./$types').LayoutServerLoad} */
@@ -14,6 +14,7 @@ export async function load( { locals } )
 
     let serviceSaved = [];
     let savedArray;
+    let orders;
 
     if ( locals.user )
     {
@@ -44,6 +45,12 @@ export async function load( { locals } )
 
             serviceSaved.push( newItem );
         }
+
+        orders = await orderTable.selectRows(
+            {
+                where : [ [ 'userId' ], '=', locals.user.id ]
+            }
+            );
     }
 
     let user;
@@ -119,6 +126,7 @@ export async function load( { locals } )
         serviceSaved : serviceSaved,
         serviceRecentlyViewd : serviceRecentlyViewd,
         userCart : userCart,
+        orders : orders,
         user: locals.user && {
             id: locals.user.id,
             fullName: locals.user.fullName,

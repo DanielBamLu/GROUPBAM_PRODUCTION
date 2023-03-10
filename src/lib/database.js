@@ -235,6 +235,15 @@ export const serviceReviewTable
         ]
         );
 
+export const serviceOptionTypeTable
+    = database.addTable(
+        'SERVICE_OPTION_TYPE',
+        [
+            [ 'id', 'TUID', [ 'key' ] ],
+            [ 'type', 'STRING' ]
+        ]
+        );
+
 export const serviceOptionTable
     = database.addTable(
         'SERVICE_OPTION',
@@ -242,7 +251,7 @@ export const serviceOptionTable
             [ 'id', 'TUID', [ 'key' ] ],
             [ 'text', 'MAP' ],
             [ 'description', 'MAP' ],
-            [ 'type', 'STRING' ],
+            [ 'typeId', 'TUID' ],
             [ 'serviceId', 'TUID' ]
         ]
         );
@@ -264,8 +273,16 @@ export const orderTable
         'ORDER',
         [
             [ 'id', 'TUID', [ 'key' ] ],
-            [ 'price', 'FLOAT32' ],
-            [ 'totalPrice', 'FLOAT32' ],
+            [ 'referenceNumber', 'UUID' ],
+            [ 'totalPrice', 'MAP' ],
+            [ 'productionTime', 'FLOAT' ],
+            [ 'description', 'STRING' ],
+            [ 'documentArray', 'LIST' ],
+            [ 'contactFirstName', 'STRING' ],
+            [ 'contactLastName', 'STRING' ],
+            [ 'contactEmail', 'STRING' ],
+            [ 'billingFirstName', 'STRING' ],
+            [ 'billingLastName', 'STRING' ],
             [ 'billingFirstAddressLine', 'STRING' ],
             [ 'billingSecondAddressLine', 'STRING' ],
             [ 'billingCity', 'STRING' ],
@@ -273,7 +290,8 @@ export const orderTable
             [ 'billingProvince', 'STRING' ],
             [ 'billingCountrySlug', 'STRING' ],
             [ 'status', 'STRING' ],
-            [ 'dateTime', 'DATETIME' ],
+            [ 'orderDateTime', 'DATETIME' ],
+            [ 'deliveryDateTime', 'DATETIME' ],
             [ 'userId', 'TUID' ],
             [ 'urgency', 'BOOL' ]
         ]
@@ -300,13 +318,12 @@ export const orderServicePackTable
         ]
         );
 
-export const orderServicePackVariantTable
+export const orderServiceOptionVariantTable
     = database.addTable(
         'ORDER_SERVICE_OPTION_VARIANT',
         [
             [ 'orderServiceId', 'TUID' ],
-            [ 'serviceOptionVariantId', 'TUID' ],
-            [ 'parameterValueByNameMap', 'MAP' ]
+            [ 'value', 'STRING' ]
         ]
         );
 
@@ -437,6 +454,21 @@ export const beneficiaryTable
             [ 'account', 'STRING' ],
             [ 'bankName', 'STRING' ],
             [ 'bankCode', 'STRING' ]
+        ]
+        );
+
+export const contactTable
+    = database.addTable(
+        'CONTACT',
+        [
+            [ 'id', 'TUID', [ 'key' ] ],
+            [ 'city', 'STRING' ],
+            [ 'address', 'STRING' ],
+            [ 'postCode', 'STRING' ],
+            [ 'country', 'STRING' ],
+            [ 'phoneNumber', 'STRING' ],
+            [ 'email', 'STRING' ],
+            [ 'directionLink', 'STRING' ]
         ]
         );
 

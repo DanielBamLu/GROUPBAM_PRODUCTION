@@ -5,7 +5,7 @@
     // https://raw.githack.com/MrRio/jsPDF/master/index.html
     const doc = new jsPDF();
     const generateOffer = () => {
-        console.log($cart)
+        // console.log($cart)
         doc.addImage( "/image/group_bam_logo.png", "SVG", 10, 10, 50, 15 );
 
         doc.setFont( "helvetica", "bold" );

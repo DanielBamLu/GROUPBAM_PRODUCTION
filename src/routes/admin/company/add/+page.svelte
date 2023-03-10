@@ -25,7 +25,7 @@
 
     function getBase64( image, type ) {
 
-        if ( image.length>0 )
+        if ( image.length > 0  )
         {
             if ( type == 'icon' )
             {

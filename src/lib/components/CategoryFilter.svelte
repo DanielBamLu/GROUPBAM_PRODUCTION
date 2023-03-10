@@ -6,8 +6,8 @@
 
 <div class="category-filter">
     {#each data as category}
-        <a href="/services/{category.slug}">
-            <div class="category-filter-label filter-label">
+        <a href="/services/category/{category.slug}">
+            <div class="category-filter-label">
                 {getTranslatedText( category.title )}
             </div>
         </a>
@@ -23,7 +23,7 @@
     }
     .category-filter-label
     {
-        height: 4rem;
+        height: 3rem;
         width: max-content;
         padding: 0 1.5rem;
 

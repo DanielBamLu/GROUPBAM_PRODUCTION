@@ -14,7 +14,7 @@
             if ( remaining > 0.15 ) setTimeout( next, 500 / remaining );
         }
         setTimeout( next, 250 );
-    });
+    } );
 </script>
 
 {#if visible}

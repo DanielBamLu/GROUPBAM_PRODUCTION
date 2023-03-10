@@ -6,9 +6,9 @@
     import CloseIcon from '$lib/components/icon/Close.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
 
-    let errors;
-
     export let handleModalAuth = () => {}
+
+    let errors;
 
     function openLogin() {
         $auth = 'login';

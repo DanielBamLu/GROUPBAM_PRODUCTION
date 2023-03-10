@@ -14,14 +14,13 @@
     import CartIcon from '$lib/components/icon/Cart.svelte';
     import SavedIcon from '$lib/components/icon/Saved.svelte';
     import ChevronIcon from '$lib/components/icon/Chevron.svelte';
-    export let languageArray;
 
+    export let languageArray;
     export let data;
+    export let refresh = () => {}
 
     let language = languageCode;
     let currentLanguage = language;
-
-    export let refresh = () => {}
 
     const setLanguage = ( language ) => {
         setLanguageCode( language );
@@ -32,6 +31,7 @@
     let isOpen = false;
     const toggle = () => isOpen = !isOpen;
 
+    let modalCartOpen = false;
     function closeModalCart() {
         if ( modalCartOpen )
         {
@@ -39,6 +39,7 @@
         }
     }
 
+    let modalSavedOpen = false;
     function closeModalSaved() {
         if ( modalSavedOpen )
         {
@@ -51,9 +52,6 @@
     function handleModalAuth( type ) {
         $auth = type;
     }
-
-    let modalCartOpen = false;
-    let modalSavedOpen = false;
 </script>
 
 <div class="header">
@@ -67,7 +65,7 @@
             <li><a class="header-menu-button" href="/" class:is-active={$page.url.pathname === '/'}>{getTranslatedTextByCode( 'HomeButton' )}</a></li>
             <li><a class="header-menu-button" href="/services" class:is-active={$page.url.pathname.indexOf( '/services' ) != -1}>{getTranslatedTextByCode( 'ShopServicesButton' )}</a></li>
             <li><a class="header-menu-button" href="/whatwedo" class:is-active={$page.url.pathname === '/whatwedo'} style="cursor: not-allowed;">{getTranslatedTextByCode( 'WhatWeDoButton' )}</a></li>
-            <li><a class="header-menu-button" href="/contactus" class:is-active={$page.url.pathname === '/contactus'} style="cursor: not-allowed;">{getTranslatedTextByCode( 'ContactUsButton' )}</a></li>
+            <li><a class="header-menu-button" href="/contactus" class:is-active={$page.url.pathname === '/contactus'}>{getTranslatedTextByCode( 'ContactUsButton' )}</a></li>
         </ul>
     </div>
     <div class="header-actions">
@@ -75,11 +73,13 @@
             <div class="header-cart">
                 <button on:click={() => modalCartOpen = true} title="{getTranslatedTextByCode( 'CartTitle' )}">
                     <CartIcon data="dark"/>
-                    {#if $cart.services.length > 0}
-                        <div class="header-cart-counter">
-                            {$cart.services.length}
-                        </div>
-                    {/if}
+                    <!-- {#if $cart} -->
+                        {#if $cart.services.length > 0}
+                            <div class="header-cart-counter">
+                                {$cart.services.length}
+                            </div>
+                        {/if}
+                    <!-- {/if} -->
                 </button>
                 {#if modalCartOpen}
                     <Modal bind:open={modalCartOpen}>

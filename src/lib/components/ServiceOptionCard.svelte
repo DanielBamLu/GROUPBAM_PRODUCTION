@@ -4,6 +4,7 @@
     import { page } from '$app/stores';
 
     export let optionData;
+    export let refresh = () => {}
 
     // Radio button option
     let options = 1;
@@ -16,16 +17,23 @@
             {
                 for ( let cartService of $cart.services )
                 {
-                    if ( optionData.option.serviceId== cartService.serviceId )
+                    if ( optionData.option.serviceId == cartService.serviceId )
                     {
-                        cartService.optionRadioButton = options;
+                        if( cartService.options )
+                        {
+                            cartService.options.push( { value: options } );
+                        }
+                        else
+                        {
+                            cartService.options = [ { value: options } ];
+                        }
                     }
                 }
             }
             else
             {
                 let itemCartService = {
-                    'optionRadioButton' : options,
+                    'options' : [ { value: options } ],
                     'serviceId' : optionData.option.serviceId,
                 }
 
@@ -33,6 +41,7 @@
             }
         }
         StoreCart( $cart, $page.data.user );
+        refresh();
         }
 
     let lat = '';
@@ -70,16 +79,23 @@
             {
                 for ( let cartService of $cart.services )
                 {
-                    if ( optionData.option.serviceId== cartService.serviceId )
+                    if ( optionData.option.serviceId == cartService.serviceId )
                     {
-                        cartService.optionTwoInputs = lat_long;
+                        if( cartService.options )
+                        {
+                            cartService.options.push( { value: lat_long } );
+                        }
+                        else
+                        {
+                            cartService.options = [ { value: lat_long } ];
+                        }
                     }
                 }
             }
             else
             {
                 let itemCartService = {
-                    'optionTwoInputs' : lat_long,
+                    'options' : [ { value: lat_long } ],
                     'serviceId' : optionData.option.serviceId,
                 }
 
@@ -88,6 +104,7 @@
         }
 
         StoreCart( $cart, $page.data.user );
+        refresh();
         }
 </script>
 
@@ -100,14 +117,14 @@
             {getTranslatedText( optionData.option.description )}
         </div>
         <div class="service-option-card-options">
-            {#if optionData.option.type == 'radio-buttons'}
+            {#if optionData.optionType == 'radio-buttons'}
                 {#each optionData.optionVariant as variant}
                     <div class="service-option-card-options-radio-input">
                         <input type="radio" bind:group={options} name="option" value="{getTranslatedText( variant.value )} - {getTranslatedText( variant.text )}">
                         <label class="option-card-label" for="child">{getTranslatedText( variant.value )} - {getTranslatedText( variant.text )}</label>
                     </div>
                 {/each}
-            {:else if optionData.option.type == 'lat-long'}
+            {:else if optionData.optionType == 'lat-long'}
                 <div class="service-option-card-options-text-input" id="service-option-card-options-text-input">
                     {#each optionData.optionVariant as variant}
                         <input type="text" name="{getTranslatedText( variant.value )}" placeholder="{getTranslatedText( variant.value )}">
@@ -116,11 +133,11 @@
             {/if}
         </div>
     </div>
-    {#if optionData.option.type == 'radio-buttons'}
+    {#if optionData.optionType == 'radio-buttons'}
         <button class="service-option-card-add service-option-button" on:click={() => addOptionRadioButton()}>
             {getTranslatedTextByCode( 'AddOptionButton' )}
         </button>
-    {:else if optionData.option.type == 'lat-long'}
+    {:else if optionData.optionType == 'lat-long'}
         <button class="service-option-card-add service-option-button" on:click={() => addOptionTwoInputs()}>
             {getTranslatedTextByCode( 'AddOptionButton' )}
         </button>
@@ -130,7 +147,6 @@
 <style type="text/scss">
     .service-option-card
     {
-        /* padding: 2rem 1.5rem; */
         min-width: 100%;
 
         display: flex;
@@ -139,7 +155,6 @@
         justify-content: space-between;
 
         background-color: var( --black-color );
-        /* justify-content: space-between; */
     }
 
     .service-option-card-title{

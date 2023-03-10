@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { redirect } from '@sveltejs/kit';
 
 export async function load() {
-    const loginUrl = await googleOAuthUrl({ finalRedirect: '/' });
+    const loginUrl = await googleOAuthUrl( { finalRedirect: '/' } );
 
     if ( loginUrl ) throw redirect( 307, loginUrl );
 }
@@ -10,7 +10,7 @@ export async function load() {
 async function googleOAuthUrl( { finalRedirect } ) {
     const wellKnown = await fetch('https://accounts.google.com/.well-known/openid-configuration', {
         headers: { Accept: 'application/json' }
-    });
+    } );
     const wellKnownJson = await wellKnown.json();
     const authEndpoint = wellKnownJson.authorization_endpoint;
 

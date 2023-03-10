@@ -1,26 +1,49 @@
 <script>
     import { getTranslatedTextByCode } from 'senselogic-gist';
+    import { sortStrings, sortNumbers } from '$lib/sort'
     import ServiceCard from '$lib/components/ServiceCard.svelte';
     import CategoryFilter from '$lib/components/CategoryFilter.svelte';
+    import FilterSort from '$lib/components/FilterSort.svelte';
 
     export let data;
+
+    let refresh = {}
+
+    function sort( order ) {
+        if ( order == 'alfabeticAsc' || order == 'alfabeticDesc' )
+        {
+            data.service.sort( function( a, b ) {
+                return sortStrings( a.info.slug, b.info.slug, order );
+            } )
+        }
+        else if ( order == 'priceAsc' || order == 'priceDesc' )
+        {
+            data.service.sort( function( a, b ) {
+                return sortNumbers( a.info.unitPrice, b.info.unitPrice, order );
+            } )
+        }
+
+        refresh = {}
+    }
+
+    data.service.sort( function( a, b ) {
+        return sortStrings( a.info.slug, b.info.slug, 'alfabeticAsc' );
+    } )
 </script>
 
 <svelte:head>
     <title>{getTranslatedTextByCode( 'ShopServicesButton' )}</title>
 </svelte:head>
-<div class="services-filter">
-    <CategoryFilter data={data.categoryArray}/>
-</div>
-<div class="services-items parent-service-card">
-    {#each data.service as item}
-        <ServiceCard serviceData={item}>
-        </ServiceCard>
-    {/each}
-</div>
 
-<style type="text/scss">
-    .services-items{
-        margin-top: 3rem;
-    }
-</style>
+{#key refresh}
+    <div class="services-filter">
+        <CategoryFilter data={data.categoryArray}/>
+        <FilterSort data={data.industryArray} sort={sort}/>
+    </div>
+    <div class="services-items parent-service-card">
+        {#each data.service as item}
+            <ServiceCard serviceData={item}>
+            </ServiceCard>
+        {/each}
+    </div>
+{/key}

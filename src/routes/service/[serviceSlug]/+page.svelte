@@ -13,6 +13,7 @@
     import { Modal } from 'attractions';
     import { cart } from '$lib/cart';
     import { beforeUpdate } from 'svelte';
+
     export let data;
 
     let title = '';
@@ -42,7 +43,7 @@
         isServiceRelated = data.serviceRelated.length;
         isServiceInformation = data.serviceInformation.length;
         isServiceReview = data.serviceReview.length;
-    });
+    } );
 
     let currency = getCurrencySymbol();
 
@@ -54,35 +55,42 @@
     }
 
     let modalOrderSummaryOpen = false;
+
+    let refresh = {}
+    function restartComponents() {
+        refresh = {}
+    }
 </script>
 
 <svelte:head>
     <title>{title}</title>
 </svelte:head>
 <div class="service">
-    {#if modalOrderSummaryOpen}
-        <Modal bind:open={modalOrderSummaryOpen}>
-            <div class="service-modal-order-summary">
-                <OrderSummary closeModalOrderSummary={closeModalOrderSummary}/>
-            </div>
-        </Modal>
-    {/if}
-    {#if $cart.info.isOpen}
-        <div class="service-order-summary-desktop">
-            <OrderSummary/>
-        </div>
-        <div class="service-order-summary">
-            <div class="service-order-summary-total-price">
-                <div class="service-order-summary-total-price-label">
-                    Order summary
+    {#key refresh}
+        {#if modalOrderSummaryOpen}
+            <Modal bind:open={modalOrderSummaryOpen}>
+                <div class="service-modal-order-summary">
+                    <OrderSummary closeModalOrderSummary={closeModalOrderSummary} userData={data.user}/>
                 </div>
-                <div class="service-order-summary-total-price-value">
-                    {currency}{getPriceCurrency( $cart.info.totalPriceCart )}
-                </div>
+            </Modal>
+        {/if}
+        {#if $cart.info.isOpen}
+            <div class="service-order-summary-desktop">
+                <OrderSummary userData={data.user}/>
             </div>
-            <button class="service-order-summary-button" on:click={() => modalOrderSummaryOpen = true}>view details</button>
-        </div>
-    {/if}
+            <div class="service-order-summary">
+                <div class="service-order-summary-total-price">
+                    <div class="service-order-summary-total-price-label">
+                        Order summary
+                    </div>
+                    <div class="service-order-summary-total-price-value">
+                        {currency}{getPriceCurrency( $cart.info.totalPriceCart )}
+                    </div>
+                </div>
+                <button class="service-order-summary-button" on:click={() => modalOrderSummaryOpen = true}>view details</button>
+            </div>
+        {/if}
+    {/key}
     <div class="service-container {$cart.info.isOpen}">
         <div class="service-main">
             <div class="service-gallery-container">
@@ -111,7 +119,7 @@
         {/if}
         {#if isServiceOption > 0}
             <div class="service-option service-padding">
-                <ServiceOption serviceOptionData={data.serviceOption}/>
+                <ServiceOption serviceOptionData={data.serviceOption} refresh={restartComponents}/>
             </div>
         {/if}
         {#if isServiceRelated > 0}

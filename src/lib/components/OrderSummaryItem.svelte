@@ -8,6 +8,7 @@
     import ChevronIcon from '$lib/components/icon/Chevron.svelte';
 
     export let item;
+    export let refresh = () => {}
 
     let currency = getCurrencySymbol();
     let isOpen = true;
@@ -68,30 +69,20 @@
         StoreCart( $cart, $page.data.user );
         }
 
-    const clearOptionRadioButton = () => {
+    function clearOption( event ){
+        const index = event.target.value;
 
         for ( let cartService of $cart.services )
         {
             if ( item.serviceId == cartService.serviceId )
             {
-                cartService.optionRadioButton = '';
-            }
-        }
-        StoreCart( $cart, $page.data.user );
-        }
-
-    const clearOptionTwoInpunts = () => {
-
-        for ( let cartService of $cart.services )
-        {
-            if ( item.serviceId == cartService.serviceId )
-            {
-                cartService.optionTwoInputs = '';
+                cartService.options.splice( index, 1 );
             }
         }
 
         StoreCart( $cart, $page.data.user );
-        }
+        refresh();
+    }
 </script>
 
 <div class="order-summary-item">
@@ -109,25 +100,17 @@
         <div class="order-summary-item-container">
             {#if isOpen}
                 <div class="order-summary-item-container-inner" transition:slide={{ duration: 300 }}>
-                    {#if item.optionRadioButton}
-                        <div class="order-summary-item-option">
-                            <div class="order-summary-item-option-value">
-                                {item.optionRadioButton}
+                    {#if item.options}
+                        {#each item.options as option, index}
+                            <div class="order-summary-item-option">
+                                <div class="order-summary-item-option-value">
+                                    {option.value}
+                                </div>
+                                <button class="order-summary-item-option-clear order-summary-clear" on:click={clearOption} value={index}>
+                                    {getTranslatedTextByCode( 'ClearLabel' )}
+                                </button>
                             </div>
-                            <button class="order-summary-item-option-clear order-summary-clear" on:click|preventDefault={clearOptionRadioButton}>
-                                {getTranslatedTextByCode( 'ClearLabel' )}
-                            </button>
-                        </div>
-                    {/if}
-                    {#if item.optionTwoInputs}
-                        <div class="order-summary-item-option">
-                            <div class="order-summary-item-option-value">
-                                {item.optionTwoInputs}
-                            </div>
-                            <button class="order-summary-item-option-clear order-summary-clear" on:click|preventDefault={clearOptionTwoInpunts}>
-                                {getTranslatedTextByCode( 'ClearLabel' )}
-                            </button>
-                        </div>
+                        {/each}
                     {/if}
                     <div class="order-summary-item-quantity">
                         <div class="order-summary-item-info-quantity-price">
@@ -180,25 +163,17 @@
         <div class="order-summary-item-container">
             {#if isOpen}
                 <div class="order-summary-item-container-inner" transition:slide={{ duration: 300 }}>
-                    {#if item.optionRadioButton}
-                        <div class="order-summary-item-option">
-                            <div class="order-summary-item-option-value">
-                                {item.optionRadioButton}
+                    {#if item.options}
+                        {#each item.options as option, index}
+                            <div class="order-summary-item-option">
+                                <div class="order-summary-item-option-value">
+                                    {option.value}
+                                </div>
+                                <button class="order-summary-item-option-clear order-summary-clear"  on:click={clearOption} value={index}>
+                                    {getTranslatedTextByCode( 'ClearLabel' )}
+                                </button>
                             </div>
-                            <button class="order-summary-item-option-clear order-summary-clear" on:click|preventDefault={clearOptionRadioButton}>
-                                {getTranslatedTextByCode( 'ClearLabel' )}
-                            </button>
-                        </div>
-                    {/if}
-                    {#if item.optionTwoInputs}
-                        <div class="order-summary-item-option">
-                            <div class="order-summary-item-option-value">
-                                {item.optionTwoInputs}
-                            </div>
-                            <button class="order-summary-item-option-clear order-summary-clear" on:click|preventDefault={clearOptionTwoInpunts}>
-                                {getTranslatedTextByCode( 'ClearLabel' )}
-                            </button>
-                        </div>
+                        {/each}
                     {/if}
                 </div>
             {/if}

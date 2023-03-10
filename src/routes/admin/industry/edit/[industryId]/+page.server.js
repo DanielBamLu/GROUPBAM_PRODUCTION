@@ -39,7 +39,7 @@ export const actions = {
         let industryId = params.industryId;
 
         //Edit Name
-        let industryNameElements =  data.getAll( 'name' );
+        let industryNameElements = data.getAll( 'name' );
         let industryName = attachArrayToObject( industryNameElements, language );
 
         let industrySlug = convertToSlug( industryName, 'map' );
@@ -57,9 +57,9 @@ export const actions = {
         }
 
         //Edit IconPath
-        let industryFileName =  data.get( 'icon-file-name' );
-        let industryFileExtension =  data.get( 'icon-file-extension' );
-        let industryFileData =  data.get( 'icon-file-data' );
+        let industryFileName = data.get( 'icon-file-name' );
+        let industryFileExtension = data.get( 'icon-file-extension' );
+        let industryFileData = data.get( 'icon-file-data' );
         let industryOldIconPath = data.get( 'iconPath' );
 
         let industryIconPath;
@@ -68,7 +68,7 @@ export const actions = {
         {
             unlink( 'static' + industryOldIconPath, ( err ) => {
                 console.log( industryOldIconPath + ' was deleted' );
-            });
+            } );
 
             industryIconPath = '/image/industry/' + industryFileName + '-' + timeStamp + '.' + industryFileExtension;
 
@@ -86,7 +86,7 @@ export const actions = {
             }
         }
 
-        if( data )
+        if ( data )
         {
             return {
                 success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )

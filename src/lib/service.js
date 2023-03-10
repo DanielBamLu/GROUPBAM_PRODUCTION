@@ -7,7 +7,7 @@ export function multiply(
 
     Object.keys( object ).forEach( key => {
         multiply[ key ] = ( object[ key ] * quantity ).toFixed( 2 );
-    })
+    } )
 
     return multiply;
 }
@@ -25,7 +25,7 @@ export function sum(
         {
             sum[ key ] = ( parseFloat( object1[ key ] ) + parseFloat( object2[ key ] ) ).toFixed( 2 );
         }
-    })
+    } )
 
     return sum;
 }
@@ -43,7 +43,7 @@ export function subtract(
         {
             subtract[ key ] = ( parseFloat( object1[ key ] ) - parseFloat( object2[ key ] ) ).toFixed( 2 )
         }
-    })
+    } )
 
     return subtract;
 }
@@ -55,7 +55,7 @@ export function createNewObject(
     let newObject = {};
     Object.keys( object ).forEach( key => {
         newObject[ key ] = object[ key ];
-    })
+    } )
 
     return newObject;
 }

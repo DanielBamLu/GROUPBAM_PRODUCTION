@@ -7,7 +7,7 @@
     import Image from '$lib/components/admin/Image.svelte';
     import ListErrors from '$lib/components/ListErrors.svelte';
     import ListSuccess from '$lib/components/ListSuccess.svelte';
-    
+
     export let data;
 
     let errors;
@@ -31,14 +31,13 @@
     afterNavigate( ( { from } ) => {
         if ( from )
         {
-            
             if ( from.route.id === '/admin/service/add' )
             {
                 success = getTranslatedTextByCode( 'SuccessfullyAddedLabel' )
                 refresh = {}
             }
         }
-    })
+    } )
 
     let language = getLanguageMap( data.languageData );
     let currency = getCurrencyMap( data.currencyData );
@@ -95,10 +94,10 @@
     {
         if ( gallery[ galleryIndex ].imagePath )
         {
-            galleryArray.push({
-            name : gallery[ galleryIndex ].imagePath,
-            number: galleryIndex + 1
-            })
+            galleryArray.push( {
+                name : gallery[ galleryIndex ].imagePath,
+                number: galleryIndex + 1
+            } )
         }
     }
 
@@ -159,7 +158,7 @@
 
     function getBase64( image, postId, index ,type ) {
 
-        if ( image.length>0 )
+        if ( image.length > 0  )
         {
             if ( type == 'feature-image' )
             {
@@ -269,21 +268,21 @@
             value: item.id,
             label: getTranslatedText( item.name )
         };
-    });
+    } );
 
     company = company.map( function ( item ) {
         return {
             value: item.id,
             label: item.name
         };
-    });
+    } );
 
     category = category.map( function ( item ) {
         return {
             value: item.id,
             label: getTranslatedText( item.title )
         };
-    });
+    } );
 
     let newPacks = new Array();
     let indexPack = 0;
@@ -550,6 +549,14 @@
         }
     }
 
+    let optionType = data.serviceOptionType;
+    optionType = optionType.map( function ( item ) {
+        return {
+            value: item.id,
+            label: item.type
+        };
+    } );
+
     let newOptionVariants = new Array();
     const addOptionVariant = ( info, isNew ) => () => {
 
@@ -649,8 +656,8 @@
         <ListErrors errors={errors} />
         <ListSuccess success={success} />
     {/key}
-    <form 
-        method="POST" 
+    <form
+        method="POST"
         action="?/edit"
         use:enhance={() => {
             return ( { result, update } ) => {
@@ -668,7 +675,7 @@
                         success = result.data.success;
                     }
                 }
-                
+
                 refresh = {}
 
                 if ( result.type === 'error' ) update();
@@ -944,9 +951,9 @@
                                     {#each newImagePackArray as item}
                                         {#if item.packId == pack.info.id}
                                         {index}
-                                            <input name="pack-file-name-{index}" value="{item.name}"/>
-                                            <input name="pack-file-extension-{index}" value="{item.extension}"/>
-                                            <input name="pack-file-data-{index}" value="{item.dataFile}"/>
+                                            <input hidden name="pack-file-name-{index}" value="{item.name}"/>
+                                            <input hidden name="pack-file-extension-{index}" value="{item.extension}"/>
+                                            <input hidden name="pack-file-data-{index}" value="{item.dataFile}"/>
                                         {/if}
                                     {/each}
                                 {/key}
@@ -1084,9 +1091,9 @@
                                 {#key refreshImagePack}
                                     {#each newImagePackArray as item}
                                         {#if pack.info.index == item.index }
-                                            <input name="new-pack-file-name-{pack.info.index}" value="{item.name}"/>
-                                            <input name="new-pack-file-extension-{pack.info.index}" value="{item.extension}"/>
-                                            <input name="new-pack-file-data-{pack.info.index}" value="{item.dataFile}"/>
+                                            <input hidden name="new-pack-file-name-{pack.info.index}" value="{item.name}"/>
+                                            <input hidden name="new-pack-file-extension-{pack.info.index}" value="{item.extension}"/>
+                                            <input hidden name="new-pack-file-data-{pack.info.index}" value="{item.dataFile}"/>
                                         {/if}
                                     {/each}
                                 {/key}
@@ -1391,9 +1398,10 @@
                             <FormField
                                 name="{getTranslatedTextByCode( 'ServiceOptionTypeLabel' )}"
                             >
-                                <TextField
+                                <RadioGroup
                                     name="option-type-{index}"
-                                    value={option.option.type}
+                                    value="{option.option.typeId}"
+                                    items={optionType}
                                 />
                             </FormField>
                             {#each option.optionVariant as variant, indexVariant}
@@ -1545,9 +1553,9 @@
                             <FormField
                                 name="{getTranslatedTextByCode( 'ServiceOptionTypeLabel' )}"
                             >
-                                <TextField
+                                <RadioGroup
                                     name="new-option-type-{option.option.index}"
-                                    value={option.option.type}
+                                    items={optionType}
                                 />
                             </FormField>
                             {#key refreshOptionVariant}

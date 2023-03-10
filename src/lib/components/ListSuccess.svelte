@@ -6,7 +6,7 @@
     let show;
 
     onMount( async () => {
-        
+
         show = 1;
 
         setTimeout(() => {

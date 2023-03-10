@@ -75,12 +75,12 @@
         <div id="home-company-companies" class="home-company-companies">
             {#each data.companyArray as company, index}
                 {#if index == 0}
-                    <button class="home-company-companies-inner active" on:click={goToStartPage({index})}>
+                    <button class="home-company-companies-inner active" on:click={goToStartPage( {index} )}>
                         <img src="{company.iconPath}" alt="{company.name}">
                         <img src="{company.iconGrayPath}" alt="{company.name}">
                     </button>
                 {:else}
-                    <button class="home-company-companies-inner" on:click={goToStartPage({index})}>
+                    <button class="home-company-companies-inner" on:click={goToStartPage( {index} )}>
                         <img src="{company.iconPath}" alt="{company.name}">
                         <img src="{company.iconGrayPath}" alt="{company.name}">
                     </button>
@@ -257,15 +257,10 @@
     {
         height: calc( 100% - 6rem);
         width: 100%;
-        @media( min-width: 65em )
-        {
-            // height: 44rem;
-        }
     }
 
     .home-company-controler
     {
-        // height: 5rem;
         position: relative;
 
         display: none;

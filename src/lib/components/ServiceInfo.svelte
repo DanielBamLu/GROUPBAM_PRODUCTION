@@ -51,7 +51,7 @@
 
         totalPrice = multiply( unitPrice, quantity )
         totalTime = unitTime * quantity;
-    });
+    } );
 
     const increase = () => {
         quantity = quantity + 1;
@@ -134,9 +134,9 @@
 
             var isServiceInCart = $cart.services.some( function( element ) {
                 return ( element.serviceId === serviceData.info.id );
-            });
+            } );
 
-            if (isServiceInCart)
+            if ( isServiceInCart )
             {
                 for ( let cartService of $cart.services )
                 {
@@ -156,6 +156,7 @@
                         cartService.quantity = cartItemQuantity;
                         cartService.totalPrice = cartItemTotalPrice;
                         cartService.totalTime = cartItemTotalTime;
+                        cartService.hasPrice = serviceData.info.hasPrice;
                     }
                 }
             }

@@ -5,12 +5,12 @@ import { browser } from '$app/environment';
 
 // -- FUNCTIONS
 
-let cartArray = {
+let cartObj = {
     services: [],
     info: {}
 };
 
-export const cart = writable( cartArray );
+export const cart = writable( cartObj );
 
 export function StoreCart(
     cart,

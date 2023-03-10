@@ -6,7 +6,7 @@
 
     serviceProcessData.sort( ( a, b ) => {
         return a.number - b.number;
-    });
+    } );
 </script>
 
 <div class="service-process-block">

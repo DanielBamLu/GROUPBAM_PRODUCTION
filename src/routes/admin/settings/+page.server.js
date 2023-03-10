@@ -44,7 +44,7 @@ export const actions = {
         let userEmail = locals.user.email
 
         //Edit pseudonym
-        let userPseudonym =  data.get( 'pseudonym' );
+        let userPseudonym = data.get( 'pseudonym' );
 
         if ( userPseudonym )
         {
@@ -58,7 +58,7 @@ export const actions = {
         }
 
         //Edit first name
-        let userFirstName =  data.get( 'first-name' );
+        let userFirstName = data.get( 'first-name' );
 
         if ( userFirstName )
         {
@@ -72,7 +72,7 @@ export const actions = {
         }
 
         //Edit last name
-        let userLastName =  data.get( 'last-name' );
+        let userLastName = data.get( 'last-name' );
 
         if ( userLastName )
         {
@@ -86,7 +86,7 @@ export const actions = {
         }
 
         //Edit phone prefix
-        let userFirstPhonePrefix =  data.get( 'first-phone-prefix' );
+        let userFirstPhonePrefix = data.get( 'first-phone-prefix' );
 
         if ( userFirstPhonePrefix )
         {
@@ -100,7 +100,7 @@ export const actions = {
         }
 
         //Edit phone number
-        let userFirstPhoneNumber =  data.get( 'first-phone-number' );
+        let userFirstPhoneNumber = data.get( 'first-phone-number' );
 
         if ( userFirstPhoneNumber )
         {
@@ -114,7 +114,7 @@ export const actions = {
         }
 
         //Edit second phone prefix
-        let userSecondPhonePrefix =  data.get( 'second-phone-prefix' );
+        let userSecondPhonePrefix = data.get( 'second-phone-prefix' );
 
         if ( userSecondPhonePrefix )
         {
@@ -128,7 +128,7 @@ export const actions = {
         }
 
         //Edit second phone number
-        let userSecondPhoneNumber =  data.get( 'second-phone-number' );
+        let userSecondPhoneNumber = data.get( 'second-phone-number' );
 
         if ( userSecondPhoneNumber )
         {
@@ -142,7 +142,7 @@ export const actions = {
         }
 
         //Edit role
-        let userRole =  data.get( 'role' );
+        let userRole = data.get( 'role' );
 
         if ( userRole )
         {
@@ -156,7 +156,7 @@ export const actions = {
         }
 
         //Edit date
-        let userDate =  data.get( 'date-time' );
+        let userDate = data.get( 'date-time' );
 
         if ( userDate )
         {
@@ -170,7 +170,7 @@ export const actions = {
         }
 
         //Edit billing address
-        let userBillingFirstAddressLine =  data.get( 'billing-first-address-line' );
+        let userBillingFirstAddressLine = data.get( 'billing-first-address-line' );
 
         if ( userBillingFirstAddressLine )
         {
@@ -184,7 +184,7 @@ export const actions = {
         }
 
         //Edit second billing address
-        let userBillingSecondAddressLine =  data.get( 'billing-second-address-line' );
+        let userBillingSecondAddressLine = data.get( 'billing-second-address-line' );
 
         if ( userBillingSecondAddressLine )
         {
@@ -198,7 +198,7 @@ export const actions = {
         }
 
         //Edit billing city
-        let userBillingCity =  data.get( 'billing-city' );
+        let userBillingCity = data.get( 'billing-city' );
 
         if ( userBillingCity )
         {
@@ -212,7 +212,7 @@ export const actions = {
         }
 
         //Edit billing city code
-        let userBillingCityCode =  data.get( 'billing-city-code' );
+        let userBillingCityCode = data.get( 'billing-city-code' );
 
         if ( userBillingCityCode )
         {
@@ -226,7 +226,7 @@ export const actions = {
         }
 
         //Edit billing province
-        let userBillingProvince =  data.get( 'billing-province' );
+        let userBillingProvince = data.get( 'billing-province' );
 
         if ( userBillingProvince )
         {
@@ -240,7 +240,7 @@ export const actions = {
         }
 
         //Edit billing country slug
-        let userBillingCountrySlug =  data.get( 'billing-country-slug' );
+        let userBillingCountrySlug = data.get( 'billing-country-slug' );
 
         if ( userBillingCountrySlug )
         {
@@ -254,7 +254,7 @@ export const actions = {
         }
 
         //Edit secret question
-        let userSecretQuestion =  data.get( 'secret-question' );
+        let userSecretQuestion = data.get( 'secret-question' );
 
         if ( userSecretQuestion )
         {
@@ -268,7 +268,7 @@ export const actions = {
         }
 
         //Edit secret question
-        let userSecretAnswer =  data.get( 'secret-answer' );
+        let userSecretAnswer = data.get( 'secret-answer' );
 
         if ( userSecretAnswer )
         {
@@ -282,9 +282,9 @@ export const actions = {
         }
 
         //Edit password
-        let userOldPassword =  data.get( 'old-password' );
-        let userNewPassword =  data.get( 'new-password' );
-        let userNewPasswordRetype =  data.get( 'new-password-retype' );
+        let userOldPassword = data.get( 'old-password' );
+        let userNewPassword = data.get( 'new-password' );
+        let userNewPasswordRetype = data.get( 'new-password-retype' );
 
         if ( userOldPassword )
         {
@@ -356,8 +356,8 @@ export const actions = {
                 }
             }
         }
-        
-        if( data )
+
+        if ( data )
         {
             return {
                 success: getTranslatedTextByCode( 'SuccessfullyUpdatedLabel' )

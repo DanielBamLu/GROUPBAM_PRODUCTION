@@ -28,6 +28,7 @@
 
     .btn
     {
+        max-height: 3rem !important;
         color: var( --black-color ) !important;
     }
 
@@ -85,4 +86,12 @@
     .file-dropzone
     {
         color: var( --blue-color ) !important;
+        margin: 1rem 0 !important;
+        flex: 1;
+    }
+
+    .checkout-payment div[role=radiogroup]
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }

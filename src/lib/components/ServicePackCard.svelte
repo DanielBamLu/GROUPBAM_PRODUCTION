@@ -107,7 +107,7 @@
     {
         padding: 2rem 1.5rem;
 
-        background-color: var( --white-color);
+        background-color: var( --white-color );
     }
 
     .service-pack-card-name

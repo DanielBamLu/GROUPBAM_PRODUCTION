@@ -1,6 +1,5 @@
 <script>
     import { getTranslatedTextByCode } from 'senselogic-gist';
-    import ServiceCard from '$lib/components/ServiceCard.svelte';
     import CustomerSavedCard from '$lib/components/CustomerSavedCard.svelte';
 
     export let data;
@@ -9,7 +8,7 @@
 </script>
 
 <svelte:head>
-    <title>{getTranslatedTextByCode( 'SavedLabel' )}</title>
+    <title>{getTranslatedTextByCode( 'SavedPageTitle' )}</title>
 </svelte:head>
 <div class="saved">
     <div class="saved-heading">

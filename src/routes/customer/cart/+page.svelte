@@ -4,15 +4,22 @@
     import { cart, StoreCart } from '$lib/cart';
     import { getTranslatedTextByCode } from 'senselogic-gist';
     import { page } from '$app/stores';
-    import CustomerCartCard from '$lib/components/CustomerCartCard.svelte';
+    import ServiceDetailsCard from '$lib/components/ServiceDetailsCard.svelte';
 
     let currency = getCurrencySymbol();
 
-    let urgency = $cart.info.urgency;
+    function isUrgency(){
+        if( $cart.info.urgency )
+        {
+            $cart.info.urgency = false;
+        }
+        else
+        {
+            $cart.info.urgency = true;
+        }
 
-    const isUrgency = () => {
-        $cart.info.urgency = urgency;
         StoreCart( $cart, $page.data.user );
+        restartComponents();
         }
 
     let refresh = {}
@@ -62,14 +69,14 @@
                 </div>
                 <div class="cart-items">
                     {#each $cart.services as itemCart}
-                        <CustomerCartCard data={itemCart} refresh={restartComponents}/>
+                        <ServiceDetailsCard data={itemCart} refresh={restartComponents}/>
                     {/each}
                 </div>
                 <div class="cart-urgency">
                     <div class="cart-urgency-label">
                         {getTranslatedTextByCode( 'UrgencyLabel' )}
                     </div>
-                    <Switch name="urgency" bind:value={urgency} on:change={isUrgency}/>
+                    <Switch name="urgency" value={$cart.info.urgency} on:change={isUrgency}/>
                 </div>
                 <a class="cart-checkout mobile" href="/checkout">
                     <div class="cart-checkout-label">

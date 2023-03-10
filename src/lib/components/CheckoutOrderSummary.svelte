@@ -3,22 +3,38 @@
     import { cart, StoreCart } from '$lib/cart';
     import { getPriceCurrency, getCurrencySymbol } from '$lib/currency';
     import { getTranslatedTextByCode } from 'senselogic-gist';
-    import { goto } from '$app/navigation';
     import { page } from '$app/stores';
-    import CartCard from '$lib/components/CartCard.svelte';
+    import ServiceDetailsCard from '$lib/components/ServiceDetailsCard.svelte';
 
     let currency = getCurrencySymbol();
 
-    let urgency = $cart.info.urgency;
+    function isUrgency(){
+        if( $cart.info.urgency )
+        {
+            $cart.info.urgency = false;
+        }
+        else
+        {
+            $cart.info.urgency = true;
+        }
 
-    const isUrgency = () => {
-        $cart.info.urgency = urgency;
         StoreCart( $cart, $page.data.user );
         }
 
     let refresh = {}
     function restartComponents() {
         refresh = {}
+    }
+
+    const cleanCart = () => {
+        localStorage.setItem( 'cart', '' );
+
+        setTimeout(() => {
+            $cart = {
+                services: [],
+                info: {}
+            };
+        }, 1000)
     }
 </script>
 
@@ -43,27 +59,27 @@
                 </div>
                 <div class="checkout-order-summary-items">
                     {#each $cart.services as itemCart}
-                        <CartCard data={itemCart} refresh={restartComponents}/>
+                        <ServiceDetailsCard data={itemCart} refresh={restartComponents}/>
                     {/each}
                 </div>
                 <div class="checkout-order-summary-urgency">
                     <div class="checkout-order-summary-urgency-label">
                         {getTranslatedTextByCode( 'UrgencyLabel' )}
                     </div>
-                    <Switch name="urgency" bind:value={urgency} on:change={isUrgency}/>
+                    <Switch name="urgency" value={$cart.info.urgency} on:change={isUrgency}/>
                 </div>
                 <div class="checkout-order-summary-total">
                     <div class="checkout-order-summary-total-label">
-                        {getTranslatedTextByCode( 'CartTotalLabel' )}
+                        {getTranslatedTextByCode( 'TotalToPayLabel' )}
                     </div>
                     <div class="checkout-order-summary-total-value">
                         {currency}{getPriceCurrency( $cart.info.totalPriceCart )}
                     </div>
                 </div>
                 <div class="checkout-order-summary-actions">
-                    <button class="checkout-order-summary-checkout" type="submit" form="checkout">
+                    <button class="checkout-order-summary-checkout" on:click={cleanCart} type="submit" form="checkout">
                         <div class="checkout-order-summary-checkout-label">
-                            {getTranslatedTextByCode( 'CheckoutOrderSummaryButton' )}
+                            {getTranslatedTextByCode( 'CheckoutPlaceOrderButton' )}
                         </div>
                     </button>
                 </div>
@@ -75,7 +91,7 @@
 <style type="text/scss">
     .checkout-order-summary
     {
-        background-color: var( --white-color);
+        background-color: var( --white-color );
     }
 
     .checkout-order-summary-heading
@@ -86,7 +102,7 @@
         display: flex;
         align-items: center;
 
-        background-color: var(--black-color);
+        background-color: var(--black-color );
     }
 
     .checkout-order-summary-container
