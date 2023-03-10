@@ -104,7 +104,7 @@ export const actions = {
               billingCountrySlug: billingCountry,
               status: 'pending',
               orderDateTime: getFormatedDateTime(),
-              deliveryDateTime: '',
+              deliveryDateTime: getFormatedDateTime(),
               userId: locals.user.id,
               urgency: userCartInfo.info.urgency,
             }

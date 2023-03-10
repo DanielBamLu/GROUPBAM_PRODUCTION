@@ -49,7 +49,7 @@ export async function POST( { request, locals } ) {
         billingCountrySlug: body.details.purchase_units[ 0 ].shipping.address.country_code,
         status: 'process',
         orderDateTime: getFormatedDateTime(),
-        deliveryDateTime: '',
+        deliveryDateTime: getFormatedDateTime(),
         userId: locals.user.id,
         urgency: userCartInfo.info.urgency,
       }
