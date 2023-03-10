@@ -7,7 +7,6 @@
     import { cart, StoreCart } from '$lib/cart';
     import { onMount, afterUpdate } from 'svelte';
     import { UpdateViewportProperties } from '$lib/vistaViewport.js';
-    import { watchResize } from 'svelte-watch-resize';
     import PreloadingIndicator from '$lib/components/PreloadingIndicator.svelte';
     import SideMenuModal from '$lib/components/SideMenuModal.svelte';
     import Header from '$lib/components/Header.svelte';
@@ -118,9 +117,7 @@
 
     let modalSideMenuOpen = false;
 
-    function handleMainResize() {
-        UpdateViewportProperties();
-    }
+    UpdateViewportProperties();
 </script>
 
 
@@ -128,7 +125,7 @@
     {#if $navigating}
         <PreloadingIndicator />
     {/if}
-    <div class="main" use:watchResize={handleMainResize}>
+    <div class="main">
         {#if isAdmin == 1}
             <main>
                 <slot />
